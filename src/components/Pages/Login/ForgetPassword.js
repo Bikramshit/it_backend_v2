@@ -1,0 +1,194 @@
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Footer from '../../Layouts/Footer/Footer';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { forgetPassword, resetPassword } from '../../../Redux/Actions/UserAction';
+import Loader from '../../Layouts/Loader/Loader';
+import Header from '../../Layouts/Header/Header';
+
+
+function ForgetPassword() {
+  const {loading, message, error, user} = useSelector(state=>state.user);
+    
+    const [password, setPassword] = useState();
+    const [cpassword, setcPassword] = useState();
+
+    const dispatch = useDispatch();
+    const params = useParams();
+    const navigate = useNavigate();
+    const SubmitHandler =async()=>{
+        if(password!==cpassword){
+            toast.error("Password does not match");
+            return;
+        }
+        const res = await dispatch(resetPassword(params.id, password));
+        if(res==true){
+          
+            navigate('/');
+        }
+
+    }
+   
+  
+
+  return (
+    <>
+ {
+  loading ? <Loader/> :           <div className="main_con">
+  <Header/>
+<div className="intro_section">
+  <div className='intro_text'>Here You Can Compute Your Tax Comfortably and Efficiently</div>
+  <div className='intro_text'>Without Using Any Paper, Pen or Calculator</div>
+  
+<div className='intro_namse'>
+    <div className="intro_name">- Shaikh Rizwan</div>
+    <div className='position'>(Sr. Accounts Assistant, A Torab & Co., Chartered Accountants)</div>
+  </div>
+ 
+
+</div>
+<div className="login_container">
+<div className="login_child">
+<div className="login">
+  <div className="login_title">Reset Password</div>
+  <div className="login_sec">
+      <label htmlFor="Passord">Password</label>
+      <input type="password"  onChange={e=>{ setPassword(e.target.value)}} id='username' autoComplete='off' />
+  </div>
+  <div className="login_sec">
+      <label htmlFor="Confirm password">Confirm Password</label>
+      <input type="password" onChange={e=>setcPassword(e.target.value)} autoComplete='off' />
+  </div>
+  <div className=" login_btn">
+    <button type='submit' className='btn' onClick={SubmitHandler}>Change</button>
+  </div>
+ 
+</div>
+</div>
+<div className="login_child1">
+<div className="rules">
+
+<p>Rules</p>
+
+  <div className="rules_div">
+
+<div className="scroll-text " >
+                  <div className="scroll_div"  >
+                  <button className="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">1. House Building Loan Interest deduction u/s 24(b)</button>
+               
+                 
+                  </div>
+                  <div className="scroll_div">
+                    <button  data-bs-toggle="modal" data-bs-target="#staticBackdrop1">2. Spouse Declaration Form for those whose spouse is employed</button>
+                  </div>
+                  {/* <div className="scroll_div">
+                    <button href="https://drive.google.com/file/d/1-0a_3lBngF30fs_ullETA4Efxn5vXAGr/view" className="" target="_black">2. Spouse Declaration Form for those whose spouse is employed</button>
+                
+                  </div> */}
+                  <div className="scroll_div">
+                  <button className="" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">3. House Rent Allowance exemption u/s 10(13A) </button>
+                  </div>
+                  <div className="scroll_div">
+                  <button className="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">4. Home loan taken against "House under construction"</button>
+                  </div>
+                </div>
+                </div>
+</div>
+  </div>
+  </div>
+{/* </div> */}
+
+<Footer/>
+
+<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-black">
+  <h6>House Rent Allowance exemption u/s 10(13A) </h6>
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-black">
+  <h6>House Building Loan Interest deduction u/s 24(b)</h6>
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-black">
+  <h6>Spouse Declaration Form for those whose spouse is employed</h6>
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body text-black">
+  <h6>Home Loan taken against "House under construction"</h6>
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   
+  </div>
+</div>
+</div>
+</div>
+</div>
+ }
+
+    
+    </>
+  )
+}
+
+export default ForgetPassword
