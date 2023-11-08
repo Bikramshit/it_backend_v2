@@ -58,10 +58,15 @@ const Cat = [
  
 ]
 function UpdateUser() {
-  const {user} = useSelector(state=>state.user);
-  const  {loading, message,error} = useSelector(state=>state.profile);
+  // const {user} = useSelector(state=>state.user);
+  const  {loading, user, message,error} = useSelector(state=>state.admin);
+  // const {user}
 
   const dispatch = useDispatch();
+  const params = useParams();
+  useEffect(()=>{
+    dispatch(getUserDetails(params.id))
+  },[dispatch])
 
   const [name, setName] = useState();
   const [department, setDepartment] = useState();

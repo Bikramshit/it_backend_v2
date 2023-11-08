@@ -50,6 +50,7 @@ const getDate =(yourDate)=> {
      {
       user===undefined ? <Loader/> :<>
   <div className="it_container">
+    <h5 className='text-decoration-underline pt-1'>User Details</h5>
         <div className="user_sec">
           <div className="labels">
             <div>Name</div>
@@ -76,7 +77,7 @@ const getDate =(yourDate)=> {
           </div>
         </div>
     </div>
-    <div className="submit_btn">
+    <div className="submit_btn1">
    <button onClick={openModal} className='delete'>Delete</button>
  <Link to={`/update/user/${user._id}`}>Update User</Link>
    </div>

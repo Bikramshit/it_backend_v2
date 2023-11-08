@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllResponses, getMyResponses } from '../../../Redux/Actions/ResponseAction';
+import { GetAllResponseByForm, GetAllResponses, getMyResponses } from '../../../Redux/Actions/ResponseAction';
 import Sidebar from '../../Layouts/Sidebar/Sidebar';
 import AuthHeader from '../../Layouts/Header/AuthHeader';
 import Loader from '../../Layouts/Loader/Loader';
@@ -8,19 +8,38 @@ import {FaFilePdf} from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PdfFile from '../../Layouts/Pdf/PdfFile';
+import { getAllForm } from '../../../Redux/Actions/FormAction';
 function Responses() {
   const {user} = useSelector(state=>state.user)
   const {loading, responses, message} = useSelector(state=>state.response);
+  const { forms} = useSelector(state=>state.form);
+
+  const [formId, setFormId] = useState();
+
   const dispatch = useDispatch();
   useEffect(()=>{
     if(user!==undefined){
       if(user.role==="admin"){
        dispatch(GetAllResponses())
+        dispatch(getAllForm());
+
       }else {
         dispatch(getMyResponses());
       }
     }
-   }, [dispatch]);
+   }, []);
+
+   const FormHandler = async(id)=>{
+    setFormId(id);
+    // console.log("Month", mon);
+    if(id===""){
+      dispatch(GetAllResponses());
+      return;
+    }
+    await dispatch(GetAllResponseByForm(id));
+  }
+
+
    const getDate =(yourDate)=> {
     yourDate = new Date(yourDate);
     const offset = yourDate.getTimezoneOffset();
@@ -38,7 +57,7 @@ function Responses() {
 
        {
         user.role==="user" ? <>{
-          responses===undefined ? <Loader/> :    <div className='it_container'>
+          responses===undefined ? <Loader/> :    <div className='salary'>
           <h6>All Responses</h6>
           <div className="table_div">
           <table id='response'>
@@ -81,8 +100,22 @@ function Responses() {
         </div>
          } </> : <>
          {
-        responses===undefined ? <Loader/> :    <div className='it_container'>
-        <h6>All Responses</h6>
+       forms===undefined ||  responses===undefined ? <Loader/> :    <div className='salary'>
+        <h6 className='text-decoration-underline'>All Responses</h6>
+
+          <div className="res_select">
+            Select Financial Year:
+            <select name="" id="" onChange={(e)=>FormHandler(e.target.value)} >
+              <option value="">All</option>
+              {
+                forms.map((form, i)=> 
+                
+                <option value={form._id} key={i} selected={form._id==formId}>{form.financial_year}</option>
+                
+                )
+            }
+            </select>
+          </div>
         <div className="table_div">
         <table id='response'>
           <tr className='table_bg'>
@@ -97,7 +130,7 @@ function Responses() {
 
           </tr>
           {
-            responses.map((response, index)=>(
+            responses && responses.map((response, index)=>(
               <tr className={(index+1)%2===0 ? 'table_row_bg' : ''}>
                 <td><Link to={`/response/${response._id}`}> {index+1} </Link></td>
                 <td><Link to={`/response/${response._id}`}> {response.name} </Link></td>

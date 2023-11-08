@@ -165,7 +165,7 @@ function Preview() {
         return;
       }
       else if(response.opting_for==="Old Regime" && response.extra_file===undefined && response.ex_t!==0){
-        toast.error(`Please upload the document of ${ex_i}`);
+        toast.error(`Please upload the document of ${response.ex_i}`);
         return;
       }
       // end 
@@ -1923,7 +1923,8 @@ Interest on House Building Loan u/s 24(b) </div>
 
 
 {
-  response.netsal_f13===0 && response.lip_c===0 && response.ppf_c===0 && response.ssy_c===0 && response.cs_c===0 && response.input1===0 && response.input2===0 && response.input3===0 && response.name1==='' && response.pan1==='' && response.name2==='' && response.pan2==='' && response.pan3==='' && response.name3==='' && response.name4==='' && response.pan4==='' && response.interest_hbl_it===0 ? '' :
+  response.netsal_f13===0 && response.lip_c===0 && response.ppf_c===0 && response.ssy_c===0 && response.cs_c===0 && response.input1===0 && response.input2===0 && response.input3===0 && response.phb_c===0 &&  response.mii3_c===0 &&  response.mis3_c===0 && response.disability_c2===0 && response.iel_c===0 &&   response.nps_c===0 && response.donation_c===0 &&   response.electric_c===0 && response.ex_t===0 && 
+   response.name1==='' && response.pan1==='' && response.name2==='' && response.pan2==='' && response.pan3==='' && response.name3==='' && response.name4==='' && response.pan4==='' && response.interest_hbl_it===0 ? '' :
   <div className="doc_upload">
   <h6>Upload Documents</h6>
   <table>
@@ -2109,7 +2110,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 {
     response.ex_t!==0 &&  <tr>
-    <td>{ex_i}</td>
+    <td>{response.ex_i}</td>
     <td><input type="file" accept="application/pdf" onChange={ExtraHandler} /></td>
     <td><button className="upload_btn" onClick={Extra_Upload}>Upload</button></td>
     {

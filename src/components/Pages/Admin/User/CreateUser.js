@@ -26,7 +26,6 @@ function CreateUser() {
   const [designation, setDesignation] = useState('');
   const [department, setDepartment] = useState('');
   const [category, setCategory] = useState('');
-  const [employer, setEmployer] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [pan, setPan] = useState('');
@@ -101,7 +100,35 @@ document.getElementById('pasw').value = formattedToday
    
    <div className="q_sec">
     <label htmlFor="">Designation</label>
-    <input type="text" onChange={e=>setDesignation(e.target.value)}  />
+    <select name="" id="" onChange={e=>setDesignation(e.target.value)}>
+      <option value="">Select--</option>
+      <option value="Hon'ble Vice Chancellor">Hon'ble Vice Chancellor</option>
+      <option value="The Registrar">The Registrar</option>
+      <option value="Finance Officer">Finance Officer</option>
+      <option value="Training & Placement Officer">Training & Placement Officer</option>
+      <option value="Controller of Examination">Controller of Examination</option>
+      <option value="Senior Assistant">Senior Assistant</option>
+      <option value="Junior Assistant">Junior Assistant</option>
+      <option value="Junior Peon">Junior Peon</option>
+      <option value="Junior Superintendent">Jr. Superintendent</option>
+      <option value="Junior Superintendent/ Section Officer">Junior Superintendent/ Section Officer </option>
+      <option value="Farmacist">Farmacist</option>
+      <option value="Assistant Librarian">Assistant Librarian</option>
+      <option value="Junior Store Keeper">Junior Store Keeper</option>
+      <option value="Cashier">Cashier</option>
+      <option value="Accountant">Accountant</option>
+      <option value="Personal Assistant">Personal Assistant</option>
+      <option value="Physical Training Instructor">Physical Training Instructor</option>
+      <option value="Record Keeper">Record Keeper</option>
+      <option value="Ground Supervisor">Ground Supervisor</option>
+      <option value="Gardener">Gardener</option>
+      <option value="Plumber">Plumber</option>      
+      <option value="Assistant Professor">Assistant Professor</option>
+      <option value="Associate Professor">Associate Professor</option>
+      <option value="Professor">Professor</option>
+      <option value="Technical Assistant">Technical Assistant</option>
+
+    </select>
    </div>
    
 
@@ -159,27 +186,30 @@ document.getElementById('pasw').value = formattedToday
  
    <div className="q_sec">
     <label htmlFor="">Category</label>
-    <input type="text" onChange={e=>setCategory(e.target.value)} />
+    <select name="" id="" onChange={e=>setCategory(e.target.value)}>
+      <option value="">Select--</option>
+      <option value="Officer">Officer</option>
+      <option value="NTS">NTS</option>
+      <option value="Registrar">Registrar</option>
+      <option value="Faculty">Faculty</option>
+    </select>
    </div>
 
-   <div className="q_sec">
-    <label htmlFor="">Employer</label>
-    <input type="text" onChange={e=>setEmployer(e.target.value)}  />
-   </div>
+  
    <div className="q_sec">
     <label htmlFor="">Contact No</label>
     <input type="text" onChange={e=>setPhone(e.target.value)}  />
    </div>
    <div className="q_sec">
-    <label htmlFor="">Aadhaar</label>
-    <input type="text" onChange={e=>setAadhaar(e.target.value)}  />
+    <label htmlFor="">Aadhaar No</label>
+    <input type="text" onChange={e=>setAadhaar(e.target.value)} />
    </div>
    <div className="q_sec">
     <label htmlFor="">PAN</label>
     <input type="text" onChange={e=>userNameHandler(e)} id='username' />
    </div>
    <div className="q_sec">
-    <label htmlFor="">Email</label>
+    <label htmlFor="">Email Id</label>
     <input type="email" onChange={e=>setEmail(e.target.value)}  />
    </div>
    <div className="q_sec">
@@ -194,7 +224,7 @@ document.getElementById('pasw').value = formattedToday
    </div>
    <div className="submit_btn">
    <button onClick={SaveHandler}>Save</button>
-   <button onClick={ContinueHandler} className='save'>Save and Continue</button>
+   <button onClick={ContinueHandler} className='save'>Save and Add One</button>
    <button onClick={CancelHandler} className='cancel'>Cancel</button>
    </div>
    </div>

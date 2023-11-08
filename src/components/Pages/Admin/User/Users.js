@@ -31,16 +31,18 @@ function User() {
           
           <div className="create_section">
             <span></span>
-            <Link to={'/user/new'}>            
-            <button>Create <span><IoAddCircleOutline/></span></button>
-            </Link>
+           
 
 
           </div>
        {
-        users===undefined ? <Loader/> :    <div className='it_container' style={{marginTop:"1rem"}}>
-
-        <h6>All Users</h6>
+        users===undefined ? <Loader/> :    <div className='salary' style={{marginTop:"1rem"}}>
+          <div className='d-flex justify-content-between px-1'>
+          <h6 className='text-decoration-underline'>All Users</h6>
+          <Link to={'/user/new'}>            
+            <button className='btn btn-outline-success fw-bold'>Create <span><IoAddCircleOutline/></span></button>
+            </Link>
+          </div>
     
         <div className="table_div">
         <table id='response'>

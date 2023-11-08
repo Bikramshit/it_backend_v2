@@ -29,11 +29,18 @@ function FormContainer() {
 
     const getDate =(yourDate)=> {
       if(yourDate===undefined) return;
+      const options = {
+        // weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
       yourDate = new Date(yourDate);
       const offset = yourDate.getTimezoneOffset();
       yourDate = new Date(yourDate.getTime() - (offset*60*1000))
       // return yourDate.toISOString().split('T')[0]
-      return yourDate.toLocaleDateString()
+      // return yourDate.toLocaleDateString()
+      return yourDate.toLocaleString("en-US", options)
     }
   return (
     <>

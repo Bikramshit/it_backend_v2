@@ -246,7 +246,7 @@ useEffect(()=>{
     ntp.current.value                 = response.ntax_payable_it
     tax_deduct.current.value          = response.td_sal_it;
     tax_rp.current.value              = response.tex_payable_it;
-    // console.log(response.tax_refund);
+    // // console.log(response.tax_refund);
     tax_refund.current                = response.tax_refund;
     hbl_yr.current.value              = response.hbl_taken_fy;
   }
@@ -256,7 +256,7 @@ useEffect(()=>{
 
 const SubmitHandler =async(currentState)=>{
   const  id = params.id;
-  console.log(tax_on, tax_nr);
+  // console.log(tax_on, tax_nr);
   const res = await dispatch(ITHandler(id, currentState,
  dor.current.value                ,    
 vs.current.value                  ,
@@ -339,6 +339,8 @@ const PreviousHandler = async()=>{
     toast.error("Please select the regime option!");
     return;
   }
+
+  
   const res = await SubmitHandler("hra");
 
   if(res===true){
@@ -347,6 +349,14 @@ const PreviousHandler = async()=>{
  }
 
  const NextHandler = async()=>{
+  const tax_Refund = document.getElementById("tr").value;
+  const tax_pr = document.getElementById("tax_pr").value;
+
+  
+  if(tax_Refund>0 && tax_pr==="Tax Payable"){
+    toast.error("Your tax payable is more than the tax deducted.");
+    return;
+  }
   const opt = document.getElementById('on__option').value;
   if(opt==="Select--"){
     toast.error("Please select the regime option!");
@@ -359,7 +369,13 @@ const PreviousHandler = async()=>{
  }
 
  const SelectHandler = async(e)=>{
- 
+  const tax_Refund = tax_refund.current.value;
+  const tax_pr = document.getElementById('tax_pr');
+
+  if(tax_Refund>0 && tax_pr.value==="Tax Payable"){
+    toast.error("Your tax payable is more than the tax deducted.");
+    return;
+  }
   const opt = document.getElementById('on__option').value;
   if(opt==="Select--"){
     toast.error("Please select the regime option!");
@@ -476,7 +492,7 @@ const currentSal =()=> {
  else {
    dooob = inputt; 
  }
-console.log(dooob);
+// console.log(dooob);
  var dobb =new Date(dooob);
 
  let datee;
@@ -502,14 +518,14 @@ console.log(dooob);
 
 
  var employeer =response.category;
- console.log(response.category);
+ // console.log(response.category);
  var dateofR, monthh, yearr;
     
  var dayy = dobb.getDate();
 
  monthh = dobb.getMonth();
 
-// console.log(dobb, monthh);
+// // console.log(dobb, monthh);
  if(employeer=='Officer' || employeer=='NTS'){
    
    if(dayy==1){
@@ -557,15 +573,15 @@ console.log(dooob);
      dateofR = new Date(dateofR.setDate(dateofR.getDate()-(dateofR.getDate())));
      dateofR =YZero((dateofR.getFullYear())) + "-" +zero((dateofR.getMonth()+1)) + "-" + zero(dateofR.getDate()) ; 
      document.getElementById('dor').value =dateofR;
-    console.log(dateofR);
+    // console.log(dateofR);
 
    }
  }
 
 
-//  console.log(dateofR);
+//  // console.log(dateofR);
 //  const input = response.dob;
-//  console.log(input);
+//  // console.log(input);
  
 // if(input!="1900-01-01"){
 
@@ -810,7 +826,7 @@ var selectyr =document.getElementById("hbl_yrr").value;
 
 
  var total_deduction_c = parseInt(response.chapter_total) || 0;
- console.log(response.chapter_total);
+ // console.log(response.chapter_total);
   
  var Deduction_chapter = parseInt(total_deduction_c)  ;
 
@@ -894,7 +910,7 @@ if(chpt_select=="2016-17"){
   if(response.ihbl_c===0 && response.ihbl_c2===0){
     Deduction_chapter = parseInt(Deduction_chapter) + parseInt(chp_hbl);
   }else {
-    console.log(response.ihbl_c, response.ihbl_c2);
+    // console.log(response.ihbl_c, response.ihbl_c2);
     if(response.ihbl_c===chp_hbl){
       Deduction_chapter = parseInt(Deduction_chapter);
     }else if(response.ihbl_c>chp_hbl){
@@ -936,7 +952,7 @@ document.getElementById('chp_hbl2').value = chp_hbl2;
   if(response.isb_c===0 && response.isb_c2===0){
   Deduction_chapter = parseInt(Deduction_chapter) + parseInt(chp_isbb) + parseInt(chp_isbb2);
   } else {
-    console.log(response.isb_c, response.isb_c2);
+    // console.log(response.isb_c, response.isb_c2);
     let isb_to = parseInt(response.isb_c) + parseInt(response.isb_c2);
     let isb_ac = parseInt(chp_isbb) + parseInt(chp_isbb2)
     if(isb_to===isb_ac){

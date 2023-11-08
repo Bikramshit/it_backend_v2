@@ -9,6 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "protected-route-react": "^1.0.1",

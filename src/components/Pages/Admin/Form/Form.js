@@ -42,20 +42,20 @@ function Form() {
         forms.map((form, i)=>(
           <Link to={`/form/${form._id}`} key={i}>
           <div className="form_card">
-            <div className="form_title lora">
+            <div className="form_title Josefin">
               {form.name}
             </div>
             <div className="form_year">
               <div>Financial Year: {form.financial_year}</div>
               <div>Assessment Year: {form.assessment_year}</div>
             </div>
-            <div>
-              Status: {form.visibility}
+            <div className='form_visibiliy'>
+              Status: <span className={form.visibility==="Active" ? "form_act" : ""}>{form.visibility}</span>
             </div>
             <div className="form_footer">
               <span>Created At:{getDate(form.createdAt)}</span>
             </div>
-            <p>Total Responses: {form.totalResponse}</p>
+            <p className='ttotal'>Total Responses: <span className='form_act'>{form.totalResponse}</span></p>
           </div>
           </Link>
         ))

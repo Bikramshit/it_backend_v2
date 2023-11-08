@@ -133,6 +133,7 @@ function Letter() {
     yourDate = new Date(yourDate.getTime() - (offset*60*1000))
     return yourDate.toISOString().split('T')[0]
   }
+  console.log(user.aadhaar);
   return (
    <Sidebar>
     <Header  user={user} />
@@ -172,7 +173,6 @@ function Letter() {
       </div>
       <div className="q_sec_letter" id='letter_disable'>
         <label htmlFor="">Category:</label>
-        {/* <input type="text" onChange={e=>setCategory(e.target.value)} defaultValue={category} /> */}
         <select name="" id="" onChange={e=>setCategory(e.target.value)} disabled>
           <option value="">Select--</option>
           {
@@ -191,16 +191,16 @@ function Letter() {
         <input type="text" onChange={e=>setPhone(e.target.value)} defaultValue={phone} readOnly />
       </div>
       <div className="q_sec_letter">
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email Id:</label>
         <input type="email" onChange={e=>setEmail(e.target.value)} defaultValue={email} readOnly />
       </div>
       <div className="q_sec_letter">
         <label htmlFor="pan">PAN:</label>
         <input type="text" onChange={e=>setPan(e.target.value)} defaultValue={pan} readOnly />
       </div>
-      <div className="q_sec_letter">
-        <label htmlFor="aadhaar">Aadhaar:</label>
-        <input type="text" onChange={e=>setAadhaar(e.target.value)} defaultValue={aadhaar} readOnly />
+      <div className="q_sec_letter" id={(user.aadhaar===undefined) ? "letter_q_sec" : ''} >
+        <label htmlFor="aadhaar">Aadhaar No:</label>
+        <input type="text" onChange={e=>setAadhaar(e.target.value)} defaultValue={aadhaar} readOnly={user.aadhaar!==undefined} />
       </div>
       <div className="q_sec_letter">
         <label htmlFor="aadhaar">DOB:</label>

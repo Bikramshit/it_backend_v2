@@ -8,7 +8,8 @@ import {AiFillSetting, AiOutlineCalculator}from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
 import {BsFillDatabaseFill} from "react-icons/bs"
-import {MdNotificationsActive} from "react-icons/md"
+import {MdNotificationsActive} from "react-icons/md";
+import {RiFolderUserFill} from "react-icons/ri"
 const menuItem =[
     {
         path:"/",
@@ -26,9 +27,9 @@ const menuItem =[
         icon:<ImHistory/>
     },
     {
-        path:"/setting",
-        name:"Setting",
-        icon:<AiFillSetting/>
+        path:"/profile",
+        name:"Profile",
+        icon:<RiFolderUserFill/>
     },
 ]
 const menuItem2 =[

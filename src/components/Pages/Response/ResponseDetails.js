@@ -12,6 +12,9 @@ import {VscBlank} from "react-icons/vsc"
 import { SendMailHandler } from '../../../Redux/Actions/UserAction';
 import { toast } from 'react-hot-toast';
 import { CreateExtraMonths } from '../../../Redux/Actions/ExtraMonthAction';
+import {IoDocumentTextSharp} from "react-icons/io5"
+import { Link } from 'react-router-dom';
+
 
 const Months = ["January", "February",  "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -1507,6 +1510,239 @@ Interest on House Building Loan u/s 24(b) </div>
   
         </div>
 </div>
+
+
+{
+  response.netsal_f13===0 && response.lip_c===0 && response.ppf_c===0 && response.ssy_c===0 && response.cs_c===0 && response.input1===0 && response.input2===0 && response.input3===0 && response.phb_c===0 &&  response.mii3_c===0 &&  response.mis3_c===0 && response.disability_c2===0 && response.iel_c===0 &&   response.nps_c===0 && response.donation_c===0 &&   response.electric_c===0 && response.ex_t===0 && 
+   response.name1==='' && response.pan1==='' && response.name2==='' && response.pan2==='' && response.pan3==='' && response.name3==='' && response.name4==='' && response.pan4==='' && response.interest_hbl_it===0 ? '' :
+   <>
+   
+   <div className="doc_upload">
+  <h6>Upload Documents</h6>
+  <table>
+   {
+      response.netsal_f13!==0 &&  <tr>
+      <td>Pay Slip</td>
+   
+      {
+        response.pay_slip!==undefined ?   <td className="doc_view"><Link target="_blank" to={response.pay_slip.url} ><IoDocumentTextSharp/></Link></td> : ''
+      }
+    
+    </tr>
+   }
+    {
+      response.lip_c!==0 && <tr>
+      <td>Life Insurance Premium</td>
+      
+      
+      {
+        response.lip_c_file!==undefined ? <td className="doc_view"><Link target="_blank" to={response.lip_c_file.url}><IoDocumentTextSharp/></Link></td> : ''
+      }
+    </tr>
+    }
+   {
+     response.ppf_c!==0 &&  <tr>
+     <td>PPF</td>
+     
+     {
+       response.ppf_c_file!==undefined ? <td className="doc_view"><Link target="_blank" to={response.ppf_c_file.url} ><IoDocumentTextSharp/></Link></td> : ''
+     }
+   </tr>
+   }
+    {
+      response.ssy_c!==0 && <tr>
+      <td>Sukanya Samridhi Yojna Contribution</td>
+    
+      {
+        response.ssc_file!==undefined ? <td className="doc_view"><Link target="_blank" to={response.ssc_file.url}><IoDocumentTextSharp/></Link></td> : ''
+      }
+    </tr>
+    }
+    {
+      response.cs_c!==0 && <tr>
+      <td>Child's School/College Tuition Fee (Max. 02 child)</td>
+     
+      {
+        response.child_file!==undefined ? <td className="doc_view"><Link target="_blank" to={response.child_file.url}><IoDocumentTextSharp/></Link></td> : ''
+      }
+    </tr>
+    }
+    {
+      response.input1!==0 && <tr>
+      <td>{response.inp_n1}</td>
+    
+      {
+        response.input_file!==undefined ? <td className="doc_view"><Link target="_blank" to={response.input_file.url}><IoDocumentTextSharp/></Link></td> : ''
+      }
+    </tr> 
+    }
+    {
+      response.input2!==0 && <tr>
+      <td>{response.inp_n2}</td>
+      
+      {
+        response.input2_file!==undefined ? <td className="doc_view"><Link target="_blank" to={response.input2_file.url}><IoDocumentTextSharp/></Link></td> : ''
+      }
+    </tr> 
+    }
+    {
+      response.input3!==0 && <tr>
+      <td>{response.inp_n3}</td>
+     
+     {
+      response.input3_file!==undefined ?  <td className="doc_view"><Link target="_blank" to={response.input3_file.url}><IoDocumentTextSharp/></Link></td> : ''
+     }
+    </tr> 
+    }
+    
+   
+  {/* start  */}
+  {
+    response.phb_c!==0 &&  <tr>
+    <td>Payment of House Building Loan </td>
+    
+    {
+      response.payment_hbl_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.payment_hbl_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.mii3_c!==0 &&  <tr>
+    <td>Medical Insurance Premium for Individual</td>
+    {
+      response.medical_ind_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.medical_ind_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.mis3_c!==0 &&  <tr>
+    <td>Medical Insurance Premium for Sr. Citizen</td>
+    {
+      response.medical_sr_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.medical_sr_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.disability_c2!==0 &&  <tr>
+    <td>For maintenance of handicapped dependent/for own disability</td>
+    {
+      response.handicap_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.handicap_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.iel_c!==0 &&  <tr>
+    <td>Interest on Educational Loan</td>
+    {
+      response.education_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.education_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.nps_c!==0 &&  <tr>
+    <td>NPS/Atal Pension Yojana </td>
+    {
+      response.nps_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.nps_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.donation_c!==0 &&  <tr>
+    <td>Donation/Charity to registered donatee </td>
+    {
+      response.donation_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.donation_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+{
+    response.electric_c!==0 &&  <tr>
+    <td>Loan for purchase of Electric Vehicle</td>
+    {
+      response.electric_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.electric_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+{
+    response.ex_t!==0 &&  <tr>
+    <td>{response.ex_i}</td>
+    {
+      response.extra_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.extra_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+
+
+{
+      response.pan1!=='' && response.name1!=='' && <tr>
+      <td>Landloard 1</td>
+      {
+        response.landords_file1!==undefined ? 
+      <td className="doc_view"><Link target="_blank" to={response.landords_file1.url} ><IoDocumentTextSharp/></Link></td> : ''
+    }
+    </tr>
+    }
+   {
+    response.pan2!=='' && response.name2!=='' &&  <tr>
+    <td>Landloard 2</td>
+    {
+      response.landords_file2!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.landords_file2.url} ><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+   }
+    {
+      response.name3!=='' && response.pan3!=='' && <tr>
+      <td>Landloard 3</td>
+      {
+        response.landords_file3!==undefined ? 
+      <td className="doc_view"><Link target="_blank" to={response.landords_file3.url}><IoDocumentTextSharp/></Link></td> : ''
+    }
+    </tr>
+    }
+    {
+      response.pan4!=='' && response.name4!=='' && <tr>
+      <td>Landloard 4</td>
+      {
+        response.landords_file3!==undefined ? 
+      <td className="doc_view"><Link target="_blank" to={response.landords_file3.url}><IoDocumentTextSharp/></Link></td> : ''
+    }
+    </tr>
+    }
+   {
+    response.interest_hbl_it!==0 &&  <tr>
+    <td>Interest on House Building Loan u/s 24(b)</td>
+    {
+      response.hbl_file!==undefined ? 
+    <td className="doc_view"><Link target="_blank" to={response.hbl_file.url}><IoDocumentTextSharp/></Link></td> : ''
+  }
+  </tr>
+
+}
+
+    
+  </table>
+ </div>
+   
+   
+    </>
+
+}
 
         {
           user.role==="admin" ? <>

@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FileUploadedHandler, GetSingleResponse } from '../../../Redux/Actions/ResponseAction';
 import { Link } from 'react-router-dom';
 import Loader from '../../Layouts/Loader/Loader';
-
+import {IoDocumentTextSharp} from "react-icons/io5"
 function DocUpdate() {
     const {user, error} = useSelector(state=>state.user);
     const {loading, response, message} = useSelector(state=>state.response);
@@ -466,7 +466,7 @@ function DocUpdate() {
    }
 {
     response.ex_t!==0 &&  <tr>
-    <td>{ex_i}</td>
+    <td>{response.ex_i}</td>
     <td><input type="file" accept="application/pdf" onChange={ExtraHandler} /></td>
     <td><button className="upload_btn" onClick={Extra_Upload}>Upload</button></td>
     {

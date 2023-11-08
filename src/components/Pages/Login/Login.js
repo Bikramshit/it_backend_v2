@@ -15,7 +15,8 @@ function Login() {
   const navigate = useNavigate();
   const [username, setusername] = useState('');
   const [password, setPassword] = useState('')
-  const SubmitHandler =async()=>{
+  const SubmitHandler =async(e)=>{
+    e.preventDefault();
     let res = await dispatch(login(username, password));
     if(res===undefined || res.success!==true) return;
    
@@ -67,7 +68,9 @@ function Login() {
      
 
     </div>
+
     <div className="login_container">
+      <form action="">
 <div className="login_child">
     <div className="login">
       <div className="login_title">Login</div>
@@ -80,11 +83,13 @@ function Login() {
           <input type="password" onChange={e=>setPassword(e.target.value)} />
       </div>
       <div className=" login_btn">
-        <button type='submit' className='btn' onClick={SubmitHandler}>Login</button>
+        <button type='submit' className='btn' onClick={(e)=>SubmitHandler(e)}>Login</button>
       </div>
+      
       <Link to={'/forgot-password'}><p className='forgot_pss'>Forgot Password? </p></Link>
     </div>
     </div>
+    </form>
     <div className="login_child1">
     <div className="rules">
     
