@@ -147,15 +147,15 @@ function Letter() {
         From,
       </div>
       <div className="container">
-      <div className="q_sec_letter">
+      <div className="q_sec_letter" id='q_sec_pre'>
         <label htmlFor="name">Name:</label>
         <input type="text" onChange={e=>setName(e.target.value)} defaultValue={name} readOnly />
       </div>
-      <div className="q_sec_letter">
+      <div className="q_sec_letter" id='q_sec_pre'>
         <label htmlFor="designation">Designation:</label>
         <input type="text" onChange={e=>setDesignation(e.target.value)} defaultValue={designation} readOnly />
       </div>
-      <div className="q_sec_letter" id="letter_disable">
+      <div className="q_sec_letter" id="letter_disable q_sec_pre">
         <label htmlFor="department">Department/Section:</label>
        
         <select name=""  onChange={e=>setDepartment(e.target.value)} defaultValue={department} disabled >
@@ -171,7 +171,7 @@ function Letter() {
       
       
       </div>
-      <div className="q_sec_letter" id='letter_disable'>
+      <div className="q_sec_letter" id='letter_disable q_sec_pre'>
         <label htmlFor="">Category:</label>
         <select name="" id="" onChange={e=>setCategory(e.target.value)} disabled>
           <option value="">Select--</option>
@@ -182,27 +182,27 @@ function Letter() {
           }
         </select>
       </div>
-      <div className="q_sec_letter" id=''>
+      <div className="q_sec_letter"  id='q_sec_pre'>
         <label htmlFor="">Employer:</label>
         <input type="text" onChange={e=>setEmployer(e.target.value)} value={"Aliah University"} readOnly />
       </div>
-      <div className="q_sec_letter">
+      <div className="q_sec_letter"  id='q_sec_pre'>
         <label htmlFor="phone">Contact No:</label>
         <input type="text" onChange={e=>setPhone(e.target.value)} defaultValue={phone} readOnly />
       </div>
-      <div className="q_sec_letter">
+      <div className="q_sec_letter"  id='q_sec_pre'>
         <label htmlFor="email">Email Id:</label>
         <input type="email" onChange={e=>setEmail(e.target.value)} defaultValue={email} readOnly />
       </div>
-      <div className="q_sec_letter">
+      <div className="q_sec_letter"  id='q_sec_pre'>
         <label htmlFor="pan">PAN:</label>
         <input type="text" onChange={e=>setPan(e.target.value)} defaultValue={pan} readOnly />
       </div>
-      <div className="q_sec_letter" id={(user.aadhaar===undefined) ? "letter_q_sec" : ''} >
+      <div className="q_sec_letter" id={(user.aadhaar===undefined) ? "letter_q_sec " : 'q_sec_pre'} >
         <label htmlFor="aadhaar">Aadhaar No:</label>
         <input type="text" onChange={e=>setAadhaar(e.target.value)} defaultValue={aadhaar} readOnly={user.aadhaar!==undefined} />
       </div>
-      <div className="q_sec_letter">
+      <div className="q_sec_letter"  id='q_sec_pre'>
         <label htmlFor="aadhaar">DOB:</label>
         <input type="date" onChange={e=>setDob(e.target.value)} defaultValue={getDate(dob)} readOnly />
       </div>

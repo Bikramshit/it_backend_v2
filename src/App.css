@@ -851,12 +851,16 @@ main{
 .form_visibiliy .form_act {
     color: var(--green2) !important;
 }
-.actives, .actives:hover {
+.actives {
     background-color: var(--green2);
     color: white;
     border: none;
+    font-weight: 600;
 }
-
+.actives:hover {
+    background-color: rgb(47, 174, 47);
+    color: white !important;
+}
 .Submitted {
     background-color:rgb(234, 246, 244);
     color: rgb(108, 109, 109);
@@ -1600,9 +1604,13 @@ input[type=file], input[type=file]:focus{
     border: 1px solid var(--tsGray2);
     padding: 0rem 0.5rem;
     border-radius: 0.25rem;
+    
+}
+#q_sec_pre {
     background-color: rgb(231, 234, 235);
     cursor:not-allowed;
 }
+
 #letter_q_sec input{
     background-color: rgb(255, 255, 255) !important;
     cursor:text !important;
@@ -1612,7 +1620,14 @@ input[type=file], input[type=file]:focus{
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 }
-
+#update_user_sc input, #update_user_sc select {
+    background-color: rgb(231, 234, 235);
+    
+}
+#update_user_sc input:focus, #update_user_sc select:focus {
+    background-color: rgb(255, 255, 255);
+    
+}
 .q_sec label {
     font-weight: 500;
     color:rgb(82, 82, 82);
@@ -1684,7 +1699,7 @@ input[type=file], input[type=file]:focus{
 
 }
 
-.submit_btn button {
+.submit_btn button, .submit_btn1 button {
     padding: 0.3rem 1.2rem;
     font-weight: 500;
     font-size: 1.1rem;

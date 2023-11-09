@@ -151,6 +151,34 @@ export const logout = () => async dispatch => {
     }
   };
   
+  export const updateProfileAdmin = (id, name,  phone,email,  dob, designation, department, pan, category, aadhaar) => async dispatch => {
+    try {
+      dispatch({ type: 'updateProfileRequest' });
+  
+      const { data } = await axios.put(
+        `${server}/admin/user/update/${id}`,
+        {
+            name,  phone,email, dob, designation, department, pan, category, aadhaar
+        },
+        {
+          headers: {
+            'Content-type': 'application/json',
+          },
+  
+          withCredentials: true,
+        }
+      );
+      
+      dispatch({ type: 'updateProfileSuccess', payload: data.message });
+      return data.success;
+      return data;
+    } catch (error) {
+      dispatch({
+        type: 'updateProfileFail',
+        payload: error.response.data.message,
+      });
+    }
+  };
 
   export const changePassword = (oldPassword, newPassword) => async dispatch => {
     try {

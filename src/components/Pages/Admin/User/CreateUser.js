@@ -35,6 +35,19 @@ function CreateUser() {
 
     const navigate = useNavigate();
   const SubmitHandler =async()=>{
+    if(phone.length!==10){
+      toast.error("Please enter a valid phone number");
+      return
+    }
+    if(pan.length!==10){
+      toast.error("Please enter a valid PAN no");
+      return;
+    }
+    if(name==="" || email==="" || designation==="" || department===""){
+      toast.error("Please fill all fields");
+      return;
+    }
+
     const res = await dispatch(CreateUserHandler(name,  phone,email, password.current.value, dob, designation, department, pan, category, aadhaar))
     // return res;
 }

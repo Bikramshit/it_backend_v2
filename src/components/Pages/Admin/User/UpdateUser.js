@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Sidebar from '../../../Layouts/Sidebar/Sidebar';
 import Loader from '../../../Layouts/Loader/Loader';
 // import AuthHeader from '../../Layouts/Header/AuthHeader';
-import { getUserDetails, updateProfile } from '../../../../Redux/Actions/UserAction';
+import { getUserDetails, updateProfile, updateProfileAdmin } from '../../../../Redux/Actions/UserAction';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import AuthHeader from '../../../Layouts/Header/AuthHeader';
@@ -89,9 +89,19 @@ const navigate = useNavigate();
     setEmail(user.email);
     setDesignation(user.designation);
   },[dispatch, user]);
+  
 
   const UpdateHandler = async()=>{
-   const res = await dispatch(updateProfile(name,  phone,email, dob, designation, department, pan, category, aadhaar));
+    if(phone.length!==10){
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+    if(pan.length!==10){
+      toast.error("Please enter a valid PAN no");
+      return;
+    }
+    
+   const res = await dispatch(updateProfileAdmin(params.id, name,  phone,email, dob, designation, department, pan, category, aadhaar));
   //  const params = useParams();
    if(res===true){
     navigate(`/user/${user._id}`)
@@ -121,23 +131,50 @@ const navigate = useNavigate();
       loading ? <Loader/> : <>
       <Sidebar>
         <AuthHeader/>
-      <div className="it_container">
+      <div className="it_container" >
       <div className="user_prof mt-2">Update Profile</div>
 
-    <div className="q_sec_letter">
+    <div className="q_sec_letter" id='update_user_sc' >
       <label htmlFor="name">Name</label>
       <input type="text" onChange={e=>setName(e.target.value)} defaultValue={name} />
     </div>       
 
-    <div className="q_sec_letter">
-      <label htmlFor="designation">Desingation</label>
-      <input type="text" onChange={e=>setDesignation(e.target.value)} defaultValue={designation} />
+    <div className="q_sec_letter" id='update_user_sc'>
+      <label htmlFor="designation" >Desingation</label>
+      <select name="" id="" onChange={e=>setDesignation(e.target.value)}>
+      <option value="">Select--</option>
+      <option value="Hon'ble Vice Chancellor" selected={"Hon'ble Vice Chancellor"==designation}>Hon'ble Vice Chancellor</option>
+      <option value="The Registrar" selected={"The Registrar"==designation}>The Registrar</option>
+      <option value="Finance Officer" selected={"Finance Officer"==designation}>Finance Officer</option>
+      <option value="Training & Placement Officer" selected={"Training & Placement Officer"==designation}>Training & Placement Officer</option>
+      <option value="Controller of Examination" selected={"Controller of Examination"==designation}>Controller of Examination</option>
+      <option value="Senior Assistant" selected={"Senior Assistant"==designation}>Senior Assistant</option>
+      <option value="Junior Assistant" selected={"Junior Assistant"==designation}>Junior Assistant</option>
+      <option value="Junior Peon" selected={"Junior Peon"==designation}>Junior Peon</option>
+      <option value="Junior Superintendent" selected={"Junior Superintendent"==designation}>Jr. Superintendent</option>
+      <option value="Junior Superintendent/ Section Officer" selected={"Junior Superintendent/ Section Officer"==designation}>Junior Superintendent/ Section Officer </option>
+      <option value="Farmacist" selected={"Farmacist"==designation}>Farmacist</option>
+      <option value="Assistant Librarian" selected={"Assistant Librarian"==designation}>Assistant Librarian</option>
+      <option value="Junior Store Keeper" selected={"Junior Store Keeper"==designation}>Junior Store Keeper</option>
+      <option value="Cashier" selected={"Cashier"==designation}>Cashier</option>
+      <option value="Accountant" selected={"Accountant"==designation}>Accountant</option>
+      <option value="Personal Assistant" selected={"Personal Assistant"==designation}>Personal Assistant</option>
+      <option value="Physical Training Instructor" selected={"Physical Training Instructor"==designation}>Physical Training Instructor</option>
+      <option value="Record Keeper" selected={"Record Keeper"==designation}>Record Keeper</option>
+      <option value="Ground Supervisor" selected={"Ground Supervisor"==designation}>Ground Supervisor</option>
+      <option value="Plumber" selected={"Plumber"==designation}>Gardener</option>
+      <option value="Plumber" selected={"Plumber"==designation}>Plumber</option>      
+      <option value="Assistant Professor" selected={"Assistant Professo"==designation}>Assistant Professor</option>
+      <option value="Associate Professor" selected={"Associate Professor"==designation}>Associate Professor</option>
+      <option value="Professor" selected={"Professor"==designation}>Professor</option>
+      <option value="Technical Assistant" selected={"Technical Assistant"==designation}>Technical Assistant</option>
+
+    </select>
     </div>
 
-    <div className="q_sq_sec_letterec2">
+    <div className="q_sec_letter" id='update_user_sc'>
       <label htmlFor="department">Department/Section</label>
-      {/* <input type="text" onChange={e=>setDepartment(e.target.value)} defaultValue={department} /> */}
-      <select name="" id="" onChange={e=>setDepartment(e.target.value)} defaultValue={department}>
+     <select name="" id="" onChange={e=>setDepartment(e.target.value)} defaultValue={department}>
       {
           Dept.map((dep)=>(
             <option value={dep} selected={dep===department}>{dep}</option>
@@ -146,10 +183,9 @@ const navigate = useNavigate();
       </select>
     </div>
 
-    <div className="q_sec_letter">
+    <div className="q_sec_letter" id='update_user_sc'>
       <label htmlFor="category">Category</label>
-      {/* <input type="text" onChange={e=>setCategory(e.target.value)} defaultValue={category} /> */}
-      <select name="" id="" onChange={e=>setCategory(e.target.value)}>
+     <select name="" id="" onChange={e=>setCategory(e.target.value)}>
       {
             Cat.map((cate)=>(
               <option value={cate} selected={cate===category}>{cate}</option>
@@ -157,23 +193,23 @@ const navigate = useNavigate();
           }
       </select>
     </div>
-    <div className="q_sec_letter">
+    <div className="q_sec_letter" id='update_user_sc'>
       <label htmlFor="pan">PAN</label>
       <input type="text" onChange={e=>setPan(e.target.value)} defaultValue={pan} />
     </div>   
-    <div className="q_sec_letter">
-      <label htmlFor="aadhaar">Aadhaar</label>
+    <div className="q_sec_letter" id='update_user_sc'>
+      <label htmlFor="aadhaar">Aadhaar No</label>
       <input type="text" onChange={e=>setAadhaar(e.target.value)} defaultValue={aadhaar} />
     </div>   
-    <div className="q_sec_letter">
+    <div className="q_sec_letter" id='update_user_sc'>
       <label htmlFor="phone">Contact No</label>
       <input type="text" onChange={e=>setPhone(e.target.value)} defaultValue={phone} />
     </div>   
-    <div className="q_sec_letter pb-2">
-      <label htmlFor="email">Email</label>
+    <div className="q_sec_letter pb-2" id='update_user_sc'>
+      <label htmlFor="email">Email Id</label>
       <input type="email" onChange={e=>setEmail(e.target.value)} defaultValue={email} />
     </div>   
-    <div className="q_sec_letter pb-2">
+    <div className="q_sec_letter pb-2" id='update_user_sc'>
       <label htmlFor="dob">D.O.B</label>
       <input type="date" onChange={e=>setDob(e.target.value)} defaultValue={getDate(dob)} />
     </div>  
