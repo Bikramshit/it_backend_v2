@@ -109,100 +109,98 @@ function Preview() {
 
    const SubmitHandler =async()=>{
     let check = document.getElementById("chckbox").checked;
-    
     if(check===true){
-      if(response.netsal_f13!=0 && response.pay_slip===undefined){
-        toast.error("Please upload the pay slip(s)");
-        return;
-      }
-      if(response.opting_for==="Old Regime" && response.lip_c_file===undefined && response.lip_c!==0){
-        toast.error("Please upload the document of Life Insurance Premium ");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.ppf_c_file===undefined && response.ppf_c!==0){
-        toast.error("Please upload the document of PPF");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.ssc_file===undefined && response.ssy_c!==0){
-        toast.error("Please upload the document of Sukanya Samridhi Yojna Contribution");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.child_file===undefined && response.cs_c!==0){
-        toast.error("Please upload the document of Child's School/College Tuition Fee");
-        return;
-      }
-      // start 
-      else if(response.opting_for==="Old Regime" && response.payment_hbl_file===undefined && response.phb_c!==0){
-        toast.error("Please upload the document of Child's School/College Tuition Fee");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.medical_ind_file===undefined && response.mii3_c!==0){
-        toast.error("Please upload the document of Medical Insurance Premium for Individual ");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.medical_sr_file===undefined && response.mis3_c!==0){
-        toast.error("Please upload the document of Medical Insurance Premium for Sr. Citizen");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.handicap_file===undefined && response.disability_c2!==0){
-        toast.error("Please upload the document of handicapped dependent/for own disability");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.education_file===undefined && response.iel_c!==0){
-        toast.error("Please upload the document of Interest on Educational Loan");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.nps_file===undefined && response.nps_c!==0){
-        toast.error("Please upload the document of NPS/Atal Pension Yojana ");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.donation_file===undefined && response.donation_c!==0){
-        toast.error("Please upload the document of Donation/Charity to registered donatee");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.electric_file===undefined && response.electric_c!==0){
-        toast.error("Please upload the document loan for purchase of Electric Vehicle");
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.extra_file===undefined && response.ex_t!==0){
-        toast.error(`Please upload the document of ${response.ex_i}`);
-        return;
-      }
-      // end 
+      // if(response.netsal_f13!=0 && response.pay_slip===undefined){
+      //   toast.error("Please upload the pay slip(s)");
+      //   return;
+      // }
+      // if(response.opting_for==="Old Regime" && response.lip_c_file===undefined && response.lip_c!==0){
+      //   toast.error("Please upload the document of Life Insurance Premium ");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.ppf_c_file===undefined && response.ppf_c!==0){
+      //   toast.error("Please upload the document of PPF");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.ssc_file===undefined && response.ssy_c!==0){
+      //   toast.error("Please upload the document of Sukanya Samridhi Yojna Contribution");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.child_file===undefined && response.cs_c!==0){
+      //   toast.error("Please upload the document of Child's School/College Tuition Fee");
+      //   return;
+      // }
+      // // start 
+      // else if(response.opting_for==="Old Regime" && response.payment_hbl_file===undefined && response.phb_c!==0){
+      //   toast.error("Please upload the document of Child's School/College Tuition Fee");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.medical_ind_file===undefined && response.mii3_c!==0){
+      //   toast.error("Please upload the document of Medical Insurance Premium for Individual ");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.medical_sr_file===undefined && response.mis3_c!==0){
+      //   toast.error("Please upload the document of Medical Insurance Premium for Sr. Citizen");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.handicap_file===undefined && response.disability_c2!==0){
+      //   toast.error("Please upload the document of handicapped dependent/for own disability");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.education_file===undefined && response.iel_c!==0){
+      //   toast.error("Please upload the document of Interest on Educational Loan");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.nps_file===undefined && response.nps_c!==0){
+      //   toast.error("Please upload the document of NPS/Atal Pension Yojana ");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.donation_file===undefined && response.donation_c!==0){
+      //   toast.error("Please upload the document of Donation/Charity to registered donatee");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.electric_file===undefined && response.electric_c!==0){
+      //   toast.error("Please upload the document loan for purchase of Electric Vehicle");
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.extra_file===undefined && response.ex_t!==0){
+      //   toast.error(`Please upload the document of ${response.ex_i}`);
+      //   return;
+      // }
+      // // end 
       
-      else if(response.opting_for==="Old Regime" && response.input_file===undefined && response.input1!==0){
-        toast.error(`Please upload the document of ${response.inp_n1}`);
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.input2_file===undefined && response.input2!==0){
-        toast.error(`Please upload the document of ${response.inp_n2}`);
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.input3_file===undefined && response.input3!==0){
-        toast.error(`Please upload the document of ${response.inp_n3}`);
-        return;
-      }
-      else if(response.pan1!=='' && response.name1!=='' && response.landords_file1===undefined){
-        toast.error(`Please upload the document of landlord 1`);
-        return;
-      }
-      else if(response.pan2!=='' && response.name2!=='' && response.landords_file2===undefined){
-        toast.error(`Please upload the document of landlord 2`);
-        return;
-      }
-      else if(response.pan4!=='' && response.name4!=='' && response.landords_file4===undefined){
-        toast.error(`Please upload the document of landlord 4`);
-        return;
-      }
-      else if(response.pan3!=='' && response.name3!=='' && response.landords_file3===undefined){
-        toast.error(`Please upload the document of landlord 3`);
-        return;
-      }
-      else if(response.opting_for==="Old Regime" && response.hbl_file===undefined && response.interest_hbl_it!==0){
-        toast.error("Please upload the document of Interest on House Building Loan u/s 24(b)");
-        return;
-      }
-      
+      // else if(response.opting_for==="Old Regime" && response.input_file===undefined && response.input1!==0){
+      //   toast.error(`Please upload the document of ${response.inp_n1}`);
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.input2_file===undefined && response.input2!==0){
+      //   toast.error(`Please upload the document of ${response.inp_n2}`);
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.input3_file===undefined && response.input3!==0){
+      //   toast.error(`Please upload the document of ${response.inp_n3}`);
+      //   return;
+      // }
+      // else if(response.pan1!=='' && response.name1!=='' && response.landords_file1===undefined){
+      //   toast.error(`Please upload the document of landlord 1`);
+      //   return;
+      // }
+      // else if(response.pan2!=='' && response.name2!=='' && response.landords_file2===undefined){
+      //   toast.error(`Please upload the document of landlord 2`);
+      //   return;
+      // }
+      // else if(response.pan4!=='' && response.name4!=='' && response.landords_file4===undefined){
+      //   toast.error(`Please upload the document of landlord 4`);
+      //   return;
+      // }
+      // else if(response.pan3!=='' && response.name3!=='' && response.landords_file3===undefined){
+      //   toast.error(`Please upload the document of landlord 3`);
+      //   return;
+      // }
+      // else if(response.opting_for==="Old Regime" && response.hbl_file===undefined && response.interest_hbl_it!==0){
+      //   toast.error("Please upload the document of Interest on House Building Loan u/s 24(b)");
+      //   return;
+      // }
       const res = await dispatch(SubmitResponse(params.id));
       if(res===true){
         navigate('/');
@@ -510,6 +508,7 @@ function Preview() {
       }
     }
   });
+
   return (
     <>
      <Sidebar>
@@ -1379,7 +1378,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
                     <th className='tr'>Amount</th>
                 </tr>
                 <tr className='table_row_bg'>
-                    <td>Amount Rent Paid</td>
+                    <td> Rent Paid</td>
                     <td><Price number={response.rent_e}/></td>
                 </tr>
                 <tr>
@@ -1420,7 +1419,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
                     <th className='tr'>Amount</th>
                 </tr>
                 <tr className='table_row_bg'>
-                    <td>Amount Rent Paid</td>
+                    <td> Rent Paid</td>
                     <td><Price number={response.rent_n}/></td>
                 </tr>
                 <tr>
@@ -2003,7 +2002,7 @@ Interest on House Building Loan u/s 24(b) </div>
     {
       response.input3!==0 && <tr>
       <td>{response.inp_n3}</td>
-      <td><input type="file" accept="application/pdf" onChange={Input3_Handler}/></td>
+      <td><input type="file" accept="application/pdf" onChange={Input3_Handler} /></td>
       <td><button className="upload_btn" onClick={Input3_Upload}>Upload</button></td>
      {
       response.input3_file!==undefined ?  <td className="doc_view"><Link target="_blank" to={response.input3_file.url}><IoDocumentTextSharp/></Link></td> : ''
@@ -2110,7 +2109,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 {
     response.ex_t!==0 &&  <tr>
-    <td>{response.ex_i}</td>
+    <td>{response.ex_i} </td>
     <td><input type="file" accept="application/pdf" onChange={ExtraHandler} /></td>
     <td><button className="upload_btn" onClick={Extra_Upload}>Upload</button></td>
     {

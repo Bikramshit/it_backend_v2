@@ -334,11 +334,11 @@ isb_c2.current.value
 }
 
 const PreviousHandler = async()=>{
-  const opt = document.getElementById('on__option').value;
-  if(opt==="Select--"){
-    toast.error("Please select the regime option!");
-    return;
-  }
+  // const opt = document.getElementById('on__option').value;
+  // if(opt==="Select--"){
+  //   toast.error("Please select the regime option!");
+  //   return;
+  // }
 
   
   const res = await SubmitHandler("hra");
@@ -353,13 +353,15 @@ const PreviousHandler = async()=>{
   const tax_pr = document.getElementById("tax_pr").value;
 
   
-  if(tax_Refund>0 && tax_pr==="Tax Payable"){
-    toast.error("Your tax payable is more than the tax deducted.");
-    return;
-  }
+
   const opt = document.getElementById('on__option').value;
   if(opt==="Select--"){
     toast.error("Please select the regime option!");
+    return;
+  }
+  
+  if(tax_Refund>0 && tax_pr==="Tax Payable"){
+    toast.error(`Your "Tax Payable" is more than the "Tax Deducted" from salary.`);
     return;
   }
   const res = await SubmitHandler("regime");

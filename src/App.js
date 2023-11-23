@@ -174,7 +174,7 @@ function App() {
       <Route path='/extra-months/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated}><AllExtraMonths/></ProtectedRoute>} />
       <Route path='/extra-months/update/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated}><UpdateExtraMonth/></ProtectedRoute>} />
       <Route path='/error' element={<Error/>} />
-<Route path='/*' element={<ProtectedRoute redirect="/error"><Error/></ProtectedRoute>} />
+{/* <Route path='/*' element={<ProtectedRoute redirect="/error"><Error/></ProtectedRoute>} /> */}
     
      </>
     }

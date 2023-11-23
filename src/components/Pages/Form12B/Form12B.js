@@ -2369,7 +2369,7 @@ useEffect(()=>{
        <div className="form_header">
        <h4>Form No 12B</h4>
        <span>[See Rule 26A]</span>
-       <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, 2023</h6>
+       <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, 2024</h6>
        <p>Details to be furnished by the newly joined employee during the year</p>
        </div>
 

@@ -1186,11 +1186,23 @@ input[type=file], input[type=file]:focus{
 
 #letter_disable select:disabled {
     color:black;
+    background-color: rgb(231, 234, 235) !important;
+    cursor:not-allowed !important;
+}
+#letter_disable select {
+    color:black;
+    background-color: rgb(231, 234, 235) !important;
+    cursor:not-allowed !important;
 }
 #letter_disable select:focus {
     /* border: 1px solid var(--green2); */
 }
 
+
+.disable_select {
+    background-color: rgb(231, 234, 235) !important;
+    cursor:not-allowed !important;
+}
 .ppf {
     display: flex;
     align-items: center;
@@ -1606,9 +1618,9 @@ input[type=file], input[type=file]:focus{
     border-radius: 0.25rem;
     
 }
-#q_sec_pre {
-    background-color: rgb(231, 234, 235);
-    cursor:not-allowed;
+#q_sec_pre input, #q_sec_pre select{
+    background-color: rgb(231, 234, 235) !important;
+    cursor:not-allowed !important;
 }
 
 #letter_q_sec input{
@@ -1903,14 +1915,18 @@ input[type=file], input[type=file]:focus{
   }
   
   .can_p {
-    background-color: rgb(104, 131, 124);
-    color: white;
+    /* background-color: rgb(104, 131, 124); */
+    /* background-color: rgb(131, 106, 104); */
+    color: red;
+    /* background: red; */
+    border: 1px solid red;
     font-weight: 500;
   }
 
   .can_p:hover {
-    background-color: rgb(31, 96, 100);
     color: white;
+    background: red;
+    font-weight: 500;
 
 
   }
@@ -1996,14 +2012,14 @@ input[type=file], input[type=file]:focus{
 
 
 .appvd{
-    background-color: #505859;
+    /* background-color: #505859; */
     /* background-color: #f7f9f8; */
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; */
+    /* bottom: 0; */
     width: 100vw;
-    padding:1rem 3rem;
+    padding:0rem 3rem 1rem 3rem;
     margin-right: 5rem;
-    color: white;
+    color: rgb(45, 44, 44);
     /* border-top-left-radius: 1rem; */
     /* border-top-right-radius: 1rem; */
 }
@@ -2024,12 +2040,16 @@ input[type=file], input[type=file]:focus{
     border: 1px solid rgb(97, 96, 96);
     outline: none;
 }
+.ap_inp textarea {
+    height: 5rem;
+}
+
 .ap_inp button {
     background-color: transparent;
     border: none;
     outline: none;
     font-size: 2rem;
-    color: white;
+    color: rgb(11, 11, 11);
 }
 .ap_inp button:hover {
     color: var(--green2);
@@ -2040,7 +2060,6 @@ input[type=file], input[type=file]:focus{
 } */
 
 .apv_btn {
-    margin-bottom: 10rem;
     display: flex;
 }
 .apv_btn select {
@@ -2048,12 +2067,12 @@ input[type=file], input[type=file]:focus{
     margin-left: 5rem;
     height: 2.2rem;
 }
-.apv_btn button {
-    margin-left: 1rem;
+.tds #button {
+    margin-left: 1rem ;
     border: none;
     background-color: var(--green2);
     border-radius: 0.3rem;
-    padding: 0.4rem 1rem;
+    /* padding: 0.4rem 1rem !important;  */
     color: white;
     font-weight: 500;
     font-size: 1.1rem;
@@ -2479,12 +2498,20 @@ input[type=file], input[type=file]:focus{
 }
 
 .extra_section {
+    /* display: flex;
+    align-items: center; */
+    gap: 1rem;
+    margin-left: 5rem;
+    margin-bottom: 1.5rem;
+}
+.extra_section h6 {
+    text-decoration: underline;
+    font-size: 1.1rem;
+}
+.extra_section .tds {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 5rem;
-    margin-bottom: 1rem;
-    
 }
 .extra_section label {
     font-weight: 500;
@@ -2495,12 +2522,15 @@ input[type=file], input[type=file]:focus{
     border-radius: 0.2rem;
     border: 1px solid rgb(201, 200, 200);
     outline: none;
+    padding-left: 0.5rem;
 }
+
 .extra_section button {
-    height: 2.2rem;
+    /* height: 2.2rem; */
     border: none;
     /* padding: 0.5rem; */
-    width: 7rem;
+    padding: 0.4rem 1.2rem;
+    /* width: 5rem; */
     background-color:#507893;
     border-radius: 0.2rem;
     color: white;
@@ -2579,4 +2609,21 @@ input[type=file], input[type=file]:focus{
     width: 15rem;
     height: 2.0rem;
     margin-left: 0.5rem;
+}
+
+.DialogText {
+    color:rgb(36, 36, 36);
+    border-bottom: 1px solid rgb(124, 124, 124);
+    margin-right:5rem;
+}
+.DialogText span {
+    color: black;
+}
+
+#name {
+    border-left: none !important;
+    border-right: none !important;
+    border-top:none !important ;
+    /* color: red !important; */
+    box-shadow: none;
 }

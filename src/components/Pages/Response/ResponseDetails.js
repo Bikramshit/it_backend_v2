@@ -9,11 +9,11 @@ import Loader from '../../Layouts/Loader/Loader';
 import {AiOutlineSend} from "react-icons/ai";
 import { ApprovedResponse } from '../../../Redux/Actions/ResponseAction';
 import {VscBlank} from "react-icons/vsc"
-import { SendMailHandler } from '../../../Redux/Actions/UserAction';
 import { toast } from 'react-hot-toast';
 import { CreateExtraMonths } from '../../../Redux/Actions/ExtraMonthAction';
 import {IoDocumentTextSharp} from "react-icons/io5"
 import { Link } from 'react-router-dom';
+import DialogComponent from '../../Layouts/DialogBox/Dialog';
 
 
 const Months = ["January", "February",  "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -67,8 +67,7 @@ function ResponseDetails() {
   const {loading, response, message, error} = useSelector(state=>state.response);
   const {eloading, emessage, eerror} = useSelector(state=>state.extramonth)
 
-  const [msg, setMsg] = useState();
-  const [subject ,setSubject] = useState();
+
   const [sts, setSts] = useState();
   const [doc, setDoc] = useState();
 
@@ -96,9 +95,7 @@ function ResponseDetails() {
     dispatch(DocumentStatusUpdate(params.id, doc));
    }
 
-  const SendMail = ()=>{
-    dispatch(SendMailHandler(user._id,subject,  msg))
-  }
+
 
   useEffect(()=>{
     if(error || eerror){
@@ -224,7 +221,7 @@ const ExtraMonthSubmit =async()=>{
   
   <div className="preview_container">
 <div className="salary">
-    <h6>Salary Statement of Bikram</h6>
+    <h6>Salary Statement</h6>
 
     <div className="contract">
        <span> Are you a contractual employee:</span>
@@ -980,7 +977,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
                     <th className='tr'>Amount</th>
                 </tr>
                 <tr className='table_row_bg'>
-                    <td>Amount Rent Paid</td>
+                    <td>Rent Paid</td>
                     <td><Price number={response.rent_e}/></td>
                 </tr>
                 <tr>
@@ -1021,7 +1018,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
                     <th className='tr'>Amount</th>
                 </tr>
                 <tr className='table_row_bg'>
-                    <td>Amount Rent Paid</td>
+                    <td>Rent Paid</td>
                     <td><Price number={response.rent_n}/></td>
                 </tr>
                 <tr>
@@ -1415,7 +1412,7 @@ Interest on House Building Loan u/s 24(b) </div>
             <tr className='table_row_bg'>
               <td>27</td>
               <td colSpan={2}>{response.tex_payable_it}</td>
-              <td><Price number={response.tax_refund} /></td>
+              <td><Price number={response.tax_refund} /> {response.tax_refund}</td>
             </tr>
             
           </table>
@@ -1518,7 +1515,7 @@ Interest on House Building Loan u/s 24(b) </div>
    <>
    
    <div className="doc_upload">
-  <h6>Upload Documents</h6>
+  <h6>Uploaded Documents</h6>
   <table>
    {
       response.netsal_f13!==0 &&  <tr>
@@ -1746,8 +1743,10 @@ Interest on House Building Loan u/s 24(b) </div>
 
         {
           user.role==="admin" ? <>
-
+<hr />
           <div className="extra_section">
+            <h6>Changes of TDS</h6>
+            <div className='tds'>
             <label htmlFor="">Select Month</label>
           <select name="" id="" onChange={e=>setMonth(e.target.value)}>
           
@@ -1759,31 +1758,42 @@ Interest on House Building Loan u/s 24(b) </div>
           </select>
 
         <label htmlFor="">Amount</label>  <input type="text" onChange={e=>setAmount(e.target.value)} defaultValue={amount} />
-          <button onClick={ExtraMonthSubmit}>Submit</button>
+          <button onClick={ExtraMonthSubmit}>Add</button>
           </div>
+          </div>
+          <div className="extra_section">
 
-
-           <div className="apv_btn">
+          <h6>Response Status</h6>
+           <div className="tds">
             <select name="" id="" onChange={e=>setSts(e.target.value)}>
             <option value="" selected={""===sts}>Select--</option>
             <option value="Accepted" selected={"Accepted"===sts}>Accepted</option>
             <option value="Rejected" selected={"Rejected"===sts}>Rejected</option>
             <option value="Processed" selected={"Processed"===sts}>Processed</option>
            </select>
-          <button onClick={ApprovedHandler}>   Save</button>
+          <button onClick={ApprovedHandler} id='button'>   Save</button>
+          </div>
+          </div>
+          <div className="extra_section">
 
+          <h6>Document Status</h6>
+          <div className="tds">
           <select name="" id="" onChange={e=>setDoc(e.target.value)}>
             <option value="" selected={""===doc}>Select--</option>
-            <option value="Uploaded" selected={"Uploaded"===doc}>Uploaded</option>
-            <option value="Pending" selected={"Pending"===doc}>Pending</option>
-            <option value="Submitted" selected={"Submitted" === doc}>Submitted</option>
+            <option value="Not Submitted" selected={"Not Submitted"===doc}>Not Submitted</option>
+            <option value="Complete" selected={"Complete" === doc}>Complete</option>
+            <option value="New Regime" selected={"New Regime" === doc}>New Regime</option>
           </select>
-          <button onClick={DocumentUpdate}>   Document Status</button>
+          <button onClick={DocumentUpdate} id='button'>   Document Status</button>
+          </div>
+          </div>
 
 
+          <div className="extra_section">
 
-
-          <select name="" id=""  onChange={e=>SelectHandler(e.target.value)} >
+          <h6>Edit Page</h6>
+          <div className="tds">
+<select name="" id=""  onChange={e=>SelectHandler(e.target.value)} >
           {          
               RouteList2.map((list)=>(
                 <option value={list.value} selected={list.value===response.currentState} disabled={list.disable}>{list.title}</option>
@@ -1792,28 +1802,15 @@ Interest on House Building Loan u/s 24(b) </div>
           }
 
         </select>
+</div>
+</div>
 
+          <div className="extra_section dialogcontainer">
+          <DialogComponent email={response.email} id={response.userId} />
 
-
-
-        </div>
-        
-              <div className="appvd">
-        <label htmlFor=""><b>Remark</b> (Remark will be sent to registered mail )</label>
-        <div className="ap_inp">
-        <span>Subject: &nbsp; &nbsp; </span>
-          <input type="text" name="" id="" onChange={e=>setSubject(e.target.value)} />
-        <button><VscBlank/></button>
-        
           </div>
-          <div className="ap_inp">
-        <span>Message:</span>
-        <textarea type="text" name="" id="" onChange={e=>setMsg(e.target.value)} />
-        <button onClick={SendMail}><AiOutlineSend/></button>
-        
-          </div>
-        
-                </div>
+
+
 
 
                 </> : ''

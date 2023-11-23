@@ -155,32 +155,15 @@ function Letter() {
         <label htmlFor="designation">Designation:</label>
         <input type="text" onChange={e=>setDesignation(e.target.value)} defaultValue={designation} readOnly />
       </div>
-      <div className="q_sec_letter" id="letter_disable q_sec_pre">
+      <div className="q_sec_letter" id="q_sec_pre">
         <label htmlFor="department">Department/Section:</label>
+        <input type="text" onChange={e=>setDepartment(e.target.value)} defaultValue={department} readOnly />
        
-        <select name=""  onChange={e=>setDepartment(e.target.value)} defaultValue={department} disabled >
-        <option value="">Select --</option>
-        {
-          Dept.map((dep)=>(
-            <option value={dep} selected={dep===department}>{dep}</option>
-          ))
-        }
-      
-      
-        </select>
-      
-      
       </div>
-      <div className="q_sec_letter" id='letter_disable q_sec_pre'>
+      <div className="q_sec_letter" id='q_sec_pre'>
         <label htmlFor="">Category:</label>
-        <select name="" id="" onChange={e=>setCategory(e.target.value)} disabled>
-          <option value="">Select--</option>
-          {
-            Cat.map((cate)=>(
-              <option value={cate} selected={cate===category}>{cate}</option>
-            ))
-          }
-        </select>
+        <input type="text" onChange={e=>setCategory(e.target.value)} defaultValue={category} readOnly />
+
       </div>
       <div className="q_sec_letter"  id='q_sec_pre'>
         <label htmlFor="">Employer:</label>

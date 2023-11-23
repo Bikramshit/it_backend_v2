@@ -382,7 +382,7 @@ let aupf = 0;
       dti2.current.value,
       c_sec.current.value,
       c_extra.current.value,
-      c_extra.current.value,
+      c_extraa.current.value,
       total_deduction.current.value
     ));
 

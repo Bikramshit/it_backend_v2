@@ -81,8 +81,8 @@ function FormContainer() {
                 </div>
                 <div>
                 {
-                  responses[0]!==undefined && responses[0].documentStatus==="Pending" ? <div className="doc_sts">
-                 Document Status: <Link to={`/document/upload/${responses[0]._id}`} className='btn can_p'>Pending</Link>
+                  responses[0]!==undefined && responses[0].documentStatus==="Not Submitted" ? <div className="doc_sts">
+                <Link to={`/document/upload/${responses[0]._id}`} className='btn can_p'>Upload Pending Document</Link>
                 </div> :  ''
                 }
                 

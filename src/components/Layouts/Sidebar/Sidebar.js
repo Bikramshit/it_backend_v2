@@ -46,7 +46,7 @@ const menuItem2 =[
     
     {
         path:"/extra-months",
-        name:"Extra Months",
+        name:"IT Changes",
         icon:<FaGgCircle/>
     },
     {

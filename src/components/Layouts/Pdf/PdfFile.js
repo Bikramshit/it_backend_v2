@@ -483,7 +483,7 @@ console.log(response.ex_i);
         <Image style={styles.Image2} src={'https://res.cloudinary.com/dhtlzxed4/image/upload/v1694056698/aliah_logo_inobvl.png'} />
         <View style={styles.input2}>
         <View>
-            <Text style={styles.form_heading}>Salary Statement of {response.name}</Text>
+            <Text style={styles.form_heading}>Salary Statement</Text>
             <Text>Are you a contractual Employee: {response.contactual}</Text>
         </View>
         <View style={styles.table}>
@@ -1311,7 +1311,7 @@ console.log(response.ex_i);
                     
                     <View style={styles.tr}>
                         <Text style={styles.th}>Particulars</Text>
-                        <Text style={styles.td}>Amount Rent Paid</Text>
+                        <Text style={styles.td}>Rent Paid</Text>
                         <Text style={styles.td}>1. Rent Paid - 10% of Salary</Text>
                         <Text style={styles.td}>2. (i) 50% of (BP+DA) for those living in metro cities</Text>
                         <Text style={styles.td}>(ii) 40% of (BP+DA) for those living in non-metro cities</Text>
@@ -1335,7 +1335,7 @@ console.log(response.ex_i);
                 <View style={styles.table4}>
                     <View style={styles.tr}>
                         <Text style={styles.th}>Particulars</Text>
-                        <Text style={styles.td}>Amount Rent Paid</Text>
+                        <Text style={styles.td}>Rent Paid</Text>
                         <Text style={styles.td}>1. Rent Paid - 10% of Salary</Text>
                         <Text style={styles.td}>2. (i) 50% of (BP+DA) for those living in metro cities</Text>
                         <Text style={styles.td}>(ii) 40% of (BP+DA) for those living in non-metro cities</Text>

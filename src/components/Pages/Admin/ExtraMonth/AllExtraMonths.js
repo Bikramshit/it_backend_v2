@@ -7,9 +7,11 @@ import { GetAllExtraByForm, deleteExtraMonths, getExtraMonthsByMonth } from '../
 import { useParams } from 'react-router-dom';
 import {RiFileExcel2Fill, RiDeleteBin5Fill} from "react-icons/ri"
 import Price from '../../../Layouts/Price/Price';
-import {useDownloadExcel} from "react-export-table-to-excel"
+// import { useDownloadExcel} from "react-export-table-to-excel"
+import { useDownloadExcel } from 'react-export-table-to-excel';
 import {BsFillInfoCircleFill} from "react-icons/bs"
 import { Link } from 'react-router-dom';
+import ExportCSV from './ExtraMonthLayout';
 
 const Months = ["January", "February",  "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -42,12 +44,15 @@ function AllExtraMonths() {
     }
 
     const tableRef = useRef(null);
-
+    console.log(tableRef.current);
     const { onDownload } = useDownloadExcel({
+     
         currentTableRef: tableRef.current,
         filename: `Extra Month ${month}`,
         sheet: 'Data'
-    })
+    },
+    console.log(ExtraMonths)
+    )
 
     const DeleteHandler =async()=>{
      await dispatch(deleteExtraMonths(deletingId));
@@ -63,7 +68,38 @@ function AllExtraMonths() {
       const modal = document.getElementById("modal");
       modal.style.display = "none";
     }
+  let wscols = [];
+   useEffect(()=>{
+    if(ExtraMonths!==undefined){
+       wscols = [
+        {
+          wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.Name.length))
+        },
+        { wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.Value.length)) },
+        { wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.Month.length)) },
+        { wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.createdAt.length)) },
+       
+      ];
+    }
+   },[dispatch]);
 
+   const OriginalExtra =(extramonth)=>{
+    if(extramonth===undefined || extramonth.length===0){
+      return;
+    }
+    let result = [];
+    for(let i=0; i<extramonth.length; i++){
+      const temp = {
+        id:i+1,
+        Name:extramonth[i].user.name,
+        Month: extramonth[i].month,
+        Value: extramonth[i].value,
+        
+      }
+      result.push(temp);
+    }
+    return result;
+   }
   return (
     <>
      <Sidebar>
@@ -85,7 +121,12 @@ function AllExtraMonths() {
           <div>
           </div>
           </div>
-            <button className='execl_icon' onClick={onDownload}><RiFileExcel2Fill/></button>
+          <ExportCSV
+            csvData={OriginalExtra(ExtraMonths)}
+            fileName="Customers_Infomation_xlsx"
+            wscols={wscols}
+          />
+           
           </div>
           <table className='extra_table' ref={tableRef}>
             {

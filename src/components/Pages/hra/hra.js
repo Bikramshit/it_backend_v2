@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../Layouts/Loader/Loader';
 import { GetSingleResponse, HraHandler } from '../../../Redux/Actions/ResponseAction';
+import toast from 'react-hot-toast';
 
 const RouteList = [
   {
@@ -208,6 +209,18 @@ function Hra() {
    }
 
    const PreviousHandler = async()=>{
+    var arp = document.getElementById('arp').value || 0;
+        var rp = document.getElementById('rp').value || 0;
+        var rent = parseInt(arp) + parseInt(rp);
+
+
+    if(rent>100000){
+      if(name1.length!==0 && pan1.length!==10){
+        toast.error("Please enter a valid landlord (s) details");
+        // toast.error(count)
+        return;
+      }
+    }
     const res = await SubmitHandler("chapter");
     console.log(res);
     if(res===true){
@@ -234,6 +247,20 @@ function Hra() {
 
  
    const NextHandler = async()=>{
+    
+      var arp = document.getElementById('arp').value || 0;
+        var rp = document.getElementById('rp').value || 0;
+        var rent = parseInt(arp) + parseInt(rp);
+
+
+    if(rent>100000){
+      if(name1.length!==0 && pan1.length!==10){
+        toast.error("Please enter a valid landlord (s) details");
+        // toast.error(count)
+        return;
+      }
+    }
+
     const res = await SubmitHandler("it");
     if(res===true){
       navigate(`/it/${params.id}`)
@@ -266,7 +293,7 @@ function Hra() {
           sign.style.color='green';
         }
         else {
-          sign.innerHTML = "<i class='bi bi-x-circle'></i> Not a pan number";
+          sign.innerHTML = " Not a valid pan number";
           sign.classList.add('text-danger');
         }
   
@@ -284,7 +311,7 @@ function Hra() {
           sign.style.color='green';
         }
         else {
-          sign.innerHTML = "<i class='bi bi-x-circle'></i> Not a pan number";
+          sign.innerHTML = " Not a valid pan number";
           sign.classList.add('text-danger');
         }
   
@@ -302,7 +329,7 @@ function Hra() {
           sign.style.color='green';
         }
         else {
-          sign.innerHTML = "<i class='bi bi-x-circle'></i>  Not a pan number";
+          sign.innerHTML = "  Not a valid pan number";
           sign.classList.add('text-danger');
         }
   
@@ -320,7 +347,7 @@ function Hra() {
           sign.style.color='green';
         }
         else {
-          sign.innerHTML = "<i class='bi bi-x-circle'></i> Not a pan number";
+          sign.innerHTML = "Not a valid pan number";
           sign.classList.add('text-danger');
         }
   
@@ -443,7 +470,7 @@ function Hra() {
         var actual_hra = document.getElementById('actual_hra').value || 0;
         var tenOfSalary = document.getElementById('tenOfSalary').value || 0;
         if(selectedValue==="Yes"){
-           var tem = temp*50/100;
+           var tem = (temp*50)/100;
            tem = Math.round(tem);
            var minn = Math.min(tem,actual_hra,tenOfSalary);
            var minnn = Math.max(minn,0);
@@ -454,7 +481,7 @@ function Hra() {
 
         }
         if(selectedValue==="No"){
-          var tem2 = temp*40/100;
+          var tem2 = (temp*40)/100;
           tem = Math.round(tem2);
           var minn2 = Math.min(tem2, actual_hra, tenOfSalary);
           var minnn2 = Math.max(minn2, 0);
@@ -717,7 +744,7 @@ var x = e.toUpperCase();
                         <th className='tr'>Amount</th>
                     </tr>
                     <tr className='table_row_bg'>
-                        <td>Amount Rent Paid</td>
+                        <td>Rent Paid</td>
                         <td><input type="text" name="" id="arp" ref={arp} defaultValue={arp} onChange={Existing_Emp} onBlur={Exceed}  onKeyPress={onKeyPressEvent}  onKeyUp={living_metro} /></td>
                     </tr>
                     <tr>
@@ -762,7 +789,7 @@ var x = e.toUpperCase();
                         <th className='tr'>Amount</th>
                     </tr>
                     <tr className='table_row_bg'>
-                        <td>Amount Rent Paid</td>
+                        <td>Rent Paid</td>
                         <td><input type="text" name=""  id="rp" onChange={newEmp} onKeyUp={Exceed} onBlur={living_metro2} ref={arp2} defaultValue={arp2} /></td>
                     </tr>
                     <tr>

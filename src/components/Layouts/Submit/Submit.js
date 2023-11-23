@@ -38,10 +38,7 @@ function Submit() {
             
     </div>
 
-   <div className="update_div">
-   <button className=''>Update Form</button>
-   {/* <Link to={`/preview/${params.id}`}><button className=''>Update Form</button></Link> */}
-   </div>
+
 
             </> : "Page Not Found"
           }

@@ -84,6 +84,7 @@ export const GetAllExtraByForm = (id) => async dispatch => {
         withCredentials: true,
       });
       dispatch({ type: 'allExtraMonthSuccess', payload: data.extraMonths });
+      console.log(data.extraMonths);
      
     } catch (error) {
       dispatch({ type: 'allExtraMonthFail', payload: error.response.data.message });

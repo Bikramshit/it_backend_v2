@@ -2639,7 +2639,7 @@ useEffect(()=>{
    
       
       <div className="salary">
-        <h6>Salary Statement of {user.name}</h6>
+        <h6>Salary Statement</h6>
 
   {
     loading ? <Loader/> :<>
