@@ -2197,7 +2197,7 @@ Interest on House Building Loan u/s 24(b) </div>
 
 <div className="submit_section">
 <div className="checkbox">
-<input type="checkbox" id='chckbox' /> I do hereby declare that all the above given information are true to the best of my knowledge and belief.
+<input type="checkbox" id='chckbox' onClick={CheckClick} /> I do hereby declare that all the above given information are true to the best of my knowledge and belief.
 </div>
 <button className='btn' onClick={SubmitHandler} >Submit</button>
 </div>

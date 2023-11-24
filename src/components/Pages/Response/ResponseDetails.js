@@ -1784,7 +1784,7 @@ Interest on House Building Loan u/s 24(b) </div>
             <option value="Complete" selected={"Complete" === doc}>Complete</option>
             <option value="New Regime" selected={"New Regime" === doc}>New Regime</option>
           </select>
-          <button onClick={DocumentUpdate} id='button'>   Document Status</button>
+          <button onClick={DocumentUpdate} id='button'>Save</button>
           </div>
           </div>
 

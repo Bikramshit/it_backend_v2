@@ -32,7 +32,7 @@ function Verify() {
         let res = await dispatch(VerifyHandler(otp, params.id));
         
         if(res===true){
-          navigate('/dashboard')
+          navigate('/')
         }
       }
     

@@ -247,7 +247,7 @@ useEffect(()=>{
     tax_deduct.current.value          = response.td_sal_it;
     tax_rp.current.value              = response.tex_payable_it;
     // // console.log(response.tax_refund);
-    tax_refund.current                = response.tax_refund;
+    tax_refund.current.value                = response.tax_refund;
     hbl_yr.current.value              = response.hbl_taken_fy;
   }
 }, [response])
@@ -257,6 +257,7 @@ useEffect(()=>{
 const SubmitHandler =async(currentState)=>{
   const  id = params.id;
   // console.log(tax_on, tax_nr);
+  console.log("TAX PALYAMEBE ",tax_refund.current.value);
   const res = await dispatch(ITHandler(id, currentState,
  dor.current.value                ,    
 vs.current.value                  ,
@@ -339,6 +340,10 @@ const PreviousHandler = async()=>{
   //   toast.error("Please select the regime option!");
   //   return;
   // }
+  // console.log("TAX PALYAMEBE ",tax_refund.current.value);
+  // toast.error(tax_refund.current)
+  // toast.error(salary_it.current.value)
+ 
 
   
   const res = await SubmitHandler("hra");
@@ -349,6 +354,8 @@ const PreviousHandler = async()=>{
  }
 
  const NextHandler = async()=>{
+  console.log("TAX PALYAMEBE ",tax_refund.current.value);
+
   const tax_Refund = document.getElementById("tr").value;
   const tax_pr = document.getElementById("tax_pr").value;
 
@@ -374,7 +381,7 @@ const PreviousHandler = async()=>{
   const tax_Refund = tax_refund.current.value;
   const tax_pr = document.getElementById('tax_pr');
 
-  if(tax_Refund>0 && tax_pr.value==="Tax Payable"){
+  if(tax_Refund>0 && tax_pr.value==="Tax Payable" && (e==="regime" || e==="feedback" || e==="preview")){
     toast.error("Your tax payable is more than the tax deducted.");
     return;
   }

@@ -254,7 +254,7 @@ function Hra() {
 
 
     if(rent>100000){
-      if(name1.length!==0 && pan1.length!==10){
+      if(name1.length===0 || pan1.length!==10){
         toast.error("Please enter a valid landlord (s) details");
         // toast.error(count)
         return;

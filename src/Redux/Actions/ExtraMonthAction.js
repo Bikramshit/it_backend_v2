@@ -2,7 +2,6 @@ import axios from "axios";
 import { server } from "../Store/Store";
 
 
- 
 export const CreateExtraMonths = (id, month, value, formId, responseId) => async dispatch => {
     try {
       dispatch({ type: 'createExtraMonthRequest' });
@@ -14,7 +13,7 @@ export const CreateExtraMonths = (id, month, value, formId, responseId) => async
         withCredentials: true,
       });
       dispatch({ type: 'createExtraMonthSuccess', payload: data.message });
-      console.log(data);
+      // console.log(data);
      
     } catch (error) {
       dispatch({ type: 'createExtraMonthFail', payload: error.response.data.message });
