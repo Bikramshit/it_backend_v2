@@ -9,12 +9,14 @@ import { Link } from 'react-router-dom';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PdfFile from '../../Layouts/Pdf/PdfFile';
 import { getAllForm } from '../../../Redux/Actions/FormAction';
+import toast from 'react-hot-toast';
 function Responses() {
   const {user} = useSelector(state=>state.user)
   const {loading, responses, message} = useSelector(state=>state.response);
   const { forms} = useSelector(state=>state.form);
 
   const [formId, setFormId] = useState();
+  const [remark, setRemark] = useState('');
 
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -37,6 +39,16 @@ function Responses() {
       return;
     }
     await dispatch(GetAllResponseByForm(id));
+  }
+
+  const RemarkHandler = async(e)=>{
+    console.log(formId);
+    if(formId==="" || formId===undefined){
+      toast.error("First Select Financial Year");
+      return;
+    }
+    setRemark(e);
+    await dispatch(GetAllResponseByForm(formId, e));
   }
 
 
@@ -102,7 +114,7 @@ function Responses() {
          {
        forms===undefined ||  responses===undefined ? <Loader/> :    <div className='salary'>
         <h6 className='text-decoration-underline'>All Responses</h6>
-
+          <div style={{display:"flex", justifyContent:"space-between"}}>
           <div className="res_select">
             Select Financial Year:
             <select name="" id="" onChange={(e)=>FormHandler(e.target.value)} >
@@ -115,6 +127,18 @@ function Responses() {
                 )
             }
             </select>
+          </div>
+          <div className="res_select">
+            Select Response Status:
+            <select name="" id="" onChange={(e)=>RemarkHandler(e.target.value)} >
+              <option value="">All</option>
+              <option value="Accepted" selected={"Accepted"===remark}>Accepted</option>
+              <option value="Rejected" selected={"Rejected"===remark}>Rejected</option>
+              <option value="Processed" selected={"Processed"===remark}>Processed</option>
+              <option value="Form 16 Processed" selected={"Form 16 Processed"===remark}>Form 16 Processed</option>
+           
+            </select>
+          </div>
           </div>
         <div className="table_div">
         <table id='response'>

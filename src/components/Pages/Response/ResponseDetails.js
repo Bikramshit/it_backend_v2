@@ -1770,6 +1770,7 @@ Interest on House Building Loan u/s 24(b) </div>
             <option value="Accepted" selected={"Accepted"===sts}>Accepted</option>
             <option value="Rejected" selected={"Rejected"===sts}>Rejected</option>
             <option value="Processed" selected={"Processed"===sts}>Processed</option>
+            <option value="Form 16 Processed" selected={"Form 16 Processed"===sts}>Form 16 Processed</option>
            </select>
           <button onClick={ApprovedHandler} id='button'>   Save</button>
           </div>

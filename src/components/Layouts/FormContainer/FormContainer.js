@@ -176,12 +176,15 @@ function FormContainer() {
           <td className='tab_status'>Processed</td>
           <td className='tab_remark'>Form has been processed</td>
         </tr>
-       
-        <tr>
+        <tr className=''>
+          <td className='tab_status'>Form 16 Processed</td>
+          <td className='tab_remark'>Form 16 data has been uploaded</td>
+        </tr> 
+        <tr className='stt_vgg'>
           <td className='tab_status'>Pending</td>
           <td className='tab_remark'>Pending documents </td>
         </tr>
-        
+
       </table>
       </div>
 

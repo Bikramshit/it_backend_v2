@@ -38,11 +38,11 @@ export const StartResponse = (id,name, pan, aadhaar, email, phone, department, d
     }
   }; 
 
-  export const GetAllResponseByForm = (id) => async dispatch => {
+  export const GetAllResponseByForm = (id, remark="") => async dispatch => {
     try {
       dispatch({ type: 'ResponseByFormRequest' });
   
-      const { data } = await axios.get(`${server}/form/response/${id}`, {
+      const { data } = await axios.get(`${server}/form/response/${id}?remark=${remark}`, {
         headers: {
           'Content-type': 'application/json',
         },
