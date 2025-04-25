@@ -33,6 +33,7 @@ function FindAccount() {
     <>
     
     <div className="main_con">
+      <div className="main">
       <Header/>
     <div className="login_container mt-5">
       <div className="login_child">
@@ -40,7 +41,7 @@ function FindAccount() {
       <div className="login_title">Forgot Password</div>
       <div className="login_sec">
           <label htmlFor="pan">User Id</label>
-          <input type="text"  onChange={e=>userNameHandler(e)} id='username' />
+          <input type="text"  onChange={e=>userNameHandler(e)} id='username' placeholder='PAN' />
       </div>
      
       <div className=" login_btn">
@@ -78,6 +79,8 @@ function FindAccount() {
     </div>
     </div>
     </div>
+    </div>
+
 <Footer/>
 
     <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

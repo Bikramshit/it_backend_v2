@@ -31,6 +31,7 @@ function CreateUser() {
   const [pan, setPan] = useState('');
   const [aadhaar, setAadhaar] = useState();
   const [dob, setDob] = useState();
+  const [empId, setEmpId] = useState('');
   const password = useRef();
 
     const navigate = useNavigate();
@@ -48,7 +49,7 @@ function CreateUser() {
       return;
     }
 
-    const res = await dispatch(CreateUserHandler(name,  phone,email, password.current.value, dob, designation, department, pan, category, aadhaar))
+    const res = await dispatch(CreateUserHandler(name,  phone,email, password.current.value, dob, designation, department, pan, category, aadhaar, empId))
     // return res;
 }
 
@@ -107,6 +108,11 @@ document.getElementById('pasw').value = formattedToday
    <div className="create_header">Create New User</div>
 
    <div className="q_sec">
+    <label htmlFor="">UIN</label>
+    <input type="text" onChange={e=>setEmpId(e.target.value)} />
+   </div>
+
+   <div className="q_sec">
     <label htmlFor="">Name</label>
     <input type="text" onChange={e=>setName(e.target.value)} />
    </div>
@@ -117,9 +123,11 @@ document.getElementById('pasw').value = formattedToday
       <option value="">Select--</option>
       <option value="Hon'ble Vice Chancellor">Hon'ble Vice Chancellor</option>
       <option value="The Registrar">The Registrar</option>
-      <option value="Finance Officer">Finance Officer</option>
-      <option value="Training & Placement Officer">Training & Placement Officer</option>
       <option value="Controller of Examination">Controller of Examination</option>
+      <option value="Finance Officer">Finance Officer</option>
+      <option value="Deputy Registrar">Deputy Registrar</option>
+      <option value="Assistant Controller of Examination">Assistant Controller of Examination</option>
+      <option value="Training & Placement Officer">Training & Placement Officer</option>
       <option value="Senior Assistant">Senior Assistant</option>
       <option value="Junior Assistant">Junior Assistant</option>
       <option value="Junior Peon">Junior Peon</option>
@@ -154,11 +162,11 @@ document.getElementById('pasw').value = formattedToday
       <option value="Office of the COE">Office of the COE</option>
       <option value="Office of the Dy. Registrar">Office of the Dy. Registrar</option>
       <option value="Office of the Finance Officer">Office of the Finance Officer</option>
+      <option value="Scholarship Section">Scholarship Section</option>
       <option value="Office of the TPO">Office of the TPO</option>
-      
       <option value="VC Section">VC Section</option>
       <option value="Registrar Section">Registrar Section</option>
-      <option value="Controller of Examination Section">Controller of Examination Section</option>
+      <option value="Examination Section">Examination Section</option>
       <option value="Finance and Accounts Section">Finance and Accounts Section</option>
       <option value="AUAT Section">AUAT Section</option>
       <option value="Stores & Purchase Section">Stores & Purchase Section</option>
@@ -166,8 +174,6 @@ document.getElementById('pasw').value = formattedToday
       <option value="PhD Section">PhD Section</option>
       <option value="Library Section">Library Section</option>
       <option value="Enquiry/Receiving Section">Enquiry/Receiving Section</option>
-
- 
       <option value="Civil Engineering">Civil Engineering</option>
       <option value="Computer Science and Engineering">Computer Science and Engineering</option> 
       <option value="Electrical Engineering">Electrical Engineering</option>

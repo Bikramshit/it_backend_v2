@@ -574,12 +574,12 @@ function Preview() {
       <div className="letter_body">
       <span>Sir,</span>
       <div>
-        <span>Please find encolsed herewith my proposed Income Tax Calculation Form for <b>FY 2023-24</b> </span>
+        <span>Please find encolsed herewith my proposed Income Tax Calculation Form for <b>FY {response.financial_year==="2024-25" ? "2025-26" :"2023-24"} </b> </span>
         <ol>
           <li>I certify that particulars furnished are true and correct to the best of my knowledge and belief</li>
           <li>I authorize the University to recover Income Tax from my salary based on the declaration/documents submitted here</li>
           <li>I certify that these investments/savings have been made/proposed from my own earned income</li>
-          <li>Proof of the proposed investments/savings declared will be submitted positively by <b>12.04.2024</b></li>
+          <li>Proof of the proposed investments/savings declared will be submitted positively by <b>{response.financial_year==="2024-25" ? "12.04.2025" :"12.04.2024"} </b></li>
           <li>I will be solely responsible to CBDT, Income Tax Department, Govt. of India for all information pertaining to income tax assessment</li>
           <li>I will be solely responsible if not paid the proposed investment and will deposit the tax payable and its penalty directly to the Income Tax Department and will furnish the copy of paid challan to collect the Form 16</li>
         </ol>
@@ -597,7 +597,7 @@ function Preview() {
   
   <div className="preview_container">
 <div className="salary">
-    <h6>Salary Statement of Bikram</h6>
+    <h6>Salary Statement of {response.name}</h6>
 
     <div className="contract">
        <span> Are you a contractual employee:</span>
@@ -608,9 +608,9 @@ function Preview() {
         <table>
             <thead>
                 <tr>
-                    <th colSpan={2}>F.Y 2023-24</th>
+                    <th colSpan={2}>F.Y {response.financial_year==="2024-25" ? "2025-26" :"2023-24"} </th>
                     <td colSpan={9}></td>
-                    <th colSpan={2}>A.Y 2024-25</th>
+                    <th colSpan={2}>A.Y {response.financial_year==="2024-25" ? "2025-26" :"2024-25"} </th>
                 </tr>
                 <tr className='table_bg'>
                     <th className='months'>Months</th>
@@ -634,7 +634,7 @@ function Preview() {
             <tbody>
               
                 <tr>
-                    <th>MAR 2023</th>
+                    <th>MAR {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s1}/></td>
                     <td><Price number={response. basic_s1}/></td>
                     <td><Price number={response.    da_s1}/></td>
@@ -649,7 +649,7 @@ function Preview() {
                     <td><Price number={response.netsal_s1}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>APR 2023</th>
+                    <th>APR {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s2}/></td>
                     <td><Price number={response. basic_s2}/></td>
                     <td><Price number={response.    da_s2}/></td>
@@ -664,7 +664,7 @@ function Preview() {
                     <td><Price number={response.netsal_s2}/></td>
                 </tr>
                 <tr>
-                    <th>MAY 2023</th>
+                    <th>MAY {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s3}/></td>
                     <td><Price number={response. basic_s3}/></td>
                     <td><Price number={response.    da_s3}/></td>
@@ -679,7 +679,7 @@ function Preview() {
                     <td><Price number={response.netsal_s3}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>JUN 2023</th>
+                    <th>JUN {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s4}/></td>
                     <td><Price number={response. basic_s4}/></td>
                     <td><Price number={response.    da_s4}/></td>
@@ -694,7 +694,7 @@ function Preview() {
                     <td><Price number={response.netsal_s4}/></td>
                 </tr>
                 <tr>
-                    <th>JUL 2023</th>
+                    <th>JUL {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s5}/></td>
                     <td><Price number={response. basic_s5}/></td>
                     <td><Price number={response.    da_s5}/></td>
@@ -709,7 +709,7 @@ function Preview() {
                     <td><Price number={response.netsal_s5}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>AUG 2023</th>
+                    <th>AUG {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s6}/></td>
                     <td><Price number={response. basic_s6}/></td>
                     <td><Price number={response.    da_s6}/></td>
@@ -724,7 +724,7 @@ function Preview() {
                     <td><Price number={response.netsal_s6}/></td>
                 </tr>
                 <tr>
-                    <th>SEP 2023</th>
+                    <th>SEP {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s7}/></td>
                     <td><Price number={response. basic_s7}/></td>
                     <td><Price number={response.    da_s7}/></td>
@@ -739,7 +739,7 @@ function Preview() {
                     <td><Price number={response.netsal_s7}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>OCT 2023</th>
+                    <th>OCT {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s8}/></td>
                     <td><Price number={response. basic_s8}/></td>
                     <td><Price number={response.    da_s8}/></td>
@@ -754,7 +754,7 @@ function Preview() {
                     <td><Price number={response.netsal_s8}/></td>
                 </tr>
                 <tr>
-                    <th>NOV 2023</th>
+                    <th>NOV {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s9}/></td>
                     <td><Price number={response. basic_s9}/></td>
                     <td><Price number={response.    da_s9}/></td>
@@ -769,7 +769,7 @@ function Preview() {
                     <td><Price number={response.netsal_s9}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>DEC 2023</th>
+                    <th>DEC {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s10}/></td>
                     <td><Price number={response. basic_s10}/></td>
                     <td><Price number={response.    da_s10}/></td>
@@ -784,7 +784,7 @@ function Preview() {
                     <td><Price number={response.netsal_s10}/></td>
                 </tr>
                 <tr>
-                    <th>JAN 2024</th>
+                    <th>JAN {response.financial_year==="2024-25" ? "2025" :"2024"} </th>
                     <td><Price number={response.  rate_s11}/></td>
                     <td><Price number={response. basic_s11}/></td>
                     <td><Price number={response.    da_s11}/></td>
@@ -799,7 +799,7 @@ function Preview() {
                     <td><Price number={response.netsal_s11}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>FEB 2024</th>
+                    <th>FEB {response.financial_year==="2024-25" ? "2025" :"2024"} </th>
                     <td><Price number={response.  rate_s12}/></td>
                     <td><Price number={response. basic_s12}/></td>
                     <td><Price number={response.    da_s12}/></td>
@@ -836,7 +836,7 @@ function Preview() {
     <div className="sal_note">
         <span>Note:</span>
         <ol>
-            <li>Enter the amount for March 2023</li>
+            <li>Enter the amount for March 2024</li>
             <li>In HRA column, enter the amount for March and July</li>
             <li>In Adjustment column enter the monthly extra drawal amount, if any.</li>
         </ol>
@@ -894,13 +894,13 @@ function Preview() {
    <div className="form_header">
    <h4>Form No 12B</h4>
    <span>[See Rule 26A]</span>
-   <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, 2023</h6>
+   <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, {response.financial_year==="2024-25" ? "2024" :"2023"}</h6>
    <p>Details to be furnished by the newly joined employee during the year</p>
    </div>
 
 
     <div className="table_div">
-      <p>Name: Bikram Shit</p>
+      <p>Name:{response.name}</p>
         <table>
             <thead>
                 
@@ -925,7 +925,7 @@ function Preview() {
             <tbody>
               
                 <tr>
-                    <th>MAR 2023</th>
+                    <th>MAR {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_f1}/></td>
                     <td><Price number={response. basic_f1}/></td>
                     <td><Price number={response.    da_f1}/></td>
@@ -939,7 +939,7 @@ function Preview() {
                     <td><Price number={response.netsal_f1}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>APR 2023</th>
+                    <th>APR {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f2}/></td>
                     <td><Price number={response. basic_f2}/></td>
                     <td><Price number={response.    da_f2}/></td>
@@ -953,7 +953,7 @@ function Preview() {
                     <td><Price number={response.netsal_f2}/></td>
                 </tr>
                 <tr>
-                    <th>MAY 2023</th>
+                    <th>MAY {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f3}/></td>
                     <td><Price number={response. basic_f3}/></td>
                     <td><Price number={response.    da_f3}/></td>
@@ -967,7 +967,7 @@ function Preview() {
                     <td><Price number={response.netsal_f3}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>JUN 2023</th>
+                    <th>JUN {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f4}/></td>
                     <td><Price number={response. basic_f4}/></td>
                     <td><Price number={response.    da_f4}/></td>
@@ -981,7 +981,7 @@ function Preview() {
                     <td><Price number={response.netsal_f4}/></td>
                 </tr>
                 <tr>
-                    <th>JUL 2023</th>
+                    <th>JUL {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f5}/></td>
                     <td><Price number={response. basic_f5}/></td>
                     <td><Price number={response.    da_f5}/></td>
@@ -995,7 +995,7 @@ function Preview() {
                     <td><Price number={response.netsal_f5}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>AUG 2023</th>
+                    <th>AUG {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f6}/></td>
                     <td><Price number={response. basic_f6}/></td>
                     <td><Price number={response.    da_f6}/></td>
@@ -1009,7 +1009,7 @@ function Preview() {
                     <td><Price number={response.netsal_f6}/></td>
                 </tr>
                 <tr>
-                    <th>SEP 2023</th>
+                    <th>SEP {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f7}/></td>
                     <td><Price number={response. basic_f7}/></td>
                     <td><Price number={response.    da_f7}/></td>
@@ -1023,7 +1023,7 @@ function Preview() {
                     <td><Price number={response.netsal_f7}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>OCT 2023</th>
+                    <th>OCT {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f8}/></td>
                     <td><Price number={response. basic_f8}/></td>
                     <td><Price number={response.    da_f8}/></td>
@@ -1037,7 +1037,7 @@ function Preview() {
                     <td><Price number={response.netsal_f8}/></td>
                 </tr>
                 <tr>
-                    <th>NOV 2023</th>
+                    <th>NOV {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f9}/></td>
                     <td><Price number={response. basic_f9}/></td>
                     <td><Price number={response.    da_f9}/></td>
@@ -1051,7 +1051,7 @@ function Preview() {
                     <td><Price number={response.netsal_f9}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>DEC 2023</th>
+                    <th>DEC {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f10}/></td>
                     <td><Price number={response. basic_f10}/></td>
                     <td><Price number={response.    da_f10}/></td>
@@ -1065,7 +1065,7 @@ function Preview() {
                     <td><Price number={response.netsal_f10}/></td>
                 </tr>
                 <tr>
-                    <th>JAN 2024</th>
+                    <th>JAN {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                     <td><Price number={response.  rate_f11}/></td>
                     <td><Price number={response. basic_f11}/></td>
                     <td><Price number={response.    da_f11}/></td>
@@ -1079,7 +1079,7 @@ function Preview() {
                     <td><Price number={response.netsal_f11}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>FEB 2024</th>
+                    <th>FEB {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                     <td><Price number={response.  rate_f12}/></td>
                     <td><Price number={response. basic_f12}/></td>
                     <td><Price number={response.    da_f12}/></td>
@@ -1328,12 +1328,12 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
           <td></td>
           <td><Price number={response.isb_c2}/></td>
         </tr>
-        <tr className='table_row_bg'>
+        {/* <tr className='table_row_bg'>
           <th>80G</th>
           <td>Donation/Charity to registered donatee (Refer to IT website for any clarification)</td>
           <td></td>
           <td><Price number={response.donation_c}/></td>
-        </tr>
+        </tr> */}
         <tr>
           <th>80EEB</th>
           <td>Deduction towards interest payments made on loan for purchase of Electric Vehicle</td>
@@ -1573,23 +1573,9 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td><Price number={response.bonus_it_o} /></td>
               <td><Price number={response.bonus_it_n} /></td>
             </tr>
-            <tr>
-              <td>3</td>
-              <td><div className="bonus">
-                <div>Honorarium (AUAT/Dean/Hostel,Exam, etc)</div>
-                <div>
-                <Price number={response.hono_it} />
-                </div>
-                </div></td>
-              <td>
-              <Price number={response.honoo_it} />
-              </td>
-              <td>
-              <Price number={response.honoo_it2} />
-              </td>
-            </tr>
+            
             <tr  className='table_row_bg'>
-              <td>4</td>
+              <td>3</td>
               <td>Current Employer Gross Salary	</td>
               <td>
               <Price number={response.current_it_o} />
@@ -1599,7 +1585,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               </td>
             </tr>
             <tr>
-              <td>5</td>
+              <td>4</td>
               <td>Previous Employer Gross Salary</td>
               <td>
               <Price number={response.previous_it_o} />
@@ -1608,8 +1594,8 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <Price number={response.previous_it_n} />
               </td>
             </tr>
-            <tr  className='table_row_bg'>
-              <td>6</td>
+            {/* <tr  className='table_row_bg'>
+              <td>5</td>
               <td>Pension</td>
               <td>
               <Price number={response.pension_it_o} />
@@ -1617,9 +1603,9 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td>
               <Price number={response.pension_it_n} />
               </td>
-            </tr>
-            <tr>
-              <td>7</td>
+            </tr> */}
+            {/* <tr>
+              <td>6</td>
               <td>	Cuommuted Value of Pension</td>
               <td>
               <Price number={response.cvp_it_o} />
@@ -1627,16 +1613,16 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td>
               <Price number={response.cvp_it_n} />
               </td>
-            </tr>
+            </tr> */}
             <tr  className='table_row_bg'>
-              <td rowSpan={3}>8</td>
+              <td rowSpan={2}>5</td>
               <td>Less: Allowance under section 10</td>
               <td>
               </td>
               <td>
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <td>10 (10A) - Commuted value of Pension</td>
               <td>
               <Price number={response.ten_a__it_o} />
@@ -1644,7 +1630,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td>
               <Price number={response.ten_a__it_n} />
               </td>
-            </tr>
+            </tr> */}
             <tr  className='table_row_bg'>
               <td>	10 (13A) - HRA</td>
               <td>
@@ -1655,8 +1641,8 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               </td>
             </tr>
             <tr>
-              <td>9</td>
-              <td>Gross Salary and Pension</td>
+              <td>6</td>
+              <td>Gross Salary</td>
               <td>
               <Price number={response.gsp_it_o} />
               </td>
@@ -1665,7 +1651,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               </td>
             </tr>
             <tr  className='table_row_bg'>
-              <td rowSpan={4}>10</td>
+              <td rowSpan={4}>7</td>
               <td>Less: Deduction u/s 16:</td>
               <td>
               </td>
@@ -1705,13 +1691,14 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td><Price number={response.s_deduction_it_n} /></td>
             </tr>
             <tr  className='table_row_bg'>
-              <td>11</td>
-              <td>Net Salary and Pension</td>
+              <td>8</td>
+              <td>Net Salary</td>
               <td><Price number={response.net_sp_it_o} /></td>
               <td><Price number={response.net_sp_it_n} /></td>
             </tr>
+            
             <tr>
-              <td>12</td>
+              <td>9</td>
               <td>
               <div className="bonus">
                 <div>	
@@ -1722,8 +1709,23 @@ Interest on House Building Loan u/s 24(b) </div>
               <td><Price number={response.interest_hbl_it_o} /></td>
               <td><Price number={response.interest_hbl_it_n} /></td>
             </tr>
+            <tr>
+              <td>10</td>
+              <td><div className="bonus">
+                <div>Honorarium (AUAT/Dean/Hostel,Exam, etc)</div>
+                <div>
+                <Price number={response.hono_it} />
+                </div>
+                </div></td>
+              <td>
+              <Price number={response.honoo_it} />
+              </td>
+              <td>
+              <Price number={response.honoo_it2} />
+              </td>
+            </tr>
             <tr className='table_row_bg'> 
-              <td rowSpan={2}>13</td>
+              <td rowSpan={2}>11</td>
               <td >Income from other Sources:</td>
               <td></td>
               <td></td>
@@ -1745,43 +1747,43 @@ Interest on House Building Loan u/s 24(b) </div>
               <td><Price number={response.income_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>14</td>
+              <td>12</td>
               <td>Gross Income</td>
               <td><Price number={response.gross_income_it_o} /></td>
               <td><Price number={response.gross_income_it_n} /></td>
             </tr>
             <tr>
-              <td>15</td>
+              <td>13</td>
               <td>Total Deductions under Chapter VIA</td>
               <td><Price number={response.chapter_total} /></td>
               <td><Price number={response.total_deduction_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>16</td>
+              <td>14</td>
               <td>Net Income</td>
               <td><Price number={response.net_income_it_o} /></td>
               <td><Price number={response.net_income_it_n} /></td>
             </tr>
             <tr>
-              <td>17</td>
+              <td>15</td>
               <td>Taxable Income (Roundup u/s 288A in multiple of Rs.10/-)</td>
               <td><Price number={response.tax_income_it_o} /></td>
               <td><Price number={response.tax_income_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>18</td>
+              <td>16</td>
               <td>Tax Payable on Taxable Income</td>
               <td><Price number={response.tax_pay_it_o} /></td>
               <td><Price number={response.tax_pay_it_n} /></td>
             </tr>
             <tr>
-              <td>19</td>
+              <td>17</td>
               <td>Less: Rebate u/s 87A</td>
               <td><Price number={response.less_it_o} /></td>
               <td><Price number={response.less_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>20</td>
+              <td>18</td>
               <td>Tax after Rebate</td>
               <td><Price number={response.tar_it_o} /></td>
               <td><Price number={response.tar_it_n} /></td>
@@ -1793,37 +1795,37 @@ Interest on House Building Loan u/s 24(b) </div>
               </td>
             </tr>
             <tr className='table_row_bg'>
-              <td>21</td>
+              <td>19</td>
               <td colSpan={2}>{response.tax_per_inp}</td>
               <td><Price number={response.tax_per_it} /></td>
             </tr>
             <tr>
-              <td>22</td>
+              <td>20</td>
               <td colSpan={2}>Add: 4% CESS (Health & Education)</td>
               <td><Price number={response.add_four_it} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>23</td>
+              <td>21</td>
               <td colSpan={2}>Gross Tax Payable</td>
               <td><Price number={response.gtax_payable_it} /></td>
             </tr>
             <tr>
-              <td>24</td>
+              <td>22</td>
               <td colSpan={2}>Less: Relief u/s 89 (Please ensure to submit Form 10E to claim this relief)</td>
               <td><Price number={response.less_relief_it} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>25</td>
+              <td>23</td>
               <td colSpan={2}>Net Tax Payable</td>
               <td><Price number={response.ntax_payable_it} /></td>
             </tr>
             <tr>
-              <td>26</td>
+              <td>24</td>
               <td colSpan={2}>Tax Deducted From Salary</td>
               <td><Price number={response.td_sal_it} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>27</td>
+              <td>25</td>
               <td colSpan={2}>{response.tex_payable_it}</td>
               <td><Price number={response.tax_refund} /></td>
             </tr>
@@ -1920,15 +1922,14 @@ Interest on House Building Loan u/s 24(b) </div>
 
 
 
-
 {
-  response.netsal_f13===0 && response.lip_c===0 && response.ppf_c===0 && response.ssy_c===0 && response.cs_c===0 && response.input1===0 && response.input2===0 && response.input3===0 && response.phb_c===0 &&  response.mii3_c===0 &&  response.mis3_c===0 && response.disability_c2===0 && response.iel_c===0 &&   response.nps_c===0 && response.donation_c===0 &&   response.electric_c===0 && response.ex_t===0 && 
-   response.name1==='' && response.pan1==='' && response.name2==='' && response.pan2==='' && response.pan3==='' && response.name3==='' && response.name4==='' && response.pan4==='' && response.interest_hbl_it===0 ? '' :
+  (response.netsal_f13===0 && response.lip_c===0 && response.ppf_c===0 && response.ssy_c===0 && response.cs_c===0 && response.input1===0 && response.input2===0 && response.input3===0 && response.phb_c===0 &&  response.mii3_c===0 &&  response.mis3_c===0 && response.disability_c2===0 && response.iel_c===0 &&   response.nps_c===0 && response.donation_c===0 &&   response.electric_c===0 && response.ex_t===0 && 
+   response.name1==='' && response.pan1==='' && response.name2==='' && response.pan2==='' && response.pan3==='' && response.name3==='' && response.name4==='' && response.pan4==='' && response.interest_hbl_it===0) || response.opting_for!=='Old Regime' ? ''   :
   <div className="doc_upload">
   <h6>Upload Documents</h6>
   <table>
    {
-      response.netsal_f13!==0 &&  <tr>
+      response.netsal_f13!==0 && response.opting_for==='Old Regime' &&  <tr>
       <td>Pay Slip</td>
       <td><input type="file" accept="application/pdf" onChange={PaySlipChange} /></td>
       <td><button className="upload_btn" onClick={PaySlipUpload}>Upload</button></td>
@@ -1939,7 +1940,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
    }
     {
-      response.lip_c!==0 && <tr>
+      response.lip_c!==0 && response.opting_for==='Old Regime' &&  <tr>
       <td>Life Insurance Premium</td>
       <td> <input type="file" accept="application/pdf" onChange={LipHandler} /></td>
       <td><button className="upload_btn" onClick={Lip_Upload}>Upload</button></td>
@@ -1950,7 +1951,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
     }
    {
-     response.ppf_c!==0 &&  <tr>
+     response.ppf_c!==0 && response.opting_for==='Old Regime' &&  <tr>
      <td>PPF</td>
      <td><input type="file" accept="application/pdf" onChange={Ppf_Handler} /></td>
      <td><button className="upload_btn" onClick={PPf_Upload}>Upload</button></td>
@@ -1960,7 +1961,7 @@ Interest on House Building Loan u/s 24(b) </div>
    </tr>
    }
     {
-      response.ssy_c!==0 && <tr>
+      response.ssy_c!==0 && response.opting_for==='Old Regime' && <tr>
       <td>Sukanya Samridhi Yojna Contribution</td>
       <td><input type="file" accept="application/pdf" onChange={Ssc_Handler} /></td>
       <td><button className="upload_btn" onClick={Ssc_Upload}>Upload</button></td>
@@ -1970,7 +1971,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
     }
     {
-      response.cs_c!==0 && <tr>
+      response.cs_c!==0 && response.opting_for==='Old Regime' && <tr>
       <td>Child's School/College Tuition Fee (Max. 02 child)</td>
       <td><input type="file" accept="application/pdf" onChange={Child_Handler} /></td>
       <td><button className="upload_btn" onClick={Child_Upload}>Upload</button></td>
@@ -1980,7 +1981,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
     }
     {
-      response.input1!==0 && <tr>
+      response.input1!==0 && response.opting_for==='Old Regime' && <tr>
       <td>{response.inp_n1}</td>
       <td><input type="file" accept="application/pdf" onChange={Input_Handler} /></td>
       <td><button className="upload_btn" onClick={Input_Upload}>Upload</button></td>
@@ -1990,7 +1991,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr> 
     }
     {
-      response.input2!==0 && <tr>
+      response.input2!==0 && response.opting_for==='Old Regime' && <tr>
       <td>{response.inp_n2}</td>
       <td><input type="file" accept="application/pdf" onChange={Input2_Handler} /></td>
       <td><button className="upload_btn" onClick={Input2_Upload}>Upload</button></td>
@@ -2000,7 +2001,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr> 
     }
     {
-      response.input3!==0 && <tr>
+      response.input3!==0 && response.opting_for==='Old Regime' && <tr>
       <td>{response.inp_n3}</td>
       <td><input type="file" accept="application/pdf" onChange={Input3_Handler} /></td>
       <td><button className="upload_btn" onClick={Input3_Upload}>Upload</button></td>
@@ -2013,7 +2014,7 @@ Interest on House Building Loan u/s 24(b) </div>
    
   {/* start  */}
   {
-    response.phb_c!==0 &&  <tr>
+    response.phb_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Payment of House Building Loan </td>
     <td><input type="file" accept="application/pdf" onChange={PaymentHandler} /></td>
     <td><button className="upload_btn" onClick={Payment_Upload}>Upload</button></td>
@@ -2025,7 +2026,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.mii3_c!==0 &&  <tr>
+    response.mii3_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Medical Insurance Premium for Individual</td>
     <td><input type="file" accept="application/pdf" onChange={MedicalIndHandler} /></td>
     <td><button className="upload_btn" onClick={Medical_Upload}>Upload</button></td>
@@ -2037,7 +2038,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.mis3_c!==0 &&  <tr>
+    response.mis3_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Medical Insurance Premium for Sr. Citizen</td>
     <td><input type="file" accept="application/pdf" onChange={MedicalSrHandler} /></td>
     <td><button className="upload_btn" onClick={MedicalSr_Upload}>Upload</button></td>
@@ -2049,7 +2050,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.disability_c2!==0 &&  <tr>
+    response.disability_c2!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>For maintenance of handicapped dependent/for own disability</td>
     <td><input type="file" accept="application/pdf" onChange={HandicapHandler} /></td>
     <td><button className="upload_btn" onClick={Handicap_Upload}>Upload</button></td>
@@ -2061,7 +2062,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.iel_c!==0 &&  <tr>
+    response.iel_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Interest on Educational Loan</td>
     <td><input type="file" accept="application/pdf" onChange={EducationHandler} /></td>
     <td><button className="upload_btn" onClick={Education_Upload}>Upload</button></td>
@@ -2073,7 +2074,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.nps_c!==0 &&  <tr>
+    response.nps_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>NPS/Atal Pension Yojana </td>
     <td><input type="file" accept="application/pdf" onChange={NpsHandler} /></td>
     <td><button className="upload_btn" onClick={Nps_Upload}>Upload</button></td>
@@ -2085,7 +2086,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.donation_c!==0 &&  <tr>
+    response.donation_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Donation/Charity to registered donatee </td>
     <td><input type="file" accept="application/pdf" onChange={DonationHandler} /></td>
     <td><button className="upload_btn" onClick={Donation_Upload}>Upload</button></td>
@@ -2097,7 +2098,7 @@ Interest on House Building Loan u/s 24(b) </div>
    }
 
 {
-    response.electric_c!==0 &&  <tr>
+    response.electric_c!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Loan for purchase of Electric Vehicle</td>
     <td><input type="file" accept="application/pdf" onChange={ElectricHandler} /></td>
     <td><button className="upload_btn" onClick={Electric_Upload}>Upload</button></td>
@@ -2108,7 +2109,7 @@ Interest on House Building Loan u/s 24(b) </div>
   </tr>
    }
 {
-    response.ex_t!==0 &&  <tr>
+    response.ex_t!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>{response.ex_i} </td>
     <td><input type="file" accept="application/pdf" onChange={ExtraHandler} /></td>
     <td><button className="upload_btn" onClick={Extra_Upload}>Upload</button></td>
@@ -2121,7 +2122,7 @@ Interest on House Building Loan u/s 24(b) </div>
 
 
 {
-      response.pan1!=='' && response.name1!=='' && <tr>
+      response.pan1!=='' && response.name1!=='' && response.opting_for==='Old Regime' && <tr>
       <td>Landloard 1</td>
       <td><input type="file" accept="application/pdf" onChange={LandordHandler1} /></td>
       <td><button className="upload_btn" onClick={LandordFileHandler}>Upload</button></td>
@@ -2132,7 +2133,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
     }
    {
-    response.pan2!=='' && response.name2!=='' &&  <tr>
+    response.pan2!=='' && response.name2!=='' && response.opting_for==='Old Regime' &&  <tr>
     <td>Landloard 2</td>
     <td><input type="file" accept="application/pdf" onChange={LandordHandler2} /></td>
     <td><button className="upload_btn" onClick={LandordFileHandler2}>Upload</button></td>
@@ -2143,7 +2144,7 @@ Interest on House Building Loan u/s 24(b) </div>
   </tr>
    }
     {
-      response.name3!=='' && response.pan3!=='' && <tr>
+      response.name3!=='' && response.pan3!=='' && response.opting_for==='Old Regime' && <tr>
       <td>Landloard 3</td>
       <td><input type="file" accept="application/pdf" onChange={LandordHandler3} /></td>
       <td><button className="upload_btn" onClick={LandordFileHandler3}>Upload</button></td>
@@ -2154,7 +2155,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
     }
     {
-      response.pan4!=='' && response.name4!=='' && <tr>
+      response.pan4!=='' && response.name4!=='' && response.opting_for==='Old Regime' && <tr>
       <td>Landloard 4</td>
       <td><input type="file" accept="application/pdf" onChange={LandordHandler4} /></td>
       <td><button className="upload_btn" onClick={LandordFileHandler4}>Upload</button></td>
@@ -2165,7 +2166,7 @@ Interest on House Building Loan u/s 24(b) </div>
     </tr>
     }
    {
-    response.interest_hbl_it!==0 &&  <tr>
+    response.interest_hbl_it!==0 && response.opting_for==='Old Regime' &&  <tr>
     <td>Interest on House Building Loan u/s 24(b)</td>
     <td><input type="file" accept="application/pdf" onChange={HBlHandler} /></td>
     <td><button className="upload_btn" onClick={HBLfileHandler}>Upload</button></td>

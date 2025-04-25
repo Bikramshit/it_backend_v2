@@ -113,7 +113,7 @@ export const userReducer = createReducer({}, {
           loadUserFail: (state, action) => {
             state.loading = false;
             state.isAuthenticated = false;
-            state.error = action.payload;
+            // state.error = action.payload;
           },
           
             sendMailRequest: state => {
@@ -132,7 +132,32 @@ export const userReducer = createReducer({}, {
         },
         clearMessage:(state)=>{
             state.message=null;
-        }
+        },
+        registrationRequest: state => {
+          state.loading = true;
+        },
+        registrationSuccess: (state, action) => {
+          state.loading = false;
+          state.message = action.payload.message;
+          state.user = action.payload.user;
+          state.show = true;
+        },
+        registrationFail: (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        },
+        registerVerifyRequest: state => {
+          state.loading = true;
+        },
+        registerVerifySuccess: (state, action) => {
+          state.loading = false;
+          state.message = action.payload.message;
+          state.user = action.payload.user;
+        },
+        registerVerifyFail: (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        },
 
 
 });

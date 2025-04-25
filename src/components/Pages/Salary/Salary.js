@@ -262,7 +262,6 @@ function Salary() {
 
 
 
-
   const  basic13 = useRef(0);
    const  rate13 = useRef(0);
      const  da13 = useRef(0);
@@ -462,6 +461,16 @@ netsal3.     current.value =    response.netsal_s3;
     // da1
   }
 }, [dispatch, response])
+
+
+
+
+  
+
+
+
+
+
 
 const navigate = useNavigate();
  const SubmitHandler =async(currentState)=>{
@@ -730,12 +739,7 @@ const basic =(e, val)=>{
       if(hra>12000) hra = 12000;
       let ma, ma2;
 
-      if(basicc>0){
-          ma = 500;
-      }
-      else {
-          ma=0;
-      }
+     
 
 
       let basiccc = twoDigit(basicc*3/100);
@@ -749,16 +753,39 @@ const basic =(e, val)=>{
       let hra2 = basic2*12/100;
       hra2 = Math.round(hra2);
       if(hra2>12000) hra2 = 12000;
-      if(basic2>0){
-          ma2 = 500;
+
+      // if(basic2>0){
+      //     ma2 = 500;
+      // }
+      // else ma2 = 0;
+
+      if(basicc>0){
+        if(val==1){
+          ma = 500;
+        }else {
+          let prev = document.getElementById(`ma${val-1}`).value;
+          ma = parseInt(prev);
+        }
+         
       }
-      else ma2 = 0;
+      else {
+          ma=0;
+      }
 
-
-
-
+      if(basic2>0){
+        if(val==1){
+          ma2 = 500;
+        }else {
+          let prev = document.getElementById(`ma${val-1}`).value;
+          ma2 = parseInt(prev);
+        }
+         
+      }
+      else {
+          ma2=0;
+      }
       
-      
+   
 
 
       let contract = document.getElementById('list').value;
@@ -983,12 +1010,12 @@ const da_Rate=(e,val)=>{
       if(hra>12000) hra = 12000;
       let ma, ma2;
 
-      if(basicc>0){
-          ma = 500;
-      }
-      else {
-          ma=0;
-      }
+      // if(basicc>0){
+      //     ma = 500;
+      // }
+      // else {
+      //     ma=0;
+      // }
    
 
       let basiccc = twoDigit(basicc*3/100);
@@ -1001,10 +1028,36 @@ const da_Rate=(e,val)=>{
       let hra2 = basic2*12/100;
       hra2 = Math.round(hra2);
       if(hra2>12000) hra2 = 12000;
-      if(basic2>0){
-          ma2 = 500;
+      // if(basic2>0){
+      //     ma2 = 500;
+      // }
+      // else ma2 = 0;
+
+      if(basicc>0){
+        if(val==1){
+          ma = 500;
+        }else {
+          let prev = document.getElementById(`ma${val-1}`).value;
+          ma = parseInt(prev);
+        }
+         
       }
-      else ma2 = 0;
+      else {
+          ma=0;
+      }
+
+      if(basic2>0){
+        if(val==1){
+          ma2 = 500;
+        }else {
+          let prev = document.getElementById(`ma${val-1}`).value;
+          ma2 = parseInt(prev);
+        }
+         
+      }
+      else {
+          ma2=0;
+      }
       
       
 
@@ -1430,9 +1483,15 @@ const ma_fun =(e, val)=> {
       if(ma2>500) ma2=500;
       let basicc = document.getElementById(`basic${val}`).value || 0;
       basicc = parseInt(basicc) || 0;
-      let hra = document.getElementById(`hra${val}`).value || 0;
-      hra = parseInt(hra)|| 0;
-      let hra2 = parseInt(hra) || 0;
+  let hra, hra2;
+
+
+       hra = document.getElementById(`hra${val}`).value || 0;
+      hra = parseInt(hra) || 0;
+      if(val<=4) hra2 = document.getElementById('hra5').value || 0;
+
+      else hra2 = parseInt(hra);
+      hra2 = parseInt(hra2) || 0;
       let adjust = document.getElementById(`donation${val}`).value || 0;
       adjust = parseInt(adjust) || 0;
       let adjust2 = parseInt(adjust) || 0;
@@ -2660,9 +2719,9 @@ useEffect(()=>{
             <table>
                 <thead>
                     <tr>
-                        <th colSpan={2}>F.Y 2023-24</th>
+                        <th colSpan={2}>F.Y {response.financial_year==="2024-25" ? "2024-25" :"2023-24"} </th>
                         <td colSpan={9}></td>
-                        <th colSpan={2}>A.Y 2024-25</th>
+                        <th colSpan={2}>A.Y  {response.financial_year==="2024-25" ? "2025-26" :"2024-25"} </th>
                     </tr>
                     <tr className='table_bg'>
                         <th className='months'>Months</th>
@@ -2686,7 +2745,7 @@ useEffect(()=>{
                 <tbody>
                   
                     <tr>
-                        <th>MAR 2023</th>
+                        <th>MAR {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                         <td><input type="text" defaultValue={      rate1}      id='rate1'    ref={rate1}    onChange={e=>da_Rate(e,1)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic1}      id='basic1'   ref={basic1}      onChange={e=>basic(e,1)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da1} id='da1'      ref={da1}              readOnly   /></td>
@@ -2697,11 +2756,11 @@ useEffect(()=>{
                         <td><input type="text" defaultValue={      ptax1}         id='profession1'    ref={ptax1}           readOnly /></td>
                         <td><input type="text" defaultValue={      aupf1}         id='aupf1'    ref={aupf1}   onChange={e=>aupf_fun(e,1)}  onKeyPress={onKeyPressEvent}/></td>
                         <td><input type="text" defaultValue={        sf1}         id='sf1'      ref={sf1}     onChange={e=>sf_fun(e,1)}  onKeyPress={onKeyPressEvent}/></td>
-                        <td><input type="text" defaultValue={    income1}         id='income_tax1'  ref={income1} onChange={e=>income_fun(e,1)}  onKeyPress={onKeyPressEvent} /></td>
+                        <td><input type="text" defaultValue={    income1}     readOnly    id='income_tax1'  ref={income1} onChange={e=>income_fun(e,1)}  onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={    netsal1}         id='net_salary1'  ref={netsal1}             readOnly /></td>
                     </tr>
                     <tr className='table_row_bg'>
-                        <th>APR 2023</th>
+                        <th>APR {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate2}      id='rate2'    ref={rate2}    onChange={e=>da_Rate(e,2)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic2}      id='basic2'   ref={basic2}      onChange={e=>basic(e,2)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da2} id='da2'      ref={da2}              readOnly   /></td>
@@ -2717,7 +2776,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr>
-                        <th>MAY 2023</th>
+                        <th>MAY {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate3}      id='rate3'    ref={rate3}    onChange={e=>da_Rate(e,3)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic3}      id='basic3'   ref={basic3}      onChange={e=>basic(e,3)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da3} id='da3'      ref={da3}              readOnly   /></td>
@@ -2733,7 +2792,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr className='table_row_bg'>
-                        <th>JUN 2023</th>
+                        <th>JUN {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate4}      id='rate4'    ref={rate4}    onChange={e=>da_Rate(e,4)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic4}      id='basic4'   ref={basic4}      onChange={e=>basic(e,4)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da4} id='da4'      ref={da4}              readOnly   /></td>
@@ -2749,7 +2808,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr>
-                        <th>JUL 2023</th>
+                        <th>JUL {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate5}      id='rate5'    ref={rate5}    onChange={e=>da_Rate(e,5)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic5}      id='basic5'   ref={basic5}      onChange={e=>basic(e,5)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da5} id='da5'      ref={da5}              readOnly   /></td>
@@ -2765,7 +2824,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr className='table_row_bg'>
-                        <th>AUG 2023</th>
+                        <th>AUG {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate6}      id='rate6'    ref={rate6}    onChange={e=>da_Rate(e,6)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic6}      id='basic6'   ref={basic6}      onChange={e=>basic(e,6)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da6} id='da6'      ref={da6}              readOnly   /></td>
@@ -2781,7 +2840,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr>
-                        <th>SEP 2023</th>
+                        <th>SEP {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate7}      id='rate7'    ref={rate7}    onChange={e=>da_Rate(e,7)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic7}      id='basic7'   ref={basic7}      onChange={e=>basic(e,7)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da7} id='da7'      ref={da7}              readOnly   /></td>
@@ -2797,7 +2856,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr className='table_row_bg'>
-                        <th>OCT 2023</th>
+                        <th>OCT {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate8}      id='rate8'    ref={rate8}    onChange={e=>da_Rate(e,8)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic8}      id='basic8'   ref={basic8}      onChange={e=>basic(e,8)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da8} id='da8'      ref={da8}              readOnly   /></td>
@@ -2813,7 +2872,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr>
-                        <th>NOV 2023</th>
+                        <th>NOV {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate9}      id='rate9'    ref={rate9}    onChange={e=>da_Rate(e,9)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic9}      id='basic9'   ref={basic9}      onChange={e=>basic(e,9)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da9} id='da9'      ref={da9}              readOnly   /></td>
@@ -2829,7 +2888,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr className='table_row_bg'>
-                        <th>DEC 2023</th>
+                        <th>DEC {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                         <td><input type="text" defaultValue={      rate10}      id='rate10'    ref={rate10}    onChange={e=>da_Rate(e,10)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic10}      id='basic10'   ref={basic10}      onChange={e=>basic(e,10)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da10} id='da10'      ref={da10}              readOnly   /></td>
@@ -2845,7 +2904,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr>
-                        <th>JAN 2024</th>
+                        <th>JAN {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                         <td><input type="text" defaultValue={      rate11}      id='rate11'    ref={rate11}    onChange={e=>da_Rate(e,11)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic11}      id='basic11'   ref={basic11}      onChange={e=>basic(e,11)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da11} id='da11'      ref={da11}              readOnly   /></td>
@@ -2861,7 +2920,7 @@ useEffect(()=>{
                     
                     </tr>
                     <tr className='table_row_bg'>
-                        <th>FEB 2024</th>
+                        <th>FEB {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                         <td><input type="text" defaultValue={      rate12}      id='rate12'    ref={rate12}    onChange={e=>da_Rate(e,12)}   onKeyPress={onKeyPressEvent} /></td>
                         <td><input type="text" defaultValue={     basic12}      id='basic12'   ref={basic12}      onChange={e=>basic(e,12)}  onKeyPress={onKeyPressEvent}     /></td>
                         <td><input type="text" defaultValue={        da12} id='da12'      ref={da12}              readOnly   /></td>
@@ -2899,7 +2958,7 @@ useEffect(()=>{
         <div className="sal_note">
             <span>Note:</span>
             <ol>
-                <li>Enter the amount for March 2023</li>
+                <li>Enter the amount for March {response.financial_year==="2024-25" ? "2024" :"2023"}  </li>
                 <li>In Adjustment column enter the extra drawal amount, if any.</li>
             </ol>
 
@@ -2935,7 +2994,7 @@ useEffect(()=>{
                 </tr>
                 <tr className='table_bg'>
                     <th className='td'>Net Arrear Salary</th>
-                    <td><input type="text" onChange={net_arrear_fun} onKeyPress={onKeyPressEvent}  id='net_arrear_salary' ref={nas} defaultValue={nas} /></td>
+                    <td><input type="text" onChange={net_arrear_fun} onKeyPress={onKeyPressEvent} readOnly id='net_arrear_salary' ref={nas} defaultValue={nas} /></td>
                 </tr>
             </table>
             </div>

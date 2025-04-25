@@ -73,11 +73,11 @@ function AllExtraMonths() {
     if(ExtraMonths!==undefined){
        wscols = [
         {
-          wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.Name.length))
+          wch: Math.max(...ExtraMonths?.map((extramonth) => extramonth.Name.length))
         },
-        { wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.Value.length)) },
-        { wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.Month.length)) },
-        { wch: Math.max(...ExtraMonths.map((extramonth) => extramonth.createdAt.length)) },
+        { wch: Math.max(...ExtraMonths?.map((extramonth) => extramonth.Value.length)) },
+        { wch: Math.max(...ExtraMonths?.map((extramonth) => extramonth.Month.length)) },
+        { wch: Math.max(...ExtraMonths?.map((extramonth) => extramonth.createdAt.length)) },
        
       ];
     }
@@ -133,6 +133,7 @@ function AllExtraMonths() {
               (ExtraMonths && ExtraMonths.length!==0) && <tr>
               <th className='sl_no'>Sl. No</th>
               <th className='ext_name'>Name</th>
+              {/* <th className='ext_name'>Department</th> */}
               <th>Value (Rs.)</th>
               <th>Months</th>
               <th>Added On</th>
@@ -145,7 +146,9 @@ function AllExtraMonths() {
                 <tr className={i%2==0 ? 'tr_cl' : 'tr_cl2'}>
                   <td className='sl_no'>{i+1}</td>
                   <td className='ext_name'>{extramonth.user.name}</td>
-                  <td> <Price number={extramonth.value} />/-</td>
+                  {/* <td className='ext_name'>{extramonth.user.depertment}</td> */}
+                  {/* <td> <Price number={extramonth.value} />/-</td> */}
+                  <td>{extramonth.value}</td>
                   <td>{extramonth.month}</td>
                   <td>{getDate(extramonth.createdAt)}</td>
                   <td className='text-center'><Link to={`/response/${extramonth.responseId}`}><BsFillInfoCircleFill/></Link></td>

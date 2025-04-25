@@ -10,6 +10,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import PdfFile from '../../Layouts/Pdf/PdfFile';
 import { getAllForm } from '../../../Redux/Actions/FormAction';
 import toast from 'react-hot-toast';
+import Price from '../../Layouts/Price/Price';
 function Responses() {
   const {user} = useSelector(state=>state.user)
   const {loading, responses, message} = useSelector(state=>state.response);
@@ -17,6 +18,7 @@ function Responses() {
 
   const [formId, setFormId] = useState();
   const [remark, setRemark] = useState('');
+  const [documentStatus, setDocumentStatus] = useState('');
 
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -48,7 +50,17 @@ function Responses() {
       return;
     }
     setRemark(e);
-    await dispatch(GetAllResponseByForm(formId, e));
+    await dispatch(GetAllResponseByForm(formId, e, ''));
+  }
+
+  const documentHandler = async(e)=>{
+    console.log(formId);
+    if(formId==="" || formId===undefined){
+      toast.error("First Select Financial Year");
+      return;
+    }
+    setDocumentStatus(e);
+    await dispatch(GetAllResponseByForm(formId,'', e));
   }
 
 
@@ -97,7 +109,9 @@ function Responses() {
                   <td><Link to={`/response/${response._id}`}> { response.submitTime===undefined ? "Not yet submitted" :    getDate(response.submitTime)} </Link></td>
                   {/* <td><Link to={`/response/${response._id}`}> {response.submitStatus} </Link></td> */}
                   <td><Link to={`/response/${response._id}`}> {response.remark} </Link></td>
-                  <td className='pdf_icon'><PDFDownloadLink fileName='IT File' document={<PdfFile  response={response}  />}>
+                  <td className='pdf_icon'>
+                    
+                    <PDFDownloadLink  fileName={`${response.name}_${response.financial_year}`}  document={<PdfFile  response={response}  />}>
                   <FaFilePdf/>
         </PDFDownloadLink>
                 </td>
@@ -139,18 +153,32 @@ function Responses() {
            
             </select>
           </div>
+          <div className="res_select">
+            Document Status:
+            <select name="" id="" onChange={(e)=>documentHandler(e.target.value)} >
+              <option value="">All</option>
+              <option value="Not Submitted" selected={"Not Submitted"===documentStatus}>Not Submitted</option>
+              <option value="Complete" selected={"Complete"===documentStatus}>Completed</option>
+              <option value="New Regime" selected={"New Regime"===documentStatus}>New Regime</option>
+           
+            </select>
+          </div>
           </div>
         <div className="table_div">
         <table id='response'>
           <tr className='table_bg'>
             <th>Sl. No</th>
             <th>Name</th>
-            <th>Financial Year</th>
+            <th>Department</th>
             <th>Submitted On</th>
-            {/* <th>Submitted</th> */}
+            <th>Tax Payable</th>
+            <th>TDS</th>
+            <th>Refund</th>
             <th>Status</th>
             <th>Documents Status</th>
-            <th>Download</th>
+            {
+              user.role==="admin" ?  ''   : <th>Download</th>
+            }
 
           </tr>
           {
@@ -158,14 +186,20 @@ function Responses() {
               <tr className={(index+1)%2===0 ? 'table_row_bg' : ''}>
                 <td><Link to={`/response/${response._id}`}> {index+1} </Link></td>
                 <td><Link to={`/response/${response._id}`}> {response.name} </Link></td>
-                <td><Link to={`/response/${response._id}`}> {response.financial_year} </Link></td>                
+                <td><Link to={`/response/${response._id}`}> {response.department} </Link></td>              
                 <td><Link to={`/response/${response._id}`}> { response.submitTime===undefined ? "Not yet submitted" :    getDate(response.submitTime)} </Link></td>
+               <td><Link to={`/response/${response._id}`}> <Price number={response.ntax_payable_it} />/-   </Link></td>
+               <td><Link to={`/response/${response._id}`}><Price number={response.td_sal_it} />/- </Link></td>
+               <td><Link to={`/response/${response._id}`}><Price number={response.tax_refund} />/-  </Link></td>
                <td><Link to={`/response/${response._id}`}> {response.remark} </Link></td>
                <td><Link to={`/response/${response._id}`}> {response.documentStatus} </Link></td>
-                <td className='pdf_icon'><PDFDownloadLink fileName='IT File' document={<PdfFile  response={response}  />}>
+               {
+                user.role==="admin" ? '' : <td className='pdf_icon'><PDFDownloadLink fileName={`${response.name}_${response.financial_year}`} document={<PdfFile  response={response}  />}>
                 <FaFilePdf/>
       </PDFDownloadLink>
               </td>
+               }
+                
                   
                   
                   {/* <Link to={`/pdf/${response._id}`}><FaFilePdf/></Link></td> */}

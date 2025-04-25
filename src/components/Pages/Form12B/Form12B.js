@@ -103,6 +103,11 @@ function Form12B() {
   const [pdf, setPdf] = useState(null);
 
 
+
+  useEffect(()=>{
+    dispatch(GetSingleResponse(params.id))
+   }, [])
+
   const FileType = ['application/pdf']
   const PDfHandlerChange = (e)=>{
     let selectedFile = e.target.files[0];
@@ -132,9 +137,6 @@ function Form12B() {
 
 
 
-  useEffect(()=>{
-    dispatch(GetSingleResponse(params.id))
-   }, [dispatch, params.id])
 
     const  basic1 = useRef(0);
     const  rate1 = useRef(0);
@@ -2365,322 +2367,323 @@ useEffect(()=>{
     
     <Sidebar >
         <AuthHeader user={user} />
-    <div className="salary">
-       <div className="form_header">
-       <h4>Form No 12B</h4>
-       <span>[See Rule 26A]</span>
-       <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, 2024</h6>
-       <p>Details to be furnished by the newly joined employee during the year</p>
-       </div>
 
-
- {
-    loading ? <Loader/> : <>
-    
-  {
-    response===undefined ? <Loader/> : <>
-        <div className="table_div">
-          <p>Name: {user.name}</p>
-            <table>
-                <thead>
-                    
-                    <tr className='table_bg'>
-                        <th className='months'>Months</th>
-                        <th className='da_rate'>DA Rate</th>
-                        <th className='basic'>Basic/ Consolidate</th>
-                        <th className='da'>DA</th>
-                        <th className='hra'>HRA</th>
-                        <th className='ma'>MA</th>
-                        <th className='gross'>Gross</th>
-                        <th className='ptax'>Profession <br /> Tax</th>
-                        <th className='aupf'>GPF/EPF</th>
-                        <th className='sf'> SF/IF</th>
-                        <th className='income'>Income Tax</th>
-                        <th className='netsal'>Net Salary</th>
-
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                  
-                  <tr>
-                      <th>MAR 2023</th>
-                      <td><input type="text" defaultValue={      rate1}  id='rate1'    ref={rate1}    onChange={e=>da_Rate(e,1)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic1}  id='basic1'   ref={basic1}      onChange={e=>basic(e,1)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da1}  id='da1'      ref={da1}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra1}  id='hra1'     ref={hra1}    onChange={e=>hra_fun(e,1)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma1}  id='ma1'      ref={ma1}     onChange={e=>ma_fun(e,1)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross1}  id='gross1'   ref={gross1}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax1}  id='profession1'    ref={ptax1}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf1}  id='epf1'    ref={aupf1}   onChange={e=>epf_fun(e,1)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf1}  id='sf1'      ref={sf1}     onChange={e=>sf_fun(e,1)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income1}  id='income1'  ref={income1} onChange={e=>income_fun(e,1)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal1}  id='net_salary1'  ref={netsal1}             readOnly /></td>
-                  </tr>
-                  <tr className='table_row_bg'>
-                      <th>APR 2023</th>
-                      <td><input type="text" defaultValue={      rate2}  id='rate2'    ref={rate2}    onChange={e=>da_Rate(e,2)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic2}  id='basic2'   ref={basic2}      onChange={e=>basic(e,2)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da2}  id='da2'      ref={da2}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra2}  id='hra2'     ref={hra2}    onChange={e=>hra_fun(e,2)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma2}  id='ma2'      ref={ma2}     onChange={e=>ma_fun(e,2)}  onKeyPress={onKeyPressEvent}   /></td>
-                     <td><input type="text" defaultValue={      gross2}  id='gross2'   ref={gross2}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax2}  id='profession2'    ref={ptax2}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf2}  id='epf2'    ref={aupf2}   onChange={e=>epf_fun(e,2)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf2}  id='sf2'      ref={sf2}     onChange={e=>sf_fun(e,2)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income2}  id='income2'  ref={income2} onChange={e=>income_fun(e,2)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal2}  id='net_salary2'  ref={netsal2}             readOnly /></td>
-                  
-                  </tr>
-                  <tr>
-                      <th>MAY 2023</th>
-                      <td><input type="text" defaultValue={      rate3}  id='rate3'    ref={rate3}    onChange={e=>da_Rate(e,3)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic3}  id='basic3'   ref={basic3}      onChange={e=>basic(e,3)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da3}  id='da3'      ref={da3}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra3}  id='hra3'     ref={hra3}    onChange={e=>hra_fun(e,3)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma3}  id='ma3'      ref={ma3}     onChange={e=>ma_fun(e,3)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross3}  id='gross3'   ref={gross3}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax3}  id='profession3'    ref={ptax3}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf3}  id='epf3'    ref={aupf3}   onChange={e=>epf_fun(e,3)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf3}  id='sf3'      ref={sf3}     onChange={e=>sf_fun(e,3)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income3}  id='income3'  ref={income3} onChange={e=>income_fun(e,3)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal3}  id='net_salary3'  ref={netsal3}             readOnly /></td>
-                  
-                  </tr>
-                  <tr className='table_row_bg'>
-                      <th>JUN 2023</th>
-                      <td><input type="text" defaultValue={      rate4}  id='rate4'    ref={rate4}    onChange={e=>da_Rate(e,4)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic4}  id='basic4'   ref={basic4}      onChange={e=>basic(e,4)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da4}  id='da4'      ref={da4}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra4}  id='hra4'     ref={hra4}    onChange={e=>hra_fun(e,4)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma4}  id='ma4'      ref={ma4}     onChange={e=>ma_fun(e,4)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross4}  id='gross4'   ref={gross4}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax4}  id='profession4'    ref={ptax4}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf4}  id='epf4'    ref={aupf4}   onChange={e=>epf_fun(e,4)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf4}  id='sf4'      ref={sf4}     onChange={e=>sf_fun(e,4)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income4}  id='income4'  ref={income4} onChange={e=>income_fun(e,4)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal4}  id='net_salary4'  ref={netsal4}             readOnly /></td>
-                  
-                  </tr>
-                  <tr>
-                      <th>JUL 2023</th>
-                      <td><input type="text" defaultValue={      rate5}  id='rate5'    ref={rate5}    onChange={e=>da_Rate(e,5)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic5}  id='basic5'   ref={basic5}      onChange={e=>basic(e,5)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da5}  id='da5'      ref={da5}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra5}  id='hra5'     ref={hra5}    onChange={e=>hra_fun(e,5)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma5}  id='ma5'      ref={ma5}     onChange={e=>ma_fun(e,5)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross5}  id='gross5'   ref={gross5}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax5}  id='profession5'    ref={ptax5}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf5}  id='epf5'    ref={aupf5}   onChange={e=>epf_fun(e,5)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf5}  id='sf5'      ref={sf5}     onChange={e=>sf_fun(e,5)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income5}  id='income5'  ref={income5} onChange={e=>income_fun(e,5)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal5}  id='net_salary5'  ref={netsal5}             readOnly /></td>
-                  
-                  </tr>
-                  <tr className='table_row_bg'>
-                      <th>AUG 2023</th>
-                      <td><input type="text" defaultValue={      rate6}  id='rate6'    ref={rate6}    onChange={e=>da_Rate(e,6)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic6}  id='basic6'   ref={basic6}      onChange={e=>basic(e,6)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da6}  id='da6'      ref={da6}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra6}  id='hra6'     ref={hra6}    onChange={e=>hra_fun(e,6)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma6}  id='ma6'      ref={ma6}     onChange={e=>ma_fun(e,6)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross6}  id='gross6'   ref={gross6}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax6}  id='profession6'    ref={ptax6}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf6}  id='epf6'    ref={aupf6}   onChange={e=>epf_fun(e,6)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf6}  id='sf6'      ref={sf6}     onChange={e=>sf_fun(e,6)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income6}  id='income6'  ref={income6} onChange={e=>income_fun(e,6)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal6}  id='net_salary6'  ref={netsal6}             readOnly /></td>
-                  
-                  </tr>
-                  <tr>
-                      <th>SEP 2023</th>
-                      <td><input type="text" defaultValue={      rate7}  id='rate7'    ref={rate7}    onChange={e=>da_Rate(e,7)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic7}  id='basic7'   ref={basic7}      onChange={e=>basic(e,7)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da7}  id='da7'      ref={da7}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra7}  id='hra7'     ref={hra7}    onChange={e=>hra_fun(e,7)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma7}  id='ma7'      ref={ma7}     onChange={e=>ma_fun(e,7)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross7}  id='gross7'   ref={gross7}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax7}  id='profession7'    ref={ptax7}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf7}  id='epf7'    ref={aupf7}   onChange={e=>epf_fun(e,7)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf7}  id='sf7'      ref={sf7}     onChange={e=>sf_fun(e,7)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income7}  id='income7'  ref={income7} onChange={e=>income_fun(e,7)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal7}  id='net_salary7'  ref={netsal7}             readOnly /></td>
-                  
-                  </tr>
-                  <tr className='table_row_bg'>
-                      <th>OCT 2023</th>
-                      <td><input type="text" defaultValue={      rate8}  id='rate8'    ref={rate8}    onChange={e=>da_Rate(e,8)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic8}  id='basic8'   ref={basic8}      onChange={e=>basic(e,8)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da8}  id='da8'      ref={da8}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra8}  id='hra8'     ref={hra8}    onChange={e=>hra_fun(e,8)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma8}  id='ma8'      ref={ma8}     onChange={e=>ma_fun(e,8)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross8}  id='gross8'   ref={gross8}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax8}  id='profession8'    ref={ptax8}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf8}  id='epf8'    ref={aupf8}   onChange={e=>epf_fun(e,8)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf8}  id='sf8'      ref={sf8}     onChange={e=>sf_fun(e,8)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income8}  id='income8'  ref={income8} onChange={e=>income_fun(e,8)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal8}  id='net_salary8'  ref={netsal8}             readOnly /></td>
-                  
-                  </tr>
-                  <tr>
-                      <th>NOV 2023</th>
-                      <td><input type="text" defaultValue={      rate9}  id='rate9'    ref={rate9}    onChange={e=>da_Rate(e,9)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic9}  id='basic9'   ref={basic9}      onChange={e=>basic(e,9)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da9}  id='da9'      ref={da9}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra9}  id='hra9'     ref={hra9}    onChange={e=>hra_fun(e,9)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma9}  id='ma9'      ref={ma9}     onChange={e=>ma_fun(e,9)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross9}  id='gross9'   ref={gross9}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax9}  id='profession9'    ref={ptax9}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf9}  id='epf9'    ref={aupf9}   onChange={e=>epf_fun(e,9)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf9}  id='sf9'      ref={sf9}     onChange={e=>sf_fun(e,9)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income9}  id='income9'  ref={income9} onChange={e=>income_fun(e,9)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal9}  id='net_salary9'  ref={netsal9}             readOnly /></td>
-                  
-                  </tr>
-                  <tr className='table_row_bg'>
-                      <th>DEC 2023</th>
-                      <td><input type="text" defaultValue={      rate10}  id='rate10'    ref={rate10}    onChange={e=>da_Rate(e,10)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic10}  id='basic10'   ref={basic10}      onChange={e=>basic(e,10)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da10}  id='da10'      ref={da10}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra10}  id='hra10'     ref={hra10}    onChange={e=>hra_fun(e,10)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma10}  id='ma10'      ref={ma10}     onChange={e=>ma_fun(e,10)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross10}  id='gross10'   ref={gross10}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax10}  id='profession10'    ref={ptax10}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf10}  id='epf10'    ref={aupf10}   onChange={e=>epf_fun(e,10)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf10}  id='sf10'      ref={sf10}     onChange={e=>sf_fun(e,10)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income10}  id='income10'  ref={income10} onChange={e=>income_fun(e,10)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal10}  id='net_salary10'  ref={netsal10}             readOnly /></td>
-                  
-                  </tr>
-                  <tr>
-                      <th>JAN 2024</th>
-                      <td><input type="text" defaultValue={      rate11}  id='rate11'    ref={rate11}    onChange={e=>da_Rate(e,11)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic11}  id='basic11'   ref={basic11}      onChange={e=>basic(e,11)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da11}  id='da11'      ref={da11}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra11}  id='hra11'     ref={hra11}    onChange={e=>hra_fun(e,11)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma11}  id='ma11'      ref={ma11}     onChange={e=>ma_fun(e,11)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross11}  id='gross11'   ref={gross11}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax11}  id='profession11'    ref={ptax11}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf11}  id='epf11'    ref={aupf11}   onChange={e=>epf_fun(e,11)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf11}  id='sf11'      ref={sf11}     onChange={e=>sf_fun(e,11)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income11}  id='income11'  ref={income11} onChange={e=>income_fun(e,11)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal11}  id='net_salary11'  ref={netsal11}             readOnly /></td>
-                  
-                  </tr>
-                  <tr className='table_row_bg'>
-                      <th>FEB 2024</th>
-                      <td><input type="text" defaultValue={      rate12}  id='rate12'    ref={rate12}    onChange={e=>da_Rate(e,12)}   onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={     basic12}  id='basic12'   ref={basic12}      onChange={e=>basic(e,12)}  onKeyPress={onKeyPressEvent}     /></td>
-                      <td><input type="text" defaultValue={        da12}  id='da12'      ref={da12}              readOnly   /></td>
-                      <td><input type="text" defaultValue={       hra12}  id='hra12'     ref={hra12}    onChange={e=>hra_fun(e,12)}  onKeyPress={onKeyPressEvent}  /></td>
-                      <td><input type="text" defaultValue={        ma12}  id='ma12'      ref={ma12}     onChange={e=>ma_fun(e,12)}  onKeyPress={onKeyPressEvent}   /></td>
-                      <td><input type="text" defaultValue={     gross12}  id='gross12'   ref={gross12}            readOnly /></td>
-                      <td><input type="text" defaultValue={      ptax12}  id='profession12'    ref={ptax12}           readOnly /></td>
-                      <td><input type="text" defaultValue={      aupf12}  id='epf12'    ref={aupf12}   onChange={e=>epf_fun(e,12)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={        sf12}  id='sf12'      ref={sf12}     onChange={e=>sf_fun(e,12)}  onKeyPress={onKeyPressEvent}/></td>
-                      <td><input type="text" defaultValue={    income12}  id='income12'  ref={income12} onChange={e=>income_fun(e,12)}  onKeyPress={onKeyPressEvent} /></td>
-                      <td><input type="text" defaultValue={    netsal12}  id='net_salary12'  ref={netsal12}             readOnly /></td>
-                  
-                  </tr>
-                  <tr className='table_bg'>
-                      <th> Total</th>
-                      <td><input type="text" defaultValue={      rate13}  id='rate13' readOnly ref={rate13} /></td>
-                      <td><input type="text" defaultValue={     basic13}  id='basic13' readOnly ref={basic13}    /></td>
-                      <td><input type="text" defaultValue={        da13}  id='da13' readOnly ref={da13}  /></td>
-                      <td><input type="text" defaultValue={       hra13}  id='hra13' readOnly  ref={hra13}  /></td>
-                      <td><input type="text" defaultValue={        ma13}  id='ma13' readOnly  ref={ma13}  /></td>
-                      <td><input type="text" defaultValue={     gross13}  id='gross13' readOnly ref={gross13} /></td>
-                      <td><input type="text" defaultValue={      ptax13}  id='profession13' readOnly ref={ptax13} /></td>
-                      <td><input type="text" defaultValue={      aupf13}  id='epf13' readOnly ref={aupf13} /></td>
-                      <td><input type="text" defaultValue={        sf13}  id='sf13' readOnly ref={sf13} /></td>
-                      <td><input type="text" defaultValue={    income13}  id='income_tax13' readOnly ref={income13} /></td>
-                      <td><input type="text" defaultValue={    netsal13}  id='net_salary13' readOnly ref={netsal13} /></td>
-                  </tr>
-              </tbody>
-            </table>
-        </div>
-
-    <div className="sal_footer">
-        <div className="sal_note">
-            <h6>Enclosure:</h6>
-           <ol>
-            <li>Pay slip(s)</li>
-           </ol>
-            
-          
-
-              <div className="arrear_opt">
-          <TbPointFilled/>Have you received Arrear Salary ?: <select name="" id="arrear_opt" ref={having_arrear_f} onChange={(e)=>AtHandler(e.target.value)}>
-            <option value="Yes" selected={"Yes"===response.having_arrear_f}>Yes</option>
-            <option value="No" selected={"No"===response.having_arrear_f}>No</option>
-          </select>
-        </div>
-             
-
-        </div>
-        <div  className="sal_arr" id='arrear_table' style={{display:"none"}}  >
-            <div className="sal_table" >
-            <table>
-                <tr className='arr_title table_bg'>
-                    <th colSpan={2}>Arrear Salary</th>
-                </tr>
-                <tr>
-                    <td className='td'>Gross Arrear Salary</td>
-                    <td><input type="text" onChange={(e)=>net_arrear_fun(e)} id='arrear_salary' ref={gas} defaultValue={gas} onKeyPress={onKeyPressEvent} /></td>
-                </tr>
-                <tr>
-                    <td className='td'>Less: Profession Tax</td>
-                    <td><input type="text" onChange={net_arrear_fun} ref={lpt} defaultValue={lpt} onKeyPress={onKeyPressEvent}   id='profession_tax' /></td>
-                </tr>
-                <tr>
-                    <td className='td'>Less: Provident Fund</td>
-                    <td><input type="text" onChange={net_arrear_fun} ref={laupf} defaultValue={laupf} onKeyPress={onKeyPressEvent} id='less_aupf' /></td>
-                </tr>
-                <tr>
-                    <td className='td'>Less: TDS</td>
-                    <td><input type="text" onChange={net_arrear_fun} ref={ltds} defaultValue={ltds} onKeyPress={onKeyPressEvent}  id='less_tds' /></td>
-                </tr>
-                <tr className='table_bg'>
-                    <th className='td'>Net Arrear Salary</th>
-                    <td><input type="text" onChange={net_arrear_fun} onKeyPress={onKeyPressEvent}  id='net_arrear_salary' ref={nas} defaultValue={nas} /></td>
-                </tr>
-            </table>
-            </div>
-        </div>
-    </div>
-    
-
-
-    <div className="btns">
-    <div className='nepr'>
-        <button onClick={PreviousHandler} className='btn prev'>Back</button>
-        <button onClick={NextHandler} className='btn next'>Next</button>
-        </div>
-        <select name="" id=""  onChange={e=>SelectHandler(e.target.value)} >
         {
-              user.role==="user" ? 
-              
-                RouteList.map((list)=>(
-                  <option value={list.value} selected={list.value===response.currentState} disabled={list.disable}>{list.title}</option>
-                ))
-                : 
-                RouteList2.map((list)=>(
-                  <option value={list.value} selected={list.value===response.currentState} disabled={list.disable}>{list.title}</option>
-                ))
+          loading ? <Loader/> :  <div className="salary">
+          <div className="form_header">
+          <h4>Form No 12B</h4>
+          <span>[See Rule 26A]</span>
+          <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, 2025 
+           {/* {response.financial_year==="2024-25" ? "2025" :"2024"}  */}
+           
+   
+           
+          </h6>
+          <p>Details to be furnished by the newly joined employee during the year</p>
+          </div>
+   
+          {
+       response===undefined ? <Loader/> : <>
+           <div className="table_div">
+             <p>Name: {user.name}</p>
+               <table>
+                   <thead>
+                       
+                       <tr className='table_bg'>
+                           <th className='months'>Months</th>
+                           <th className='da_rate'>DA Rate</th>
+                           <th className='basic'>Basic/ Consolidate</th>
+                           <th className='da'>DA</th>
+                           <th className='hra'>HRA</th>
+                           <th className='ma'>MA</th>
+                           <th className='gross'>Gross</th>
+                           <th className='ptax'>Profession <br /> Tax</th>
+                           <th className='aupf'>GPF/EPF</th>
+                           <th className='sf'> SF/IF</th>
+                           <th className='income'>Income Tax</th>
+                           <th className='netsal'>Net Salary</th>
+   
+   
+   
+                       </tr>
+                   </thead>
+                   <tbody>
+                     
+                     <tr>
+                         <th>MAR 2024 </th>
+                         <td><input type="text" defaultValue={      rate1}  id='rate1'    ref={rate1}    onChange={e=>da_Rate(e,1)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic1}  id='basic1'   ref={basic1}      onChange={e=>basic(e,1)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da1}  id='da1'      ref={da1}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra1}  id='hra1'     ref={hra1}    onChange={e=>hra_fun(e,1)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma1}  id='ma1'      ref={ma1}     onChange={e=>ma_fun(e,1)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross1}  id='gross1'   ref={gross1}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax1}  id='profession1'    ref={ptax1}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf1}  id='epf1'    ref={aupf1}   onChange={e=>epf_fun(e,1)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf1}  id='sf1'      ref={sf1}     onChange={e=>sf_fun(e,1)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income1}  id='income1'  ref={income1} onChange={e=>income_fun(e,1)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal1}  id='net_salary1'  ref={netsal1}             readOnly /></td>
+                     </tr>
+                     <tr className='table_row_bg'>
+                         <th>APR 2024 </th>
+                         <td><input type="text" defaultValue={      rate2}  id='rate2'    ref={rate2}    onChange={e=>da_Rate(e,2)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic2}  id='basic2'   ref={basic2}      onChange={e=>basic(e,2)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da2}  id='da2'      ref={da2}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra2}  id='hra2'     ref={hra2}    onChange={e=>hra_fun(e,2)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma2}  id='ma2'      ref={ma2}     onChange={e=>ma_fun(e,2)}  onKeyPress={onKeyPressEvent}   /></td>
+                        <td><input type="text" defaultValue={      gross2}  id='gross2'   ref={gross2}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax2}  id='profession2'    ref={ptax2}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf2}  id='epf2'    ref={aupf2}   onChange={e=>epf_fun(e,2)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf2}  id='sf2'      ref={sf2}     onChange={e=>sf_fun(e,2)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income2}  id='income2'  ref={income2} onChange={e=>income_fun(e,2)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal2}  id='net_salary2'  ref={netsal2}             readOnly /></td>
+                     
+                     </tr>
+                     <tr>
+                         <th>MAY 2024</th>
+                         <td><input type="text" defaultValue={      rate3}  id='rate3'    ref={rate3}    onChange={e=>da_Rate(e,3)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic3}  id='basic3'   ref={basic3}      onChange={e=>basic(e,3)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da3}  id='da3'      ref={da3}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra3}  id='hra3'     ref={hra3}    onChange={e=>hra_fun(e,3)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma3}  id='ma3'      ref={ma3}     onChange={e=>ma_fun(e,3)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross3}  id='gross3'   ref={gross3}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax3}  id='profession3'    ref={ptax3}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf3}  id='epf3'    ref={aupf3}   onChange={e=>epf_fun(e,3)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf3}  id='sf3'      ref={sf3}     onChange={e=>sf_fun(e,3)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income3}  id='income3'  ref={income3} onChange={e=>income_fun(e,3)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal3}  id='net_salary3'  ref={netsal3}             readOnly /></td>
+                     
+                     </tr>
+                     <tr className='table_row_bg'>
+                         <th>JUN 2024</th>
+                         <td><input type="text" defaultValue={      rate4}  id='rate4'    ref={rate4}    onChange={e=>da_Rate(e,4)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic4}  id='basic4'   ref={basic4}      onChange={e=>basic(e,4)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da4}  id='da4'      ref={da4}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra4}  id='hra4'     ref={hra4}    onChange={e=>hra_fun(e,4)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma4}  id='ma4'      ref={ma4}     onChange={e=>ma_fun(e,4)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross4}  id='gross4'   ref={gross4}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax4}  id='profession4'    ref={ptax4}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf4}  id='epf4'    ref={aupf4}   onChange={e=>epf_fun(e,4)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf4}  id='sf4'      ref={sf4}     onChange={e=>sf_fun(e,4)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income4}  id='income4'  ref={income4} onChange={e=>income_fun(e,4)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal4}  id='net_salary4'  ref={netsal4}             readOnly /></td>
+                     
+                     </tr>
+                     <tr>
+                         <th>JUL 2024</th>
+                         <td><input type="text" defaultValue={      rate5}  id='rate5'    ref={rate5}    onChange={e=>da_Rate(e,5)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic5}  id='basic5'   ref={basic5}      onChange={e=>basic(e,5)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da5}  id='da5'      ref={da5}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra5}  id='hra5'     ref={hra5}    onChange={e=>hra_fun(e,5)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma5}  id='ma5'      ref={ma5}     onChange={e=>ma_fun(e,5)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross5}  id='gross5'   ref={gross5}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax5}  id='profession5'    ref={ptax5}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf5}  id='epf5'    ref={aupf5}   onChange={e=>epf_fun(e,5)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf5}  id='sf5'      ref={sf5}     onChange={e=>sf_fun(e,5)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income5}  id='income5'  ref={income5} onChange={e=>income_fun(e,5)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal5}  id='net_salary5'  ref={netsal5}             readOnly /></td>
+                     
+                     </tr>
+                     <tr className='table_row_bg'>
+                         <th>AUG 2024</th>
+                         <td><input type="text" defaultValue={      rate6}  id='rate6'    ref={rate6}    onChange={e=>da_Rate(e,6)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic6}  id='basic6'   ref={basic6}      onChange={e=>basic(e,6)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da6}  id='da6'      ref={da6}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra6}  id='hra6'     ref={hra6}    onChange={e=>hra_fun(e,6)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma6}  id='ma6'      ref={ma6}     onChange={e=>ma_fun(e,6)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross6}  id='gross6'   ref={gross6}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax6}  id='profession6'    ref={ptax6}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf6}  id='epf6'    ref={aupf6}   onChange={e=>epf_fun(e,6)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf6}  id='sf6'      ref={sf6}     onChange={e=>sf_fun(e,6)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income6}  id='income6'  ref={income6} onChange={e=>income_fun(e,6)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal6}  id='net_salary6'  ref={netsal6}             readOnly /></td>
+                     
+                     </tr>
+                     <tr>
+                         <th>SEP 2024</th>
+                         <td><input type="text" defaultValue={      rate7}  id='rate7'    ref={rate7}    onChange={e=>da_Rate(e,7)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic7}  id='basic7'   ref={basic7}      onChange={e=>basic(e,7)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da7}  id='da7'      ref={da7}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra7}  id='hra7'     ref={hra7}    onChange={e=>hra_fun(e,7)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma7}  id='ma7'      ref={ma7}     onChange={e=>ma_fun(e,7)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross7}  id='gross7'   ref={gross7}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax7}  id='profession7'    ref={ptax7}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf7}  id='epf7'    ref={aupf7}   onChange={e=>epf_fun(e,7)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf7}  id='sf7'      ref={sf7}     onChange={e=>sf_fun(e,7)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income7}  id='income7'  ref={income7} onChange={e=>income_fun(e,7)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal7}  id='net_salary7'  ref={netsal7}             readOnly /></td>
+                     
+                     </tr>
+                     <tr className='table_row_bg'>
+                         <th>OCT 2024</th>
+                         <td><input type="text" defaultValue={      rate8}  id='rate8'    ref={rate8}    onChange={e=>da_Rate(e,8)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic8}  id='basic8'   ref={basic8}      onChange={e=>basic(e,8)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da8}  id='da8'      ref={da8}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra8}  id='hra8'     ref={hra8}    onChange={e=>hra_fun(e,8)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma8}  id='ma8'      ref={ma8}     onChange={e=>ma_fun(e,8)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross8}  id='gross8'   ref={gross8}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax8}  id='profession8'    ref={ptax8}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf8}  id='epf8'    ref={aupf8}   onChange={e=>epf_fun(e,8)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf8}  id='sf8'      ref={sf8}     onChange={e=>sf_fun(e,8)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income8}  id='income8'  ref={income8} onChange={e=>income_fun(e,8)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal8}  id='net_salary8'  ref={netsal8}             readOnly /></td>
+                     
+                     </tr>
+                     <tr>
+                         <th>NOV 2024</th>
+                         <td><input type="text" defaultValue={      rate9}  id='rate9'    ref={rate9}    onChange={e=>da_Rate(e,9)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic9}  id='basic9'   ref={basic9}      onChange={e=>basic(e,9)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da9}  id='da9'      ref={da9}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra9}  id='hra9'     ref={hra9}    onChange={e=>hra_fun(e,9)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma9}  id='ma9'      ref={ma9}     onChange={e=>ma_fun(e,9)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross9}  id='gross9'   ref={gross9}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax9}  id='profession9'    ref={ptax9}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf9}  id='epf9'    ref={aupf9}   onChange={e=>epf_fun(e,9)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf9}  id='sf9'      ref={sf9}     onChange={e=>sf_fun(e,9)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income9}  id='income9'  ref={income9} onChange={e=>income_fun(e,9)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal9}  id='net_salary9'  ref={netsal9}             readOnly /></td>
+                     
+                     </tr>
+                     <tr className='table_row_bg'>
+                         <th>DEC 2024</th>
+                         <td><input type="text" defaultValue={      rate10}  id='rate10'    ref={rate10}    onChange={e=>da_Rate(e,10)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic10}  id='basic10'   ref={basic10}      onChange={e=>basic(e,10)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da10}  id='da10'      ref={da10}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra10}  id='hra10'     ref={hra10}    onChange={e=>hra_fun(e,10)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma10}  id='ma10'      ref={ma10}     onChange={e=>ma_fun(e,10)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross10}  id='gross10'   ref={gross10}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax10}  id='profession10'    ref={ptax10}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf10}  id='epf10'    ref={aupf10}   onChange={e=>epf_fun(e,10)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf10}  id='sf10'      ref={sf10}     onChange={e=>sf_fun(e,10)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income10}  id='income10'  ref={income10} onChange={e=>income_fun(e,10)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal10}  id='net_salary10'  ref={netsal10}             readOnly /></td>
+                     
+                     </tr>
+                     <tr>
+                         <th>JAN 2025</th>
+                         <td><input type="text" defaultValue={      rate11}  id='rate11'    ref={rate11}    onChange={e=>da_Rate(e,11)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic11}  id='basic11'   ref={basic11}      onChange={e=>basic(e,11)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da11}  id='da11'      ref={da11}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra11}  id='hra11'     ref={hra11}    onChange={e=>hra_fun(e,11)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma11}  id='ma11'      ref={ma11}     onChange={e=>ma_fun(e,11)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross11}  id='gross11'   ref={gross11}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax11}  id='profession11'    ref={ptax11}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf11}  id='epf11'    ref={aupf11}   onChange={e=>epf_fun(e,11)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf11}  id='sf11'      ref={sf11}     onChange={e=>sf_fun(e,11)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income11}  id='income11'  ref={income11} onChange={e=>income_fun(e,11)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal11}  id='net_salary11'  ref={netsal11}             readOnly /></td>
+                     
+                     </tr>
+                     <tr className='table_row_bg'>
+                         <th>FEB 2025</th>
+                         <td><input type="text" defaultValue={      rate12}  id='rate12'    ref={rate12}    onChange={e=>da_Rate(e,12)}   onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={     basic12}  id='basic12'   ref={basic12}      onChange={e=>basic(e,12)}  onKeyPress={onKeyPressEvent}     /></td>
+                         <td><input type="text" defaultValue={        da12}  id='da12'      ref={da12}              readOnly   /></td>
+                         <td><input type="text" defaultValue={       hra12}  id='hra12'     ref={hra12}    onChange={e=>hra_fun(e,12)}  onKeyPress={onKeyPressEvent}  /></td>
+                         <td><input type="text" defaultValue={        ma12}  id='ma12'      ref={ma12}     onChange={e=>ma_fun(e,12)}  onKeyPress={onKeyPressEvent}   /></td>
+                         <td><input type="text" defaultValue={     gross12}  id='gross12'   ref={gross12}            readOnly /></td>
+                         <td><input type="text" defaultValue={      ptax12}  id='profession12'    ref={ptax12}           readOnly /></td>
+                         <td><input type="text" defaultValue={      aupf12}  id='epf12'    ref={aupf12}   onChange={e=>epf_fun(e,12)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={        sf12}  id='sf12'      ref={sf12}     onChange={e=>sf_fun(e,12)}  onKeyPress={onKeyPressEvent}/></td>
+                         <td><input type="text" defaultValue={    income12}  id='income12'  ref={income12} onChange={e=>income_fun(e,12)}  onKeyPress={onKeyPressEvent} /></td>
+                         <td><input type="text" defaultValue={    netsal12}  id='net_salary12'  ref={netsal12}             readOnly /></td>
+                     
+                     </tr>
+                     <tr className='table_bg'>
+                         <th> Total</th>
+                         <td><input type="text" defaultValue={      rate13}  id='rate13' readOnly ref={rate13} /></td>
+                         <td><input type="text" defaultValue={     basic13}  id='basic13' readOnly ref={basic13}    /></td>
+                         <td><input type="text" defaultValue={        da13}  id='da13' readOnly ref={da13}  /></td>
+                         <td><input type="text" defaultValue={       hra13}  id='hra13' readOnly  ref={hra13}  /></td>
+                         <td><input type="text" defaultValue={        ma13}  id='ma13' readOnly  ref={ma13}  /></td>
+                         <td><input type="text" defaultValue={     gross13}  id='gross13' readOnly ref={gross13} /></td>
+                         <td><input type="text" defaultValue={      ptax13}  id='profession13' readOnly ref={ptax13} /></td>
+                         <td><input type="text" defaultValue={      aupf13}  id='epf13' readOnly ref={aupf13} /></td>
+                         <td><input type="text" defaultValue={        sf13}  id='sf13' readOnly ref={sf13} /></td>
+                         <td><input type="text" defaultValue={    income13}  id='income_tax13' readOnly ref={income13} /></td>
+                         <td><input type="text" defaultValue={    netsal13}  id='net_salary13' readOnly ref={netsal13} /></td>
+                     </tr>
+                 </tbody>
+               </table>
+           </div>
+   
+       <div className="sal_footer">
+           <div className="sal_note">
+               <h6>Enclosure:</h6>
+              <ol>
+               <li>Pay slip(s)</li>
+              </ol>
                
-            }
-
-        </select>
-    </div> </>
-  }
-
+             
+   
+                 <div className="arrear_opt">
+             <TbPointFilled/>Have you received Arrear Salary ?: <select name="" id="arrear_opt" ref={having_arrear_f} onChange={(e)=>AtHandler(e.target.value)}>
+               <option value="Yes" selected={"Yes"===response.having_arrear_f}>Yes</option>
+               <option value="No" selected={"No"===response.having_arrear_f}>No</option>
+             </select>
+           </div>
+                
+   
+           </div>
+           <div  className="sal_arr" id='arrear_table' style={{display:"none"}}  >
+               <div className="sal_table" >
+               <table>
+                   <tr className='arr_title table_bg'>
+                       <th colSpan={2}>Arrear Salary</th>
+                   </tr>
+                   <tr>
+                       <td className='td'>Gross Arrear Salary</td>
+                       <td><input type="text" onChange={(e)=>net_arrear_fun(e)} id='arrear_salary' ref={gas} defaultValue={gas} onKeyPress={onKeyPressEvent} /></td>
+                   </tr>
+                   <tr>
+                       <td className='td'>Less: Profession Tax</td>
+                       <td><input type="text" onChange={net_arrear_fun} ref={lpt} defaultValue={lpt} onKeyPress={onKeyPressEvent}   id='profession_tax' /></td>
+                   </tr>
+                   <tr>
+                       <td className='td'>Less: Provident Fund</td>
+                       <td><input type="text" onChange={net_arrear_fun} ref={laupf} defaultValue={laupf} onKeyPress={onKeyPressEvent} id='less_aupf' /></td>
+                   </tr>
+                   <tr>
+                       <td className='td'>Less: TDS</td>
+                       <td><input type="text" onChange={net_arrear_fun} ref={ltds} defaultValue={ltds} onKeyPress={onKeyPressEvent}  id='less_tds' /></td>
+                   </tr>
+                   <tr className='table_bg'>
+                       <th className='td'>Net Arrear Salary</th>
+                       <td><input type="text" onChange={net_arrear_fun} readOnly onKeyPress={onKeyPressEvent}  id='net_arrear_salary' ref={nas} defaultValue={nas} /></td>
+                   </tr>
+               </table>
+               </div>
+           </div>
+       </div>
+       
    
    
-   </>
-  }
-
-</div>
+       <div className="btns">
+       <div className='nepr'>
+           <button onClick={PreviousHandler} className='btn prev'>Back</button>
+           <button onClick={NextHandler} className='btn next'>Next</button>
+           </div>
+           <select name="" id=""  onChange={e=>SelectHandler(e.target.value)} >
+           {
+                 user.role==="user" ? 
+                 
+                   RouteList.map((list)=>(
+                     <option value={list.value} selected={list.value===response.currentState} disabled={list.disable}>{list.title}</option>
+                   ))
+                   : 
+                   RouteList2.map((list)=>(
+                     <option value={list.value} selected={list.value===response.currentState} disabled={list.disable}>{list.title}</option>
+                   ))
+                  
+               }
+   
+           </select>
+       </div> </>
+     }
+   
+   </div>
+        }
+        
+   
     </Sidebar>
     
     

@@ -252,9 +252,10 @@ function Hra() {
         var rp = document.getElementById('rp').value || 0;
         var rent = parseInt(arp) + parseInt(rp);
 
-
+    console.log(name1.current.value);
+    console.log(pan1.current.value);
     if(rent>100000){
-      if(name1.length===0 || pan1.length!==10){
+      if(name1?.current?.value?.length===0 || pan1?.current?.value?.length!==10){
         toast.error("Please enter a valid landlord (s) details");
         // toast.error(count)
         return;
@@ -369,6 +370,8 @@ function Hra() {
         else {
           nol=0;
         }
+
+
         if(rent>100000){
           exceed.value = "Yes";
           document.getElementById('l1').style.display='inline-table';
@@ -616,26 +619,27 @@ var x = e.toUpperCase();
         }
         var exceed = document.getElementById('exceed').value;
         let inr = 0;
-        if(exceed=='Yes'){
+        if(exceed==='Yes'){
+          // eslint-disable-next-line default-case
           switch(count){
             case 0: 
               l2.style.display='inline-table';
               l2.style.width="100%";
-              document.getElementById('file2').style.display="block";
+              // document.getElementById('file2').style.display="block";
               inr++;
               break;
             
             case 1:
               l3.style.display='inline-table';
               l3.style.width="100%";
-              document.getElementById('file3').style.display="block";
+              // document.getElementById('file3').style.display="block";
               inr++;
               break;
 
             case 2:
               l4.style.display='inline-table';
               l4.style.width="100%";
-              document.getElementById('file4').style.display="block";
+              // document.getElementById('file4').style.display="block";
               inr++;
               break;  
           }
@@ -648,7 +652,7 @@ var x = e.toUpperCase();
   const removeRow=()=>{
     let count = document.getElementById('count').value || 0;
     count=parseInt(count);
-    if(count==1){
+    if(count===1){
       document.getElementById('remove').style.display='none';
     }
     var exceed = document.getElementById('exceed').value;
@@ -657,25 +661,26 @@ var x = e.toUpperCase();
     let l3 = document.getElementById('l3');
     let l4 = document.getElementById('l4');     
     let inr = 0;
-        if(exceed=='Yes'){
+        if(exceed==='Yes'){
+          // eslint-disable-next-line default-case
           switch(count){
             case 1: 
               l2.style.display='none';
-              document.getElementById('file2').style.display="none";
+              // document.getElementById('file2').style.display="none";
 
               inr++;
               break;
             
             case 2:
               l3.style.display='none';
-              document.getElementById('file3').style.display="none";
+              // document.getElementById('file3').style.display="none";
 
               inr++;
               break;
 
             case 3:
               l4.style.display='none';
-              document.getElementById('file4').style.display="none";
+              // document.getElementById('file4').style.display="none";
 
               inr++;
               break;  
@@ -882,6 +887,7 @@ var x = e.toUpperCase();
     </table>
 
     <div id="addrow" style={{display:'none'}}>
+      
  <button className=" " id='add' onClick={addRow}>Add Row </button>
 <button className=" " style={{display:'none'}} id="remove"  onClick={removeRow}>Remove <i class="fa fa-trash" aria-hidden="true"></i></button>
 

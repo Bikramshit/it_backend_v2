@@ -2,11 +2,11 @@ import axios from "axios";
 import { server } from "../Store/Store";
 
 
-export const CreateUserHandler = (name,  phone,email, password, dob, designation, department, pan, category, aadhaar) => async dispatch => {
+export const CreateUserHandler = (name,  phone,email, password, dob, designation, department, pan, category, aadhaar, emp_id) => async dispatch => {
   try {
     dispatch({ type: 'createUserRequest' });
 
-    const { data } = await axios.post(`${server}/admin/new/user`, {name,  phone,email, password, dob, designation, department, pan, category, aadhaar}, {
+    const { data } = await axios.post(`${server}/admin/new/user`, {name,  phone,email, password, dob, designation, department, pan, category, aadhaar, emp_id}, {
       headers: {
         'Content-type': 'application/json',
       },
@@ -39,6 +39,43 @@ export const login =(pan,password)=>async(dispatch)=>{
     } catch (error) {
         dispatch({type:'loginFail', payload:error.response.data.message});
     }
+}
+
+export const RegistrationHandler =(pan)=>async(dispatch)=>{
+  try {
+      dispatch({type:'registrationRequest'});
+      const {data} = await axios.post(`${server}/register`, {pan}, {
+          headers:{
+              "Content-Type":"application/json",
+          },
+          withCredentials:true
+      });
+      console.log(data);
+     
+      dispatch({type:'registrationSuccess', payload:data});
+      
+      return data;
+  } catch (error) {
+      dispatch({type:'registrationFail', payload:error.response.data.message});
+  }
+}
+
+export const RegistrationVerifyHandler =(pan, otp)=>async(dispatch)=>{
+  try {
+      dispatch({type:'registerVerifyRequest'});
+      const {data} = await axios.post(`${server}/register-otp`, {pan, otp}, {
+          headers:{
+              "Content-Type":"application/json",
+          },
+          withCredentials:true
+      });
+     
+      dispatch({type:'registerVerifySuccess', payload:data});
+      console.log(data);
+      return data;
+  } catch (error) {
+      dispatch({type:'registerVerifyFail', payload:error.response.data.message});
+  }
 }
 
 export const VerifyHandler =(otp, userId)=>async(dispatch)=>{
@@ -151,14 +188,14 @@ export const logout = () => async dispatch => {
     }
   };
   
-  export const updateProfileAdmin = (id, name,  phone,email,  dob, designation, department, pan, category, aadhaar) => async dispatch => {
+  export const updateProfileAdmin = (id, name,  phone,email,  dob, designation, department, pan, category, aadhaar, emp_id) => async dispatch => {
     try {
       dispatch({ type: 'updateProfileRequest' });
   
       const { data } = await axios.put(
         `${server}/admin/user/update/${id}`,
         {
-            name,  phone,email, dob, designation, department, pan, category, aadhaar
+            name,  phone,email, dob, designation, department, pan, category, aadhaar, emp_id
         },
         {
           headers: {
@@ -171,7 +208,7 @@ export const logout = () => async dispatch => {
       
       dispatch({ type: 'updateProfileSuccess', payload: data.message });
       return data.success;
-      return data;
+
     } catch (error) {
       dispatch({
         type: 'updateProfileFail',

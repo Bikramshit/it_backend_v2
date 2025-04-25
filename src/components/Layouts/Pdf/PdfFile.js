@@ -466,11 +466,11 @@ console.log(response.ex_i);
                 <View>
                     <Text style={styles.it_Dec}>Subject: IT Declaration</Text>
                     <Text>Sir,</Text>
-                    <Text  style={styles.lett}>1. Please find encolsed herewith my proposed Income Tax Calculation Form for <Text style={styles.fy}>FY 2023-24</Text> </Text>
+                    <Text  style={styles.lett}>1. Please find encolsed herewith my proposed Income Tax Calculation Form for <Text style={styles.fy}>FY {response.financial_year==="2024-25" ? "2024-25" : "2023-24"} </Text> </Text>
                     <Text  style={styles.lett}>2. I certify that particulars furnished are true and correct to the best of my knowledge and belief</Text>
                     <Text  style={styles.lett}>3. I authorize the University to recover Income Tax from my salary based on the declaration/documents submitted here</Text>
                     <Text  style={styles.lett}>4. I certify that these investments/savings have been made/proposed from my own earned income</Text>
-                    <Text  style={styles.lett}>5. Proof of the proposed investments/savings declared will be submitted positively by <Text style={styles.fy}>12.04.2024</Text></Text>
+                    <Text  style={styles.lett}>5. Proof of the proposed investments/savings declared will be submitted positively by <Text style={styles.fy}> {response.financial_year==="2024-25" ? "11.04.2025" : "12.04.2024"}</Text></Text>
                     <Text  style={styles.lett}>6. I will be solely responsible to CBDT, Income Tax Department, Govt. of India for all information pertaining to income tax assessment</Text>
                     <Text  style={styles.lett}>7. I will be solely responsible if not paid the proposed investment and will deposit the tax payable and its penalty directly to the Income Tax Department and will furnish the copy of paid challan to collect the Form 16</Text>
                 </View>
@@ -489,18 +489,18 @@ console.log(response.ex_i);
         <View style={styles.table}>
             <View style={styles.tr}>
                 <Text style={styles.th}>Months</Text>
-                <Text style={styles.th}>MAR 23</Text>
-                <Text style={styles.th}>APR 23</Text>
-                <Text style={styles.th}>MAY 23</Text>
-                <Text style={styles.th}>JUN 23</Text>
-                <Text style={styles.th}>JUL 23</Text>
-                <Text style={styles.th}>AUG 23</Text>
-                <Text style={styles.th}>SEP 23</Text>
-                <Text style={styles.th}>OCT 23</Text>
-                <Text style={styles.th}>NOV 23</Text>
-                <Text style={styles.th}>DEC 23</Text>
-                <Text style={styles.th}>JAN 24</Text>
-                <Text style={styles.th}>FEB 24</Text>
+                <Text style={styles.th}>MAR {response.financial_year==="2024-25" ? "24" : "23"} </Text>
+                <Text style={styles.th}>APR {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>MAY {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>JUN {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>JUL {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>AUG {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>SEP {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>OCT {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>NOV {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>DEC {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>JAN {response.financial_year==="2024-25" ? "25" : "24"}</Text>
+                <Text style={styles.th}>FEB {response.financial_year==="2024-25" ? "25" : "24"}</Text>
                 <Text style={styles.th}>Total</Text>
             </View>
             <View>
@@ -702,7 +702,7 @@ console.log(response.ex_i);
         <View style={styles.arrear_sec}>
             <View>
                 <Text style={styles.lett_to}>Note:</Text>
-                <Text>1. Enter the amount for March 2023</Text>
+                <Text>1. Enter the amount for March 2024</Text>
                 <Text>2. In HRA column, enter the amount for March and July</Text>
                 <Text>3. In Adjustment column enter the monthly extra drawal amount, if any.</Text>
             </View>
@@ -743,18 +743,18 @@ console.log(response.ex_i);
         <View style={styles.table2}>
             <View style={styles.tr}>
                 <Text style={styles.th}>Months</Text>
-                <Text style={styles.th}>MAR 23</Text>
-                <Text style={styles.th}>APR 23</Text>
-                <Text style={styles.th}>MAY 23</Text>
-                <Text style={styles.th}>JUN 23</Text>
-                <Text style={styles.th}>JUL 23</Text>
-                <Text style={styles.th}>AUG 23</Text>
-                <Text style={styles.th}>SEP 23</Text>
-                <Text style={styles.th}>OCT 23</Text>
-                <Text style={styles.th}>NOV 23</Text>
-                <Text style={styles.th}>DEC 23</Text>
-                <Text style={styles.th}>JAN 24</Text>
-                <Text style={styles.th}>FEB 24</Text>
+                <Text style={styles.th}>MAR {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>APR {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>MAY {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>JUN {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>JUL {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>AUG {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>SEP {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>OCT {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>NOV {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>DEC {response.financial_year==="2024-25" ? "24" : "23"}</Text>
+                <Text style={styles.th}>JAN {response.financial_year==="2024-25" ? "25" : "24"}</Text>
+                <Text style={styles.th}>FEB {response.financial_year==="2024-25" ? "25" : "24"}</Text>
                 <Text style={styles.th}>Total</Text>
             </View>
             <View>
@@ -1010,27 +1010,27 @@ console.log(response.ex_i);
                     <Text style={styles.tdd}>3</Text>
                     <Text style={styles.tdd}>4</Text>
                     <Text style={styles.tdd}>5</Text>
+                    {/* <Text style={styles.tdd}>6</Text> */}
+                    {/* <Text style={styles.tdd}>7</Text> */}
                     <Text style={styles.tdd}>6</Text>
+                    {/* <Text style={styles.tdd}></Text> */}
+                    <Text style={styles.tdd}></Text>
                     <Text style={styles.tdd}>7</Text>
                     <Text style={styles.tdd}>8</Text>
                     <Text style={styles.tdd}></Text>
                     <Text style={styles.tdd}></Text>
+                    <Text style={styles.tdd}></Text>
                     <Text style={styles.tdd}>9</Text>
                     <Text style={styles.tdd}>10</Text>
-                    <Text style={styles.tdd}></Text>
-                    <Text style={styles.tdd}></Text>
-                    <Text style={styles.tdd}></Text>
                     <Text style={styles.tdd}>11</Text>
+                    <Text style={styles.tdd}></Text>
                     <Text style={styles.tdd}>12</Text>
                     <Text style={styles.tdd}>13</Text>
-                    <Text style={styles.tdd}></Text>
                     <Text style={styles.tdd}>14</Text>
                     <Text style={styles.tdd}>15</Text>
                     <Text style={styles.tdd}>16</Text>
                     <Text style={styles.tdd}>17</Text>
                     <Text style={styles.tdd}>18</Text>
-                    <Text style={styles.tdd}>19</Text>
-                    <Text style={styles.tdd}>20</Text>
                     
                 </View>
                 <View style={styles.trr2}>
@@ -1040,17 +1040,17 @@ console.log(response.ex_i);
                     <Text style={styles.tdd}>Honorarium (AUAT/Dean/Hostel,Exam, etc)        <Price number={response.hono_it} /> </Text>
                     <Text style={styles.tdd}>Current Employer Gross Salary</Text>
                     <Text style={styles.tdd}>Previous Employer Gross Salary</Text>
-                    <Text style={styles.tdd}>Pension</Text>
-                    <Text style={styles.tdd}>Cuommuted Value of Pension</Text>
+                    {/* <Text style={styles.tdd}>Pension</Text> */}
+                    {/* <Text style={styles.tdd}>Cuommuted Value of Pension</Text> */}
                     <Text style={styles.tdd}>Less: Allowance under section 10</Text>
-                    <Text style={styles.tdd}>10 (10A) - Commuted value of Pension</Text>
+                    {/* <Text style={styles.tdd}>10 (10A) - Commuted value of Pension</Text> */}
                     <Text style={styles.tdd}>10 (13A) - HRA</Text>
                     <Text style={styles.tdd}>Gross Salary and Pension</Text>
                     <Text style={styles.tdd}>Less: Deduction u/s 16:</Text>
                     <Text style={styles.tdd}>Tax on Employment (16iii)</Text>
                     <Text style={styles.tdd}>Current Employer:        <Price number={response.c_employer_it} />  Previous Employer:        <Price number={response.p_employer_it}/></Text>
                     <Text style={styles.tdd}>Standard Deduction u/s (16ia)</Text>
-                    <Text style={styles.tdd}>Net Salary and Pension</Text>
+                    <Text style={styles.tdd}>Net Salary</Text>
                     <Text style={styles.tdd}>Interest on House Building Loan u/s 24(b)       <Price number={response.interest_hbl_it} /></Text>
                     <Text style={styles.tdd}>Income from other Sources:</Text>
                     <Text style={styles.tdd}>Savings Bank Interest:     <Price number={response.savings_interest_it} />       Any Other Income:        <Price number={response.other_income_it} /> </Text>
@@ -1070,10 +1070,10 @@ console.log(response.ex_i);
                     <Text style={styles.tdd}><Price number={response.honoo_it} /></Text>
                     <Text style={styles.tdd}><Price number={response.current_it_o} /></Text>
                     <Text style={styles.tdd}><Price number={response.previous_it_o} /></Text>
-                    <Text style={styles.tdd}><Price number={response.pension_it_o} /></Text>
-                    <Text style={styles.tdd}><Price number={response.cvp_it_o} /></Text>
+                    {/* <Text style={styles.tdd}><Price number={response.pension_it_o} /></Text> */}
+                    {/* <Text style={styles.tdd}><Price number={response.cvp_it_o} /></Text> */}
                     <Text style={styles.tdd}></Text>
-                    <Text style={styles.tdd}><Price number={response.ten_a__it_o} /></Text>
+                    {/* <Text style={styles.tdd}><Price number={response.ten_a__it_o} /></Text> */}
                     <Text style={styles.tdd}><Price number={response.thirteen_a__it_o} /></Text>
                     <Text style={styles.tdd}><Price number={response.gsp_it_o} /></Text>
                     {/* <Text style={styles.tdd}><Price number={response.gsp_it_n} /></Text> */}
@@ -1103,10 +1103,10 @@ console.log(response.ex_i);
                     <Text style={styles.tdd}><Price number={response.honoo_it2} /></Text>
                     <Text style={styles.tdd}><Price number={response.current_it_n} /></Text>
                     <Text style={styles.tdd}><Price number={response.previous_it_n} /></Text>
-                    <Text style={styles.tdd}><Price number={response.pension_it_n} /></Text>
-                    <Text style={styles.tdd}><Price number={response.cvp_it_n} /></Text>
+                    {/* <Text style={styles.tdd}><Price number={response.pension_it_n} /></Text> */}
+                    {/* <Text style={styles.tdd}><Price number={response.cvp_it_n} /></Text> */}
                     <Text style={styles.tdd}></Text>
-                    <Text style={styles.tdd}> <Price number={response.ten_a__it_n} /></Text>
+                    {/* <Text style={styles.tdd}> <Price number={response.ten_a__it_n} /></Text> */}
                     <Text style={styles.tdd}><Price number={response.thirteen_a__it_n} /></Text>
                     <Text style={styles.tdd}><Price number={response.gsp_it_n} /></Text>
                     <Text style={styles.tdd}></Text>
@@ -1133,13 +1133,13 @@ console.log(response.ex_i);
             <View style={styles.table}>
                 <View style={styles.trr}>
                     <Text style={styles.tdd}></Text>
+                    <Text style={styles.tdd}>19</Text>
+                    <Text style={styles.tdd}>20</Text>
                     <Text style={styles.tdd}>21</Text>
                     <Text style={styles.tdd}>22</Text>
                     <Text style={styles.tdd}>23</Text>
                     <Text style={styles.tdd}>24</Text>
                     <Text style={styles.tdd}>25</Text>
-                    <Text style={styles.tdd}>26</Text>
-                    <Text style={styles.tdd}>27</Text>
                 </View>
 
                 <View style={styles.trr2}>

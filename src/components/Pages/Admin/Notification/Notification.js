@@ -12,6 +12,7 @@ import Loader from '../../../Layouts/Loader/Loader';
 import PdfFile from '../../../Layouts/Pdf/PdfFile';
 import { GetAllPendingResponse, GetAllResponses } from '../../../../Redux/Actions/ResponseAction';
 // import PdfFile from '../../Layouts/Pdf/PdfFile';
+
 function Notification() {
     const {user} = useSelector(state=>state.user)
   const {loading, responses, message} = useSelector(state=>state.response);
@@ -41,6 +42,7 @@ function Notification() {
           <tr className='table_bg'>
             <th>Sl. No</th>
             <th>Name</th>
+            <th>Department</th>
             <th>Financial Year</th>
             <th>Submitted On</th>
             <th>Status</th>
@@ -54,12 +56,13 @@ function Notification() {
               <tr className={(index+1)%2===0 ? 'table_row_bg' : ''}>
                 <td><Link to={`/response/${response._id}`}> {index+1} </Link></td>
                 <td><Link to={`/response/${response._id}`}> {response.name} </Link></td>
+                <td><Link to={`/response/${response._id}`}> {response.department} </Link></td>
                 <td><Link to={`/response/${response._id}`}> {response.financial_year} </Link></td>                
                 <td><Link to={`/response/${response._id}`}> { response.submitTime===undefined ? "Not yet submitted" :    getDate(response.submitTime)} </Link></td>
                <td><Link to={`/response/${response._id}`}> {response.remark} </Link></td>
-                <td className='pdf_icon'><PDFDownloadLink fileName='IT File' document={<PdfFile  response={response}  />}>
-                <FaFilePdf/>
-      </PDFDownloadLink>
+                <td className=''>
+
+      <Link to={`/response/${response._id}`}> View</Link>
               </td>
                   
               </tr>

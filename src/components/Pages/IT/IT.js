@@ -279,8 +279,8 @@ cvp_it     .current.value         ,
 cvp_it2.current.value             ,
 ten_it     .current.value         ,
 ten_it2.current.value             ,
-thirteenn_it.current.value        ,
 thirteen_it.current.value         ,
+thirteenn_it.current.value        ,
 salpen_it.current.value           ,
 salpen_it2.current.value          ,
 ce_it  .current.value             ,
@@ -469,14 +469,13 @@ const YZero =(n)=> {
  }
 }
  
-const dob2 =()=> {
-   
-}
+
 
 const currentSal =()=> {
 
  // PAN 
  
+ console.log("Current Sal executing");
  const gross_salary = parseInt(response.gross_s13) + parseInt(response.gas_s);
  document.getElementById('gross_salary').value = gross_salary;
  document.getElementById('gross_salary2').value = gross_salary;
@@ -485,7 +484,7 @@ const currentSal =()=> {
  var inputt = response.dob;
  var pann = response.pan;
 
-  if(inputt!="1900-01-01"){
+  if(inputt!=="1900-01-01"){
    document.getElementById("pan").value = pann;
    document.getElementById("pan").readOnly=true;
 
@@ -495,7 +494,7 @@ const currentSal =()=> {
 
  var dooob;
  var jk = document.getElementById('dd').value;
- if(inputt=="1900-01-01"){
+ if(inputt==="1900-01-01"){
    dooob = jk;
  }
  else {
@@ -505,9 +504,11 @@ const currentSal =()=> {
  var dobb =new Date(dooob);
 
  let datee;
- if(response.financial_year=="2022-23"){
+ if(response.financial_year==="2022-23"){
    datee = new Date("March 31, 2023");
- }else {
+ }if(response.financial_year==="2024-25"){
+  datee = new Date("March 31, 2025");
+ }  else {
    datee = new Date("March 31, 2024");
  }
  var subb = datee.getTime()- dobb.getTime() ;
@@ -528,16 +529,17 @@ const currentSal =()=> {
 
  var employeer =response.category;
  // console.log(response.category);
- var dateofR, monthh, yearr;
+ var dateofR, monthh;
     
  var dayy = dobb.getDate();
 
  monthh = dobb.getMonth();
 
 // // console.log(dobb, monthh);
- if(employeer=='Officer' || employeer=='NTS'){
+ if(employeer==='Officer' || employeer==='NTS' || employeer==="OFFICER" || employeer==="STUDENT" || employeer==="TESTER"){
+  
    
-   if(dayy==1){
+   if(dayy===1){
      dateofR = new Date(dobb.setFullYear(dobb.getFullYear()+60));
    dateofR = new Date(dateofR.setDate(dateofR.getDate() -1));
    dateofR =YZero((dateofR.getFullYear())) + "-" +zero((dateofR.getMonth()+1)) + "-" + zero(dateofR.getDate()) ; 
@@ -552,7 +554,7 @@ const currentSal =()=> {
      document.getElementById('dor').value =dateofR;    
    }
  }
- else if(employeer=='Faculty'){
+ else if(employeer==='Faculty' || employeer==="FACULTY" || employeer==="VICE CHANCELLOR"){
    if(dayy==1){
      dateofR = new Date(dobb.setFullYear(dobb.getFullYear()+65));
    dateofR = new Date(dateofR.setDate(dateofR.getDate() -1));
@@ -568,7 +570,7 @@ const currentSal =()=> {
      document.getElementById('dor').value =dateofR;    
    }
  }
- else if(employeer=='Registrar'){
+ else if(employeer?.toUpperCase()==='REGISTRAR'){
    if(dayy==1){
      dateofR = new Date(dobb.setFullYear(dobb.getFullYear()+62));
    dateofR = new Date(dateofR.setDate(dateofR.getDate() -1));
@@ -618,7 +620,7 @@ const currentSal =()=> {
  var prev_Emp = parseInt(response.gross_f13) || 0 ;
  var pension = parseInt(c) + parseInt(d);
  var gross = parseInt(a) + parseInt(b);
- var hra = parseInt(y) + parseInt(z);
+//  var hra = parseInt(y) + parseInt(z);
 
  var bonus = document.getElementById('bonus').value || 0 ;
  bonus = parseInt(bonus) || 0;
@@ -627,7 +629,7 @@ const currentSal =()=> {
  hono = parseInt(hono) || 0;
  document.getElementById('hono').value = hono;
 
- var current_emp = parseInt(gross) + parseInt(bonus) + parseInt(hono);
+ var current_emp = parseInt(gross) + parseInt(bonus);
  document.getElementById('bonus_a').value = bonus;
  document.getElementById('bonus_b').value = bonus;
 
@@ -652,14 +654,22 @@ const currentSal =()=> {
    standard = 0;
  }
 
- if(response.financial_year=="2023-24"){
+ if(response.financial_year==="2023-24"){
    if(gross_sp2>50000){
        standard_new = 50000;
    }
    else {
      standard_new = 0;
    }
- } 
+ }
+ else if(response.financial_year==="2024-25"){
+   if(gross_sp2>75000){
+       standard_new = 75000;
+   }
+   else {
+     standard_new = 0;
+   }
+ }
  else {
    standard_new = 0;
  }
@@ -682,6 +692,8 @@ const currentSal =()=> {
  else if(cp<=2500){
   cp_final = cp;
  }
+
+ document.getElementById("current_employer").value = parseInt(response.ptax_s13) +  parseInt(response.lpt_s);
  document.getElementById("cp_final").value = cp_final;
 
  var netsp = parseInt(gross_sp) - parseInt(cp_final) - parseInt(standard);
@@ -697,7 +709,8 @@ const currentSal =()=> {
    hb_final = 200000;
  }
  else {
-   hb_final = hb*95/100;
+  //  hb_final = hb*95/100;
+   hb_final = hb;
  }
 var selectyr =document.getElementById("hbl_yrr").value;
 
@@ -775,8 +788,8 @@ var selectyr =document.getElementById("hbl_yrr").value;
  netsp2=parseInt(netsp2)||0;
  document.getElementById('netsp2').value=netsp2;
 
- var gross_income = parseInt(netsp) + parseInt(income) - parseInt(hb_final);
- var gross_income2 = parseInt(netsp2) + parseInt(income);
+ var gross_income = parseInt(netsp) + parseInt(income) - parseInt(hb_final) + parseInt(hono);
+ var gross_income2 = parseInt(netsp2) + parseInt(income) + parseInt(hono);
 
  document.getElementById('gross_income').value = gross_income;
  document.getElementById('gross_income2').value = gross_income2;
@@ -817,11 +830,11 @@ var selectyr =document.getElementById("hbl_yrr").value;
   hbll2 = 150000;
  }
  hbll2 = hbll2 || 0;
- if(selectyr=="2016-17"){
+ if(selectyr==="2016-17"){
   hbll = 0;
   // inst.style.display = 'block';
  }
- else if(selectyr=="2019-20"){
+ else if(selectyr==="2019-20"){
   hbll2 = 0;
   // inst.style.display = 'block';
  }
@@ -914,7 +927,7 @@ else {
  
 
 var chpt_select = document.getElementById('hbl_yrr').value;
-if(chpt_select=="2016-17"){
+if(chpt_select==="2016-17"){
   chp_hbl2 = 0;
   if(response.ihbl_c===0 && response.ihbl_c2===0){
     Deduction_chapter = parseInt(Deduction_chapter) + parseInt(chp_hbl);
@@ -932,7 +945,7 @@ if(chpt_select=="2016-17"){
     }
   }
 }
-else if(chpt_select=="2019-20"){
+else if(chpt_select==="2019-20"){
   chp_hbl = 0;
   
   if(response.ihbl_c===0 && response.ihbl_c2===0){
@@ -1036,7 +1049,7 @@ document.getElementById('chp_hbl2').value = chp_hbl2;
    } 
 
 var tax_payable2;
-if(response.financial_year=="2022-23") {
+if(response.financial_year==="2022-23") {
  if(taxable_in2<=250000){
    tax_payable2 = 0;
  }
@@ -1060,27 +1073,7 @@ if(response.financial_year=="2022-23") {
   tax_payable2 = ((parseInt(taxable_in2)-1500000)*30/100) + 187500;
  }
 }
-// else if(response.financial_year=="2023-24"){
-//  if(taxable_in2<=300000){
-//    tax_payable2 = 0;
-//  }
-//  else if(taxable_in2<=600000){
-//   tax_payable2 = (parseInt(taxable_in2)-300000)*5/100;
-//  }
-//  else if(taxable_in2<=900000){
-//   tax_payable2 = ((parseInt(taxable_in2)-600000)*10/100) + 15000;
-//  }
-//  else if(taxable_in2<=1200000){
-//   tax_payable2 = ((parseInt(taxable_in2)-900000)*15/100) + 45000;
-//  }
-//  else if(taxable_in2<=1500000){
-//   tax_payable2 = ((parseInt(taxable_in2)-1200000)*20/100) + 90000;
-//  }
-//  else if(taxable_in2>1500000){
-//   tax_payable2 = ((parseInt(taxable_in2)-1500000)*30/100) + 150000;
-//  }
-// }
-else {
+else if(response.financial_year==="2023-24"){
   if(taxable_in2<=300000){
     tax_payable2 = 0;
   }
@@ -1100,6 +1093,26 @@ else {
    tax_payable2 = ((parseInt(taxable_in2)-1500000)*30/100) + 150000;
   }
  }
+ else {
+  if(taxable_in2<=300000){
+    tax_payable2 = 0;
+  }
+  else if(taxable_in2<=700000 ){
+   tax_payable2 = (parseInt(taxable_in2)-300000)*5/100;
+  }
+  else if(taxable_in2<=1000000 ){
+   tax_payable2 = ((parseInt(taxable_in2)-700000)*10/100) + 20000;
+  }
+  else if(taxable_in2<=1200000 ){
+   tax_payable2 = ((parseInt(taxable_in2)-1000000)*15/100) + 50000;
+  }
+  else if(taxable_in2<=1500000){
+   tax_payable2 = ((parseInt(taxable_in2)-1200000)*20/100) + 80000;
+  }
+  else if(taxable_in2>1500000){
+   tax_payable2 = ((parseInt(taxable_in2)-1500000)*30/100) + 140000;
+  }
+}
 
 
 tax_payable = Math.round(tax_payable);
@@ -1128,6 +1141,11 @@ var rebatee, rebatee2;
    if(taxable_in2<=700000){
      rebatee2 = tax_payable2;
    }
+ }
+ else if(response.financial_year==="2024-25"){
+  if(taxable_in2<=700000){
+    rebatee2 = tax_payable2;
+  }
  }
  
  rebatee = parseInt(rebatee) || 0;
@@ -1195,9 +1213,16 @@ var rebatee, rebatee2;
  var tnr ;
  var regime =document.getElementById('regime');
  if(regimeoptt==="New Regime"){
-   tnr = parseInt(tar2);
-   regime.value = 'Tax as per New Regime';
- }
+  //  tnr = parseInt(tar2);
+  //  regime.value = 'Tax as per New Regime';
+   if(taxable_in2>700000 && taxable_in2<=727770){
+   tnr = parseInt(taxable_in2) - 700000;
+   regime.value = 'Tax as per New Regime after Marginal Relief';
+  }else {
+    tnr = parseInt(tar2);
+    regime.value = 'Tax as per New Regime';
+  }
+  }
  else if(regimeoptt==="Old Regime"){
      tnr = parseInt(tar1);
      regime.value = 'Tax as per Old Regime';
@@ -1263,6 +1288,8 @@ var rebatee, rebatee2;
  
  
 }
+
+
 
 
 
@@ -1400,6 +1427,7 @@ document.getElementById('on__option').style.borderColor='';
 
 useEffect(()=>{
   if(response!==undefined){
+    console.log("currentSal");
     currentSal();
   }
 }, [response])
@@ -1410,6 +1438,9 @@ useEffect(()=>{
     }
   }
 });
+
+
+
 
   return (
    <>
@@ -1434,7 +1465,7 @@ useEffect(()=>{
               <td>D.O.B</td>
               <td><input type="date" name="" value={getDate(user.dob)} readOnly id="dd" onChange={currentSal}  ref={dd}  onFocus={d}  /></td>
               <td>D.O.R</td>
-              <td><input type="date" name=""  id="dor" defaultValue={dor} ref={dor} readOnly/></td>
+              <td><input type="text" name=""  id="dor" defaultValue={dor} ref={dor} readOnly/></td>
             </tr>
             <tr className='table_bg'>
               <td>PAN</td>
@@ -1454,8 +1485,8 @@ useEffect(()=>{
             </table>
 
             <div className="fyay">
-              <div className="fy_child">Financial Year: 2023-24</div>
-              <div className="fy_child">Assessment Year: 2024-25</div>
+              <div className="fy_child">Financial Year: {response.financial_year==="2024-25" ? "2024-25" :"2023-24"}</div>
+              <div className="fy_child">Assessment Year:{response.financial_year==="2024-25" ? "2025-26" :"2024-25"} </div>
             </div>
 
             <div className="it_table">
@@ -1481,46 +1512,38 @@ useEffect(()=>{
                   <td><input type="text" name="" id="bonus_a" readOnly defaultValue={bonuss_it } ref={bonuss_it}  /></td>
                   <td><input type="text" name="" id="bonus_b" readOnly defaultValue={bonuss_it2} ref={bonuss_it2} /></td>
                 </tr>
-                <tr>
-                  <td>3</td>
-                  <td><div className="bonus">
-                    <div>Honorarium (AUAT/Dean/Hostel,Exametc)</div>
-                    <div><input type="text" name=""  id="hono" onKeyPress={onKeyPressEvent} onChange={currentSal} defaultValue={hono_it} ref={hono_it}  /></div>
-                    </div></td>
-                  <td><input type="text" name="" id="hono_a" readOnly defaultValue={honoo_it} ref={honoo_it}  /></td>
-                  <td><input type="text" name="" id="hono_b" readOnly defaultValue={honoo_it2} ref={honoo_it2} /></td>
-                </tr>
+                
                 <tr  className='table_row_bg'>
-                  <td>4</td>
+                  <td>3</td>
                   <td>Current Employer Gross Salary	</td>
                   <td><input type="text" name="" readOnly id="ceg" defaultValue={cgs} ref={cgs}  /></td>
                   <td><input type="text" name="" id="ceg2" defaultValue={cgss} ref={cgss} readOnly  /></td>
                 </tr>
                 <tr>
-                  <td>5</td>
+                  <td>4</td>
                   <td>Previous Employer Gross Salary</td>
                   <td><input type="text" name="" value={response.gross_f13 || 0} readOnly defaultValue={pgs} ref={pgs}   /></td>
                   <td><input type="text" name="" value={response.gross_f13} readOnly defaultValue={pgss} ref={pgss}  /></td>
                 </tr>
-                <tr  className='table_row_bg'>
-                  <td>6</td>
+                <tr  className='table_row_bg' style={{display:"none"}}>
+                  <td></td>
                   <td>Pension</td>
                   <td><input type="text" name="" readOnly value={ 0 } defaultValue={pension_it} ref={pension_it}   /></td>
                   <td><input type="text" name="" readOnly value={ 0 } defaultValue={pensionn_it} ref={pensionn_it}  /></td>
                 </tr>
-                <tr>
-                  <td>7</td>
+                <tr style={{display:"none"}}>
+                  <td></td>
                   <td>	Cuommuted Value of Pension</td>
                   <td><input type="text" name="" value={parseInt(cvp)|| 0} defaultValue={cvp_it} ref={cvp_it} readOnly /></td>
                   <td><input type="text" name="" readOnly value={0}  ref={cvp_it2} defaultValue={cvp_it2} /></td>
                 </tr>
                 <tr  className='table_row_bg'>
-                  <td rowSpan={3}>8</td>
+                  <td rowSpan={2}>5</td>
                   <td>Less: Allowance under section 10</td>
                   <td></td>
                   <td></td>
                 </tr>
-                <tr>
+                <tr style={{display:"none"}}>
                   <td>10 (10A) - Commuted value of Pension</td>
                   <td><input type="text" name="" value={parseInt(cvp)|| 0} readOnly defaultValue={ten_it} ref={ten_it} /></td>
                   <td><input type="text" name="" value={ 0 } defaultValue={ten_it2} ref={ten_it2}  /></td>
@@ -1531,13 +1554,13 @@ useEffect(()=>{
                   <td><input type="text" name="" value={ 0 } defaultValue={thirteenn_it} ref={thirteenn_it}  /></td>
                 </tr>
                 <tr>
-                  <td>9</td>
-                  <td>Gross Salary and Pension</td>
+                  <td>6</td>
+                  <td>Gross Salary</td>
                   <td><input type="text" name="" id="gross_sp" readOnly defaultValue={salpen_it} ref={salpen_it}  /></td>
                   <td><input type="text" name="" id="gross_sp2" readOnly defaultValue={salpen_it2} ref={salpen_it2}  /></td>
                 </tr>
                 <tr  className='table_row_bg'>
-                  <td rowSpan={4}>10</td>
+                  <td rowSpan={4}>7</td>
                   <td>Less: Deduction u/s 16:</td>
                   <td></td>
                   <td></td>
@@ -1552,7 +1575,7 @@ useEffect(()=>{
                   <div className="bonus">
                     <div className="bonus">
                       <div className="">Current Employer</div>
-                      <div className=""><input type="text" name=""value={  parseInt(response.ptax_s13) +  parseInt(response.lpt_s)} readOnly defaultValue={ce_it} ref={ce_it}  /></div>
+                      <div className=""><input type="text" name="" value={  parseInt(response.ptax_s13) +  parseInt(response.lpt_s)}  id='current_employer' readOnly  ref={ce_it}  /></div>
                     </div>
                     <div className="bonus">
                       <div className="">Previous Employer</div>
@@ -1569,13 +1592,13 @@ useEffect(()=>{
                   <td><input type="text" name="" id="standard2" readOnly defaultValue={s_deductionn} ref={s_deductionn}  /></td>
                 </tr>
                 <tr  className='table_row_bg'>
-                  <td>11</td>
-                  <td>Net Salary and Pension</td>
+                  <td>8</td>
+                  <td>Net Salary</td>
                   <td><input type="text" name="" id="netsp" readOnly defaultValue={net_salpen} ref={net_salpen}  /></td>
                   <td><input type="text" name="" id="netsp2" readOnly defaultValue={net_salpen2} ref={net_salpen2}  /></td>
                 </tr>
                 <tr>
-                  <td>12</td>
+                  <td>9</td>
                   <td>
                   <div className="bonus">
                     <div>	
@@ -1586,8 +1609,17 @@ Interest on House Building Loan u/s 24(b)</div>
                   <td><input type="text" name="" id="hb_o" readOnly defaultValue={ihbll} ref={ihbll}  /></td>
                   <td><input type="text" name="" id="hb_n" readOnly defaultValue={ihbll2} ref={ihbll2} /></td>
                 </tr>
+                <tr>
+                  <td>10</td>
+                  <td><div className="bonus">
+                    <div>Honorarium (AUAT/Dean/Hostel,Exametc)</div>
+                    <div><input type="text" name=""  id="hono" onKeyPress={onKeyPressEvent} onChange={currentSal} defaultValue={hono_it} ref={hono_it}  /></div>
+                    </div></td>
+                  <td><input type="text" name="" id="hono_a" readOnly defaultValue={honoo_it} ref={honoo_it}  /></td>
+                  <td><input type="text" name="" id="hono_b" readOnly defaultValue={honoo_it2} ref={honoo_it2} /></td>
+                </tr>
                 <tr className='table_row_bg'> 
-                  <td rowSpan={2}>13</td>
+                  <td rowSpan={2}>11</td>
                   <td >Income from other Sources:</td>
                   <td></td>
                   <td></td>
@@ -1609,43 +1641,43 @@ Interest on House Building Loan u/s 24(b)</div>
                   <td><input type="text" name="" readOnly id="income2" value={0}  ref={income_other_it2} defaultValue={income_other_it2} /></td>
                 </tr>
                 <tr className='table_row_bg'>
-                  <td>14</td>
+                  <td>12</td>
                   <td>Gross Income</td>
                   <td><input type="text" name="" readOnly id="gross_income" defaultValue={gross_income_it} ref={gross_income_it} /></td>
                   <td><input type="text" name="" readOnly id="gross_income2" defaultValue={gross_incomee_it} ref={gross_incomee_it} /></td>
                 </tr>
                 <tr>
-                  <td>15</td>
+                  <td>13</td>
                   <td>Total Deductions under Chapter VIA</td>
                   <td><input type="text" name="" readOnly     id="tdi" defaultValue={total_deduction_it} ref={total_deduction_it}  /></td>
                   <td><input type="text" name="" readOnly   id="tdi2"  defaultValue={total_deductionn_it} ref={total_deductionn_it} /></td>
                 </tr>
                 <tr className='table_row_bg'>
-                  <td>16</td>
+                  <td>14</td>
                   <td>Net Income</td>
                   <td><input type="text" name="" id="net_income" readOnly defaultValue={net_income_it} ref={net_income_it}  /></td>
                   <td><input type="text" name="" id="net_income2" readOnly defaultValue={net_incomee_it} ref={net_incomee_it}  /></td>
                 </tr>
                 <tr>
-                  <td>17</td>
+                  <td>15</td>
                   <td>Taxable Income (Roundup u/s 288A in multiple of Rs.10/-)</td>
                   <td><input type="text" name="" id="taxable_income" readOnly defaultValue={taxable_income} ref={taxable_income} /></td>
                   <td><input type="text" name="" id="taxable_income2" readOnly  defaultValue={taxable_incomee} ref={taxable_incomee} /></td>
                 </tr>
                 <tr className='table_row_bg'>
-                  <td>18</td>
+                  <td>16</td>
                   <td>Tax Payable on Taxable Income</td>
                   <td><input type="text" name="" id="payable"  readOnly defaultValue={tax_payable} ref={tax_payable}  /></td>
                   <td><input type="text" name="" id="payable2" readOnly defaultValue={tax_payablee} ref={tax_payablee}  /></td>
                 </tr>
                 <tr>
-                  <td>19</td>
+                  <td>17</td>
                   <td>Less: Rebate u/s 87A</td>
                   <td><input type="text" name="" id="rebate" readOnly defaultValue={rebate_it} ref={rebate_it} /></td>
                   <td><input type="text" name="" id="rebatee" readOnly defaultValue={rebatee_it} ref={rebatee_it} /></td>
                 </tr>
                 <tr className='table_row_bg'>
-                  <td>20</td>
+                  <td>18</td>
                   <td>Tax after Rebate</td>
                   <td><input type="text" name="" id="tar" readOnly defaultValue={tax_ar} ref={tax_ar} /></td>
                   <td><input type="text" name="" id="tarr" defaultValue={tax_arr} ref={tax_arr} readOnly /></td>
@@ -1659,37 +1691,39 @@ Interest on House Building Loan u/s 24(b)</div>
                     </select></td>
                 </tr>
                 <tr className='table_row_bg' id="sh_1">
-                  <td>21</td>
+                  <td>19</td>
                   <td colSpan={2}><input type="text" name="" id="regime" readOnly style={{border:'0',boxShadow:'none', padding:'5px', color:'blue', background:"transparent" }} defaultValue={tax_on} ref={tax_on}  /></td>
                   <td><input type="text" name=""  id="tnr" defaultValue={tax_nr} ref={tax_nr} readOnly /></td>
                 </tr>
+                
+               
                 <tr id="sh_2">
-                  <td>22</td>
+                  <td>20</td>
                   <td colSpan={2}>Add: 4% CESS (Health & Education)</td>
                   <td><input type="text" name="" id="add_he" readOnly defaultValue={add_he} ref={add_he}  /></td>
                 </tr>
                 <tr className='table_row_bg' id="sh_3">
-                  <td>23</td>
+                <td>21</td>
                   <td colSpan={2}>Gross Tax Payable</td>
                   <td><input type="text" name="" id="gtp" readOnly defaultValue={gtp} ref={gtp} /></td>
                 </tr>
                 <tr id="sh_4">
-                  <td>24</td>
+                <td>22</td>
                   <td colSpan={2}>Less: Relief u/s 89 (Please ensure to submit Form 10E to claim this relief)</td>
                   <td><input type="text" name="" id="relief" defaultValue={relief} ref={relief} onChange={currentSal} /></td>
                 </tr>
                 <tr className='table_row_bg' id="sh_5">
-                  <td>25</td>
+                <td>23</td>
                   <td colSpan={2}>Net Tax Payable</td>
                   <td><input type="text" name="" id="ntp" defaultValue={ntp} ref={ntp} readOnly  /></td>
                 </tr>
                 <tr id="sh_6">
-                  <td>26</td>
+                <td>24</td>
                   <td colSpan={2}>Tax Deducted From Salary</td>
                   <td><input type="text" name="" id="tds" defaultValue={tax_deduct} ref={tax_deduct} readOnly /></td>
                 </tr>
                 <tr className='table_row_bg' id="sh_7">
-                  <td>27</td>
+                <td>25</td>
                   <td  style={{color:'green'}} colSpan={2}><input  id='tax_pr' readOnly style={{border:'0',boxShadow:'none', padding:'5px', background:"transparent" }} type="text" defaultValue={tax_rp} ref={tax_rp}  /> </td>
                   <td><input type='text' id="tr" defaultValue={tax_refund} ref={tax_refund} readOnly /> </td>
                 </tr>

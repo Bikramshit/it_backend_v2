@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DocumentStatusUpdate, GetSingleResponse } from '../../../Redux/Actions/ResponseAction';
+import { DeleteResponse, DocumentStatusUpdate, GetSingleResponse } from '../../../Redux/Actions/ResponseAction';
 import Price from '../../Layouts/Price/Price';
 import Sidebar from '../../Layouts/Sidebar/Sidebar';
 import AuthHeader from '../../Layouts/Header/AuthHeader';
@@ -14,6 +14,10 @@ import { CreateExtraMonths } from '../../../Redux/Actions/ExtraMonthAction';
 import {IoDocumentTextSharp} from "react-icons/io5"
 import { Link } from 'react-router-dom';
 import DialogComponent from '../../Layouts/DialogBox/Dialog';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import PdfFile from '../../Layouts/Pdf/PdfFile';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { FaDownload } from 'react-icons/fa';
 
 
 const Months = ["January", "February",  "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -131,7 +135,15 @@ function ResponseDetails() {
  })
 
 const ExtraMonthSubmit =async()=>{
+  // let amnt = parseInt(amount) 
   dispatch(CreateExtraMonths(response.userId, month, amount, response.FormId, response._id));
+}
+
+
+
+const DeleteResonseHandler =async()=>{
+  dispatch(DeleteResponse(response._id));
+  navigate('/notifications');
 }
   return (
     <>
@@ -198,7 +210,7 @@ const ExtraMonthSubmit =async()=>{
       <div className="letter_body">
       <span>Sir,</span>
       <div>
-        <span>Please find encolsed herewith my proposed Income Tax Calculation Form for <b>FY 2023-24</b> </span>
+        <span>Please find encolsed herewith my proposed Income Tax Calculation Form for <b>FY 2024-25</b> </span>
         <ol>
           <li>I certify that particulars furnished are true and correct to the best of my knowledge and belief</li>
           <li>I authorize the University to recover Income Tax from my salary based on the declaration/documents submitted here</li>
@@ -232,9 +244,9 @@ const ExtraMonthSubmit =async()=>{
         <table>
             <thead>
                 <tr>
-                    <th colSpan={2}>F.Y 2023-24</th>
+                    <th colSpan={2}>F.Y {response.financial_year}</th>
                     <td colSpan={9}></td>
-                    <th colSpan={2}>A.Y 2024-25</th>
+                    <th colSpan={2}>A.Y {response.assessment_year}</th>
                 </tr>
                 <tr className='table_bg'>
                     <th className='months'>Months</th>
@@ -258,7 +270,7 @@ const ExtraMonthSubmit =async()=>{
             <tbody>
               
                 <tr>
-                    <th>MAR 2023</th>
+                    <th>MAR {response.financial_year==="2024-25" ? "2024" :"2023"} </th>
                     <td><Price number={response.  rate_s1}/></td>
                     <td><Price number={response. basic_s1}/></td>
                     <td><Price number={response.    da_s1}/></td>
@@ -273,7 +285,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s1}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>APR 2023</th>
+                    <th>APR {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s2}/></td>
                     <td><Price number={response. basic_s2}/></td>
                     <td><Price number={response.    da_s2}/></td>
@@ -288,7 +300,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s2}/></td>
                 </tr>
                 <tr>
-                    <th>MAY 2023</th>
+                    <th>MAY {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s3}/></td>
                     <td><Price number={response. basic_s3}/></td>
                     <td><Price number={response.    da_s3}/></td>
@@ -303,7 +315,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s3}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>JUN 2023</th>
+                    <th>JUN {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s4}/></td>
                     <td><Price number={response. basic_s4}/></td>
                     <td><Price number={response.    da_s4}/></td>
@@ -318,7 +330,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s4}/></td>
                 </tr>
                 <tr>
-                    <th>JUL 2023</th>
+                    <th>JUL {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s5}/></td>
                     <td><Price number={response. basic_s5}/></td>
                     <td><Price number={response.    da_s5}/></td>
@@ -333,7 +345,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s5}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>AUG 2023</th>
+                    <th>AUG {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s6}/></td>
                     <td><Price number={response. basic_s6}/></td>
                     <td><Price number={response.    da_s6}/></td>
@@ -348,7 +360,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s6}/></td>
                 </tr>
                 <tr>
-                    <th>SEP 2023</th>
+                    <th>SEP {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s7}/></td>
                     <td><Price number={response. basic_s7}/></td>
                     <td><Price number={response.    da_s7}/></td>
@@ -363,7 +375,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s7}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>OCT 2023</th>
+                    <th>OCT {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s8}/></td>
                     <td><Price number={response. basic_s8}/></td>
                     <td><Price number={response.    da_s8}/></td>
@@ -378,7 +390,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s8}/></td>
                 </tr>
                 <tr>
-                    <th>NOV 2023</th>
+                    <th>NOV {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s9}/></td>
                     <td><Price number={response. basic_s9}/></td>
                     <td><Price number={response.    da_s9}/></td>
@@ -393,7 +405,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s9}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>DEC 2023</th>
+                    <th>DEC {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_s10}/></td>
                     <td><Price number={response. basic_s10}/></td>
                     <td><Price number={response.    da_s10}/></td>
@@ -408,7 +420,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s10}/></td>
                 </tr>
                 <tr>
-                    <th>JAN 2024</th>
+                    <th>JAN {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                     <td><Price number={response.  rate_s11}/></td>
                     <td><Price number={response. basic_s11}/></td>
                     <td><Price number={response.    da_s11}/></td>
@@ -423,7 +435,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_s11}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>FEB 2024</th>
+                    <th>FEB {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                     <td><Price number={response.  rate_s12}/></td>
                     <td><Price number={response. basic_s12}/></td>
                     <td><Price number={response.    da_s12}/></td>
@@ -460,7 +472,7 @@ const ExtraMonthSubmit =async()=>{
     <div className="sal_note">
         <span>Note:</span>
         <ol>
-            <li>Enter the amount for March 2023</li>
+            <li>Enter the amount for March 2024</li>
             <li>In HRA column, enter the amount for March and July</li>
             <li>In Adjustment column enter the monthly extra drawal amount, if any.</li>
         </ol>
@@ -508,13 +520,13 @@ const ExtraMonthSubmit =async()=>{
    <div className="form_header">
    <h4>Form No 12B</h4>
    <span>[See Rule 26A]</span>
-   <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, 2024</h6>
+   <h6>Form for furnishing details of Income Tax under section 192(2) for the year ending 31st March, {response.financial_year==="2024-25" ? "2024" :"2023"}</h6>
    <p>Details to be furnished by the newly joined employee during the year</p>
    </div>
 
 
     <div className="table_div">
-      <p>Name: Bikram Shit</p>
+      <p>Name: {response.name}</p>
         <table>
             <thead>
                 
@@ -539,7 +551,7 @@ const ExtraMonthSubmit =async()=>{
             <tbody>
               
                 <tr>
-                    <th>MAR 2023</th>
+                    <th>MAR {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f1}/></td>
                     <td><Price number={response. basic_f1}/></td>
                     <td><Price number={response.    da_f1}/></td>
@@ -553,7 +565,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f1}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>APR 2023</th>
+                    <th>APR {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f2}/></td>
                     <td><Price number={response. basic_f2}/></td>
                     <td><Price number={response.    da_f2}/></td>
@@ -567,7 +579,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f2}/></td>
                 </tr>
                 <tr>
-                    <th>MAY 2023</th>
+                    <th>MAY {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f3}/></td>
                     <td><Price number={response. basic_f3}/></td>
                     <td><Price number={response.    da_f3}/></td>
@@ -581,7 +593,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f3}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>JUN 2023</th>
+                    <th>JUN {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f4}/></td>
                     <td><Price number={response. basic_f4}/></td>
                     <td><Price number={response.    da_f4}/></td>
@@ -595,7 +607,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f4}/></td>
                 </tr>
                 <tr>
-                    <th>JUL 2023</th>
+                    <th>JUL {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f5}/></td>
                     <td><Price number={response. basic_f5}/></td>
                     <td><Price number={response.    da_f5}/></td>
@@ -609,7 +621,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f5}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>AUG 2023</th>
+                    <th>AUG {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f6}/></td>
                     <td><Price number={response. basic_f6}/></td>
                     <td><Price number={response.    da_f6}/></td>
@@ -623,7 +635,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f6}/></td>
                 </tr>
                 <tr>
-                    <th>SEP 2023</th>
+                    <th>SEP {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f7}/></td>
                     <td><Price number={response. basic_f7}/></td>
                     <td><Price number={response.    da_f7}/></td>
@@ -637,7 +649,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f7}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>OCT 2023</th>
+                    <th>OCT {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f8}/></td>
                     <td><Price number={response. basic_f8}/></td>
                     <td><Price number={response.    da_f8}/></td>
@@ -651,7 +663,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f8}/></td>
                 </tr>
                 <tr>
-                    <th>NOV 2023</th>
+                    <th>NOV {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f9}/></td>
                     <td><Price number={response. basic_f9}/></td>
                     <td><Price number={response.    da_f9}/></td>
@@ -665,7 +677,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f9}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>DEC 2023</th>
+                    <th>DEC {response.financial_year==="2024-25" ? "2024" :"2023"}</th>
                     <td><Price number={response.  rate_f10}/></td>
                     <td><Price number={response. basic_f10}/></td>
                     <td><Price number={response.    da_f10}/></td>
@@ -679,7 +691,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f10}/></td>
                 </tr>
                 <tr>
-                    <th>JAN 2024</th>
+                    <th>JAN {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                     <td><Price number={response.  rate_f11}/></td>
                     <td><Price number={response. basic_f11}/></td>
                     <td><Price number={response.    da_f11}/></td>
@@ -693,7 +705,7 @@ const ExtraMonthSubmit =async()=>{
                     <td><Price number={response.netsal_f11}/></td>
                 </tr>
                 <tr className='table_row_bg'>
-                    <th>FEB 2024</th>
+                    <th>FEB {response.financial_year==="2024-25" ? "2025" :"2024"}</th>
                     <td><Price number={response.  rate_f12}/></td>
                     <td><Price number={response. basic_f12}/></td>
                     <td><Price number={response.    da_f12}/></td>
@@ -930,12 +942,12 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
           <td></td>
           <td><Price number={response.isb_c2}/></td>
         </tr>
-        <tr className='table_row_bg'>
+        {/* <tr className='table_row_bg'>
           <th>80G</th>
           <td>Donation/Charity to registered donatee (Refer to IT website for any clarification)</td>
           <td></td>
           <td><Price number={response.donation_c}/></td>
-        </tr>
+        </tr> */}
         <tr>
           <th>80EEB</th>
           <td>Deduction towards interest payments made on loan for purchase of Electric Vehicle</td>
@@ -1160,23 +1172,9 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td><Price number={response.bonus_it_o} /></td>
               <td><Price number={response.bonus_it_n} /></td>
             </tr>
-            <tr>
-              <td>3</td>
-              <td><div className="bonus">
-                <div>Honorarium (AUAT/Dean/Hostel,Exam, etc)</div>
-                <div>
-                <Price number={response.hono_it} />
-                </div>
-                </div></td>
-              <td>
-              <Price number={response.honoo_it} />
-              </td>
-              <td>
-              <Price number={response.honoo_it2} />
-              </td>
-            </tr>
+           
             <tr  className='table_row_bg'>
-              <td>4</td>
+              <td>3</td>
               <td>Current Employer Gross Salary	</td>
               <td>
               <Price number={response.current_it_o} />
@@ -1186,7 +1184,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               </td>
             </tr>
             <tr>
-              <td>5</td>
+              <td>4</td>
               <td>Previous Employer Gross Salary</td>
               <td>
               <Price number={response.previous_it_o} />
@@ -1195,8 +1193,8 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <Price number={response.previous_it_n} />
               </td>
             </tr>
-            <tr  className='table_row_bg'>
-              <td>6</td>
+            {/* <tr  className='table_row_bg'>
+              <td>5</td>
               <td>Pension</td>
               <td>
               <Price number={response.pension_it_o} />
@@ -1204,9 +1202,9 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td>
               <Price number={response.pension_it_n} />
               </td>
-            </tr>
-            <tr>
-              <td>7</td>
+            </tr> */}
+            {/* <tr>
+              <td>6</td>
               <td>	Cuommuted Value of Pension</td>
               <td>
               <Price number={response.cvp_it_o} />
@@ -1214,16 +1212,16 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td>
               <Price number={response.cvp_it_n} />
               </td>
-            </tr>
+            </tr> */}
             <tr  className='table_row_bg'>
-              <td rowSpan={3}>8</td>
+              <td rowSpan={2}>5</td>
               <td>Less: Allowance under section 10</td>
               <td>
               </td>
               <td>
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <td>10 (10A) - Commuted value of Pension</td>
               <td>
               <Price number={response.ten_a__it_o} />
@@ -1231,7 +1229,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td>
               <Price number={response.ten_a__it_n} />
               </td>
-            </tr>
+            </tr> */}
             <tr  className='table_row_bg'>
               <td>	10 (13A) - HRA</td>
               <td>
@@ -1242,8 +1240,8 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               </td>
             </tr>
             <tr>
-              <td>9</td>
-              <td>Gross Salary and Pension</td>
+              <td>6</td>
+              <td>Gross Salary</td>
               <td>
               <Price number={response.gsp_it_o} />
               </td>
@@ -1252,7 +1250,7 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               </td>
             </tr>
             <tr  className='table_row_bg'>
-              <td rowSpan={4}>10</td>
+              <td rowSpan={4}>7</td>
               <td>Less: Deduction u/s 16:</td>
               <td>
               </td>
@@ -1292,13 +1290,14 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td><Price number={response.s_deduction_it_n} /></td>
             </tr>
             <tr  className='table_row_bg'>
-              <td>11</td>
-              <td>Net Salary and Pension</td>
+              <td>8</td>
+              <td>Net Salary</td>
               <td><Price number={response.net_sp_it_o} /></td>
               <td><Price number={response.net_sp_it_n} /></td>
             </tr>
+           
             <tr>
-              <td>12</td>
+              <td>9</td>
               <td>
               <div className="bonus">
                 <div>	
@@ -1309,8 +1308,23 @@ Interest on House Building Loan u/s 24(b) </div>
               <td><Price number={response.interest_hbl_it_o} /></td>
               <td><Price number={response.interest_hbl_it_n} /></td>
             </tr>
+            <tr>
+              <td>10</td>
+              <td><div className="bonus">
+                <div>Honorarium (AUAT/Dean/Hostel,Exam, etc)</div>
+                <div>
+                <Price number={response.hono_it} />
+                </div>
+                </div></td>
+              <td>
+              <Price number={response.honoo_it} />
+              </td>
+              <td>
+              <Price number={response.honoo_it2} />
+              </td>
+            </tr>
             <tr className='table_row_bg'> 
-              <td rowSpan={2}>13</td>
+              <td rowSpan={2}>11</td>
               <td >Income from other Sources:</td>
               <td></td>
               <td></td>
@@ -1332,43 +1346,43 @@ Interest on House Building Loan u/s 24(b) </div>
               <td><Price number={response.income_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>14</td>
+              <td>12</td>
               <td>Gross Income</td>
               <td><Price number={response.gross_income_it_o} /></td>
               <td><Price number={response.gross_income_it_n} /></td>
             </tr>
             <tr>
-              <td>15</td>
+              <td>13</td>
               <td>Total Deductions under Chapter VIA</td>
               <td><Price number={response.chapter_total} /></td>
               <td><Price number={response.total_deduction_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>16</td>
+              <td>14</td>
               <td>Net Income</td>
               <td><Price number={response.net_income_it_o} /></td>
               <td><Price number={response.net_income_it_n} /></td>
             </tr>
             <tr>
-              <td>17</td>
+              <td>15</td>
               <td>Taxable Income (Roundup u/s 288A in multiple of Rs.10/-)</td>
               <td><Price number={response.tax_income_it_o} /></td>
               <td><Price number={response.tax_income_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>18</td>
+              <td>16</td>
               <td>Tax Payable on Taxable Income</td>
               <td><Price number={response.tax_pay_it_o} /></td>
               <td><Price number={response.tax_pay_it_n} /></td>
             </tr>
             <tr>
-              <td>19</td>
+              <td>17</td>
               <td>Less: Rebate u/s 87A</td>
               <td><Price number={response.less_it_o} /></td>
               <td><Price number={response.less_it_n} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>20</td>
+              <td>18</td>
               <td>Tax after Rebate</td>
               <td><Price number={response.tar_it_o} /></td>
               <td><Price number={response.tar_it_n} /></td>
@@ -1380,39 +1394,39 @@ Interest on House Building Loan u/s 24(b) </div>
               </td>
             </tr>
             <tr className='table_row_bg'>
-              <td>21</td>
+              <td>19</td>
               <td colSpan={2}>{response.tax_per_inp}</td>
               <td><Price number={response.tax_per_it} /></td>
             </tr>
             <tr>
-              <td>22</td>
+              <td>20</td>
               <td colSpan={2}>Add: 4% CESS (Health & Education)</td>
               <td><Price number={response.add_four_it} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>23</td>
+              <td>21</td>
               <td colSpan={2}>Gross Tax Payable</td>
               <td><Price number={response.gtax_payable_it} /></td>
             </tr>
             <tr>
-              <td>24</td>
+              <td>22</td>
               <td colSpan={2}>Less: Relief u/s 89 (Please ensure to submit Form 10E to claim this relief)</td>
               <td><Price number={response.less_relief_it} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>25</td>
+              <td>23</td>
               <td colSpan={2}>Net Tax Payable</td>
               <td><Price number={response.ntax_payable_it} /></td>
             </tr>
             <tr>
-              <td>26</td>
+              <td>24</td>
               <td colSpan={2}>Tax Deducted From Salary</td>
               <td><Price number={response.td_sal_it} /></td>
             </tr>
             <tr className='table_row_bg'>
-              <td>27</td>
+              <td>25</td>
               <td colSpan={2}>{response.tex_payable_it}</td>
-              <td><Price number={response.tax_refund} /> {response.tax_refund}</td>
+              <td><Price number={response.tax_refund} /> </td>
             </tr>
             
           </table>
@@ -1743,6 +1757,16 @@ Interest on House Building Loan u/s 24(b) </div>
 
         {
           user.role==="admin" ? <>
+
+
+
+            
+
+
+
+
+
+
 <hr />
           <div className="extra_section">
             <h6>Changes of TDS</h6>
@@ -1804,12 +1828,33 @@ Interest on House Building Loan u/s 24(b) </div>
 
         </select>
 </div>
+
+
+
+
 </div>
+
+
 
           <div className="extra_section dialogcontainer">
           <DialogComponent email={response.email} id={response.userId} />
 
           </div>
+
+
+
+          <div className="extra_section right">
+          <PDFDownloadLink fileName={response.name} document={<PdfFile  response={response}  />} className='btn stt_vgg' >
+           <FaDownload/>  Download PDF
+      </PDFDownloadLink>
+      <button className='delete' onClick={DeleteResonseHandler}> <RiDeleteBin6Line/> Delete Response</button>
+    
+          </div>
+
+
+
+
+          
 
 
 

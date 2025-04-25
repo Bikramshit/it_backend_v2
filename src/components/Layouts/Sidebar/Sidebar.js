@@ -1,15 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {FaFileAlt, FaUsers, FaGgCircle} from "react-icons/fa";
 import {FiMenu} from "react-icons/fi";
 import {BiSolidDashboard} from "react-icons/bi";
 import {ImCalculator, ImHistory} from "react-icons/im";
 import { NavLink } from 'react-router-dom';
 import {AiFillSetting, AiOutlineCalculator}from "react-icons/ai";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
 import {BsFillDatabaseFill} from "react-icons/bs"
 import {MdNotificationsActive} from "react-icons/md";
 import {RiFolderUserFill} from "react-icons/ri"
+
 const menuItem =[
     {
         path:"/",
@@ -56,7 +57,7 @@ const menuItem2 =[
     },
     {
         path:"/notifications",
-        name:"Notifications",
+        name:`Notifications`,
         icon:<MdNotificationsActive/>
     },
     {
@@ -74,9 +75,12 @@ const menuItem2 =[
 function Sidebar({children}) {
 
     const {loading, user} = useSelector(state=>state.user);
+
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
     const[isOpen ,setIsOpen] = useState(false);
+
     const toggle = () => setIsOpen (!isOpen);
+    
 
 
   return (

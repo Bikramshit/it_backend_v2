@@ -6,7 +6,6 @@ import { loadUser } from './Redux/Actions/UserAction';
 import {toast, Toaster} from "react-hot-toast";
 import {ProtectedRoute} from "protected-route-react"
 import Login from './components/Pages/Login/Login';
-import Register from './components/Pages/Login/Register';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import Chapter from './components/Pages/Chapter/Chapter';
 import Feedback from './components/Pages/Feedback/Feedback';
@@ -45,6 +44,8 @@ import FindAccount from './components/Pages/Login/FindAccount';
 import AllForm from './components/Pages/Admin/ExtraMonth/AllForm';
 import UpdateExtraMonth from './components/Pages/Admin/ExtraMonth/UpdateExtraMonth';
 import AllExtraMonths from './components/Pages/Admin/ExtraMonth/AllExtraMonths';
+import NewUser from './components/Pages/Login/NewUser';
+
 
 function App() {
   const {user, loading, message, error, isAuthenticated} = useSelector(state=>state.user);
@@ -122,7 +123,9 @@ function App() {
       
       
      {
-      isAuthenticated ? <>
+      isAuthenticated ?
+      
+      <>
 
 <Routes>             
 
@@ -154,13 +157,12 @@ function App() {
    
 
 <Route path='/submitted/:id' element={<Submit/>} /> 
-<Route path='/error' element={<Error/>} />
+{/* <Route path='/error' element={<Error/>} /> */}
 <Route path='/*' element={<ProtectedRoute redirect="/error"><Error/></ProtectedRoute>} />
     
    </> : <>
 
    <Route path='/update/user/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} ><UpdateUser/></ProtectedRoute>} /> 
-
       <Route path='/form/new' element={<ProtectedRoute isAuthenticated={isAuthenticated} ><CreateForm/></ProtectedRoute>} />
       <Route path='/form/update/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} ><UpdateForm/></ProtectedRoute>} />
       <Route path='/forms' element={<ProtectedRoute isAuthenticated={isAuthenticated} ><Forms/></ProtectedRoute>} />
@@ -174,7 +176,7 @@ function App() {
       <Route path='/extra-months/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated}><AllExtraMonths/></ProtectedRoute>} />
       <Route path='/extra-months/update/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated}><UpdateExtraMonth/></ProtectedRoute>} />
       <Route path='/error' element={<Error/>} />
-{/* <Route path='/*' element={<ProtectedRoute redirect="/error"><Error/></ProtectedRoute>} /> */}
+<Route path='/*' element={<ProtectedRoute redirect="/error"><Error/></ProtectedRoute>} />
     
      </>
     }
@@ -194,6 +196,7 @@ function App() {
         <Route path='/resetpassword/token/:id' element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/"><ForgetPassword/></ProtectedRoute>} />
         <Route path='/forgot-password' element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/"><FindAccount/></ProtectedRoute>} />
         <Route path='/error' element={<Error/>} />
+        <Route path='/new-user'  element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/"><NewUser/></ProtectedRoute>}  />
         <Route path='/*' element={<ProtectedRoute redirect="/error"><Error/></ProtectedRoute>} />
 
 

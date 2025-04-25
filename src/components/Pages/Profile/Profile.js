@@ -50,6 +50,10 @@ function Profile() {
   <div className="basic_info">
     <hr />
     <div className="basic_cont">
+      <div className="basic_in">UIN</div>
+      <div className="basic_fo">{user.emp_id}</div>
+    </div>
+    <div className="basic_cont">
       <div className="basic_in">Department/Section</div>
       <div className="basic_fo">{user.department}</div>
     </div>

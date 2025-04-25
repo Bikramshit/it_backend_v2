@@ -81,6 +81,7 @@ function Letter() {
 
 
 
+
   // if(form===undefined){
   //   navigate('/error');
   // }
@@ -98,16 +99,7 @@ function Letter() {
   }, [user])
   
   const SubmitHandler =async()=>{
-    console.log( name, pan, aadhaar, email, phone, department, designation, category, dob);
-    console.log(pan);
-    console.log(aadhaar);
-    console.log(email);
-    console.log(phone);
-    console.log(department);
-    console.log(designation);
-    console.log(category);
-    console.log(dob);
-    console.log(name);
+   
     const res = await dispatch(StartResponse(params.id, name, pan, aadhaar, email, phone, department, designation, category, dob))
     if(res===undefined) return;
     if(res.success===true){
@@ -211,12 +203,12 @@ function Letter() {
           <div className="letter_body">
           <span>Sir,</span>
           <div>
-            <span>Please find encolsed herewith my proposed Income Tax Calculation Form for <b>FY  2023-24</b> </span>
+            <span>Please find encolsed herewith my proposed Income Tax Calculation Form for <b>FY 2024-25 </b> </span>
             <ol>
               <li>I certify that particulars furnished are true and correct to the best of my knowledge and belief</li>
               <li>I authorize the University to recover Income Tax from my salary based on the declaration/documents submitted here</li>
               <li>I certify that these investments/savings have been made/proposed from my own earned income</li>
-              <li>Documents of the proposed investments/savings declared will be submitted positively by <b>12.04.2024</b></li>
+              <li>Documents of the proposed investments/savings declared will be submitted positively by <b>12.04.2025</b></li>
               <li>I will be solely responsible to CBDT, Income Tax Department, Govt. of India for all information pertaining to income tax assessment</li>
               <li>I will be solely responsible if not paid the proposed investment and will deposit the tax payable and its penalty directly to the Income Tax Department and will furnish the copy of paid challan to collect the Form 16</li>
             </ol>

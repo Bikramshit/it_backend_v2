@@ -35,7 +35,9 @@ function ForgetPassword() {
   return (
     <>
  {
-  loading ? <Loader/> :           <div className="main_con">
+  loading ? <Loader/> :          
+   <div className="main_con">
+    <div className="main">
   <Header/>
 <div className="intro_section">
   <div className='intro_text'>Here You Can Compute Your Tax Comfortably and Efficiently</div>
@@ -43,7 +45,6 @@ function ForgetPassword() {
   
 <div className='intro_namse'>
     <div className="intro_name">- Shaikh Rizwan</div>
-    <div className='position'>(Sr. Accounts Assistant, A Torab & Co., Chartered Accountants)</div>
   </div>
  
 
@@ -95,6 +96,7 @@ function ForgetPassword() {
                 </div>
                 </div>
 </div>
+  </div>
   </div>
   </div>
 {/* </div> */}

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { getAllActiveForm, getAllUserForm, getStatusResponse } from '../../../Redux/Actions/FormAction';
 import Loader from '../Loader/Loader';
+import { ReSubmitForm } from '../../../Redux/Actions/ResponseAction';
 
 function FormContainer() {
   const {user} = useSelector(state=>state.user);
@@ -42,6 +43,20 @@ function FormContainer() {
       // return yourDate.toLocaleDateString()
       return yourDate.toLocaleString("en-US", options)
     }
+
+
+
+    const SubmitHandler =async()=>{
+    
+      const res = await dispatch(ReSubmitForm(responses[0]._id));
+      console.log(res);
+      if(res===undefined) return;
+      if(res.success===true){
+        Navigate(`/salary/${res.response._id}`);
+      }
+    }
+
+
   return (
     <>
     <div className="container">
@@ -93,9 +108,22 @@ function FormContainer() {
                 </>
               ))
             }
+
+            {
+              forms?.length===0 && <>
+                <div className='' style={{textAlign:"center", fontWeight:"bold"}}>
+                The last date of submit the Form was 07.02.2025
+                </div>
+              </>
+            }
           </>
           : <Loader/>
         }
+
+
+        {/* <div className='form_card' style={{minHeight:"auto", backgroundColor:"transparent", boxShadow:"none", color:"black"}}>
+          Do you want to make any changes  <button className='form_resubmit' onClick={SubmitHandler}>click here</button>
+        </div> */}
 
       </>
     }
@@ -124,7 +152,7 @@ function FormContainer() {
               </div>
               <div className="exprire_dt">
                 <div className="exdt">
-                Expire Date: <span>{getDate(form.expiryDate)}</span>
+                Last Date to Submit: <span>{getDate(form.expiryDate)}</span>
                 </div>
               </div>
               </div>
@@ -132,6 +160,14 @@ function FormContainer() {
               </Link>
                 </>
               ))
+            }
+
+{
+              forms?.length===0 && <>
+                <div className='container_sec ' style={{marginTop:"2rem", fontWeight:"600"}}>
+                The last date of submit the Form was 07.02.2025
+                </div>
+              </>
             }
             </div>
              </>

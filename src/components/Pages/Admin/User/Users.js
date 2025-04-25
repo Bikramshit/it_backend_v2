@@ -47,7 +47,8 @@ function User() {
         <div className="table_div">
         <table id='response'>
           <tr className='table_bg'>
-            <th>Sl. No</th>
+            {/* <th>Sl. No</th> */}
+            <th>UIN</th>
             <th>Name</th>
             <th>Department</th>
             <th>PAN</th>
@@ -58,8 +59,9 @@ function User() {
           </tr>
           {
             users.map((user, index)=>(
-              <tr className={(index+1)%2===0 ? 'table_row_bg' : ''}>
-                <td><Link to={`/user/${user._id}`}> {index+1} </Link></td>
+              <tr className={(index+1)%2===0 ? 'table_row_bg' : ''} key={index}>
+                {/* <td><Link to={`/user/${user._id}`}> {index+1} </Link></td> */}
+                <td><Link to={`/user/${user._id}`}> {user.emp_id} </Link></td>
                 <td><Link to={`/user/${user._id}`}> {user.name} </Link></td>
                 <td><Link to={`/user/${user._id}`}> {user.department} </Link></td>
                 <td><Link to={`/user/${user._id}`}> {user.pan} </Link></td>

@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Intro from '../../Layouts/Intro/Intro'
+import React, { useState } from 'react'
 import Footer from '../../Layouts/Footer/Footer'
 import Header from "../../Layouts/Header/Header"
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../../Redux/Actions/UserAction'
-import { toast } from 'react-hot-toast'
 import Loader from '../../Layouts/Loader/Loader'
 import { useNavigate } from 'react-router-dom'
 import {Link} from "react-router-dom"
@@ -56,40 +54,46 @@ function Login() {
    
 
       <div className="main_con">
+        <div className='main'>
      <Header/>
     <div className="intro_section">
-      <div className='intro_text'>Here You Can Compute Your Tax Comfortably and Efficiently</div>
+      <div className='intro_text'>Here You Can Compute Your Income Tax Comfortably and Efficiently</div>
       <div className='intro_text'>Without Using Any Paper, Pen or Calculator</div>
       
 <div className='intro_namse'>
-        <div className="intro_name">- Shaikh Rizwan</div>
-        <div className='position'>(Sr. Accounts Assistant, A Torab & Co., Chartered Accountants)</div>
+        <div className="intro_name"> - Finance Officer </div>
       </div>
      
 
     </div>
 
     <div className="login_container">
-      <form action="">
 <div className="login_child">
     <div className="login">
+      <form action="">
+    <div className="login_sec">
+
       <div className="login_title">Login</div>
-      <div className="login_sec">
+
           <label htmlFor="pan">User Id</label>
-          <input type="text"  onChange={e=>{ userNameHandler(e)}} id='username' />
+          <input type="text"  onChange={e=>{ userNameHandler(e)}} id='username' placeholder='PAN' />
       </div>
       <div className="login_sec">
           <label htmlFor="password">Password</label>
-          <input type="password" onChange={e=>setPassword(e.target.value)} />
+          <input type="password" onChange={e=>setPassword(e.target.value)} placeholder='Password' />
       </div>
       <div className=" login_btn">
-        <button type='submit' className='btn' onClick={(e)=>SubmitHandler(e)}>Login</button>
+        <button type='submit' className='btn' onClick={(e)=>SubmitHandler(e)}>Generate OTP</button>
       </div>
-      
+
+      <div className='login_options'>
       <Link to={'/forgot-password'}><p className='forgot_pss'>Forgot Password? </p></Link>
+      <Link to={'/new-user'}><p className='forgot_pss'>New user? </p></Link>
+      
+      </div>
+      </form>
     </div>
     </div>
-    </form>
     <div className="login_child1">
     <div className="rules">
     
@@ -121,9 +125,10 @@ function Login() {
     </div>
       </div>
       </div>
+      </div>
     {/* </div> */}
+    <Footer/>
 
-<Footer/>
 
     <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -208,6 +213,7 @@ function Login() {
   </div>
     </div>
 </div>
+
 
 
 

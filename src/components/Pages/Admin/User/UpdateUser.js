@@ -14,6 +14,7 @@ const Dept = [
   "Office of the COE",
   "Office of the Dy. Registrar",
   "Office of the Finance Officer",
+  "Scholarship Section",
   "Office of the TPO",
   "VC Section",
   "Registrar Section",
@@ -77,6 +78,8 @@ function UpdateUser() {
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [designation, setDesignation] = useState();
+  const [empId, setEmpId] = useState('');
+
 const navigate = useNavigate();
   useEffect(()=>{
     setName(user.name);
@@ -88,6 +91,7 @@ const navigate = useNavigate();
     setPhone(user.phone);
     setEmail(user.email);
     setDesignation(user.designation);
+    setEmpId(user.emp_id);
   },[dispatch, user]);
   
 
@@ -101,7 +105,7 @@ const navigate = useNavigate();
       return;
     }
     
-   const res = await dispatch(updateProfileAdmin(params.id, name,  phone,email, dob, designation, department, pan, category, aadhaar));
+   const res = await dispatch(updateProfileAdmin(params.id, name,  phone,email, dob, designation, department, pan, category, aadhaar, empId));
   //  const params = useParams();
    if(res===true){
     navigate(`/user/${user._id}`)
@@ -135,6 +139,11 @@ const navigate = useNavigate();
       <div className="user_prof mt-2">Update Profile</div>
 
     <div className="q_sec_letter" id='update_user_sc' >
+      <label htmlFor="name">UIN</label>
+      <input type="text" onChange={e=>setEmpId(e.target.value)} defaultValue={empId} />
+    </div>       
+
+    <div className="q_sec_letter" id='update_user_sc' >
       <label htmlFor="name">Name</label>
       <input type="text" onChange={e=>setName(e.target.value)} defaultValue={name} />
     </div>       
@@ -143,31 +152,33 @@ const navigate = useNavigate();
       <label htmlFor="designation" >Desingation</label>
       <select name="" id="" onChange={e=>setDesignation(e.target.value)}>
       <option value="">Select--</option>
-      <option value="Hon'ble Vice Chancellor" selected={"Hon'ble Vice Chancellor"==designation}>Hon'ble Vice Chancellor</option>
-      <option value="The Registrar" selected={"The Registrar"==designation}>The Registrar</option>
-      <option value="Finance Officer" selected={"Finance Officer"==designation}>Finance Officer</option>
-      <option value="Training & Placement Officer" selected={"Training & Placement Officer"==designation}>Training & Placement Officer</option>
-      <option value="Controller of Examination" selected={"Controller of Examination"==designation}>Controller of Examination</option>
-      <option value="Senior Assistant" selected={"Senior Assistant"==designation}>Senior Assistant</option>
-      <option value="Junior Assistant" selected={"Junior Assistant"==designation}>Junior Assistant</option>
-      <option value="Junior Peon" selected={"Junior Peon"==designation}>Junior Peon</option>
-      <option value="Junior Superintendent" selected={"Junior Superintendent"==designation}>Jr. Superintendent</option>
-      <option value="Junior Superintendent/ Section Officer" selected={"Junior Superintendent/ Section Officer"==designation}>Junior Superintendent/ Section Officer </option>
-      <option value="Farmacist" selected={"Farmacist"==designation}>Farmacist</option>
-      <option value="Assistant Librarian" selected={"Assistant Librarian"==designation}>Assistant Librarian</option>
-      <option value="Junior Store Keeper" selected={"Junior Store Keeper"==designation}>Junior Store Keeper</option>
-      <option value="Cashier" selected={"Cashier"==designation}>Cashier</option>
-      <option value="Accountant" selected={"Accountant"==designation}>Accountant</option>
-      <option value="Personal Assistant" selected={"Personal Assistant"==designation}>Personal Assistant</option>
-      <option value="Physical Training Instructor" selected={"Physical Training Instructor"==designation}>Physical Training Instructor</option>
-      <option value="Record Keeper" selected={"Record Keeper"==designation}>Record Keeper</option>
-      <option value="Ground Supervisor" selected={"Ground Supervisor"==designation}>Ground Supervisor</option>
-      <option value="Plumber" selected={"Plumber"==designation}>Gardener</option>
-      <option value="Plumber" selected={"Plumber"==designation}>Plumber</option>      
-      <option value="Assistant Professor" selected={"Assistant Professo"==designation}>Assistant Professor</option>
-      <option value="Associate Professor" selected={"Associate Professor"==designation}>Associate Professor</option>
-      <option value="Professor" selected={"Professor"==designation}>Professor</option>
-      <option value="Technical Assistant" selected={"Technical Assistant"==designation}>Technical Assistant</option>
+      <option value="HON'BLE VICE CHANCELLOR" selected={"HON'BLE VICE CHANCELLOR"===designation}>Hon'ble Vice Chancellor</option>
+      <option value="The Registrar" selected={"The Registrar"===designation}>The Registrar</option>
+      <option value="Controller of Examination">Controller of Examination</option>
+      <option value="Finance Officer" selected={"Finance Officer"===designation}>Finance Officer</option>
+      <option value="Deputy Registrar">Deputy Registrar</option>
+      <option value="Assistant Controller of Examination">Assistant Controller of Examination</option>
+      <option value="Training & Placement Officer" selected={"Training & Placement Officer"===designation}>Training & Placement Officer</option>
+      <option value="Senior Assistant" selected={"Senior Assistant"===designation}>Senior Assistant</option>
+      <option value="Junior Assistant" selected={"Junior Assistant"===designation}>Junior Assistant</option>
+      <option value="Junior Peon" selected={"Junior Peon"===designation}>Junior Peon</option>
+      <option value="Junior Superintendent" selected={"Junior Superintendent"===designation}>Jr. Superintendent</option>
+      <option value="Junior Superintendent/ Section Officer" selected={"Junior Superintendent/ Section Officer"===designation}>Junior Superintendent/ Section Officer </option>
+      <option value="Farmacist" selected={"Farmacist"===designation}>Farmacist</option>
+      <option value="Assistant Librarian" selected={"Assistant Librarian"===designation}>Assistant Librarian</option>
+      <option value="Junior Store Keeper" selected={"Junior Store Keeper"===designation}>Junior Store Keeper</option>
+      <option value="Cashier" selected={"Cashier"===designation}>Cashier</option>
+      <option value="Accountant" selected={"Accountant"===designation}>Accountant</option>
+      <option value="Personal Assistant" selected={"Personal Assistant"===designation}>Personal Assistant</option>
+      <option value="Physical Training Instructor" selected={"Physical Training Instructor"===designation}>Physical Training Instructor</option>
+      <option value="Record Keeper" selected={"Record Keeper"===designation}>Record Keeper</option>
+      <option value="Ground Supervisor" selected={"Ground Supervisor"===designation}>Ground Supervisor</option>
+      <option value="Plumber" selected={"Plumber"===designation}>Gardener</option>
+      <option value="Plumber" selected={"Plumber"===designation}>Plumber</option>      
+      <option value="Assistant Professor" selected={"Assistant Professo"===designation}>Assistant Professor</option>
+      <option value="Associate Professor" selected={"Associate Professor"===designation}>Associate Professor</option>
+      <option value="Professor" selected={"Professor"===designation}>Professor</option>
+      <option value="Technical Assistant" selected={"Technical Assistant"===designation}>Technical Assistant</option>
 
     </select>
     </div>

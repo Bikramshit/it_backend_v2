@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { ChapterHandler, FileUploadedHandler, GetSingleResponse } from '../../../Redux/Actions/ResponseAction';
 import Loader from '../../Layouts/Loader/Loader';
+import toast from 'react-hot-toast';
 
 
 const RouteList = [
@@ -102,7 +103,7 @@ function Chapter() {
   const params = useParams();
   useEffect(()=>{
     dispatch(GetSingleResponse(params.id))
-   }, [dispatch, params.id]);
+   }, [params.id]);
 
   
    const [lip_file, setLip_file] = useState(null);
@@ -156,33 +157,7 @@ function Chapter() {
     //   }
     // } 
   }
-  const Input_Handler = (e)=>{
-    let selectedFile = e.target.files[0];
-    setInput_File(selectedFile);
-   
-  }
-  const Input2_Handler = (e)=>{
-    let selectedFile = e.target.files[0];
-    setInput_File2(selectedFile);
-   
-  }
-  const Input3_Handler = (e)=>{
-    let selectedFile = e.target.files[0];
-    setInput_File3(selectedFile);
-    // if(selectedFile){
-    //   if(selectedFile && FileType.includes(selectedFile.type)){
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(selectedFile);
-    //     reader.onload = (e)=>{
-    //       setInput_File3(e.target.result);
-    //       // toast.success("File selected successfully")
-    //     }
-    //   } else {
-    //   // toast.error("It supports only pdf extension");
-    //   setInput_File3(null);
-    //   }
-    // } 
-  }
+
 
 
    const aupf_c = useRef(0);
@@ -276,12 +251,15 @@ let aupf = 0;
       // hbl_yr.current.value = response.hbl_taken_fy;
 
       let aupf_;
-      if(response.aupf_c===0){
-        aupf_ =  parseInt(response.aupf_s13) + parseInt(response.laupf_s)
-      } else {
-        aupf_ = parseInt(response.aupf_c);
-      }
-      aupf_c.current.value =aupf_  ;
+      // let aupf_s13 = parseInt(response.aupf_s13) || 0;
+      // let aupf_c = parseInt(response.aupf_c) || 0;
+      aupf_ = parseInt(response.aupf_s13) + parseInt(response.laupf_s);
+      // if(response.aupf_c===0){
+      //   aupf_ =  parseInt(response.aupf_s13) + parseInt(response.laupf_s)
+      // } else {
+      //   aupf_ = parseInt(response.aupf_c);
+      // }
+      aupf_c.current.value =aupf_ ;
 
       let epf_ = 0;
       if(response.epf_c===0){
@@ -291,11 +269,11 @@ let aupf = 0;
       }
       epf.current.value = epf_;
       let sf_ = 0;
-      if(response.sf_c===0){
-        sf_ = parseInt(response.sf_s13) + parseInt(response.sf_f13);
-      }else {
-        sf_=response.sf_c;
-      }
+      // if(response.sf_c===0){
+      //   sf_ = parseInt(response.sf_s13) + parseInt(response.sf_f13);
+      // }else {
+        sf_=parseInt(response.sf_s13) + parseInt(response.sf_f13);
+      // }
 
       sf_c.current.value = sf_;
       lip.current.value = response.lip_c;
@@ -336,7 +314,8 @@ let aupf = 0;
 
 
     }
-   }, [dispatch, response])
+
+   }, [response])
 
 
 
@@ -424,9 +403,12 @@ let aupf = 0;
 
 
   const sum = ()=> {
+
     var sum;
     var sum2;
     var epf = parseInt(response.aupf_f13) || 0;
+    document.getElementById('epf').value = epf;
+    // toast.success(epf);
     var sf_s = parseInt(response.sf_s13) || 0;
     var sf_f = parseInt(response.sf_f13) || 0;
     var sf = parseInt(sf_s) + parseInt(sf_f);
@@ -787,6 +769,10 @@ useEffect(()=>{
   }
 });
 
+
+
+  // console.log(response.aupf_s13);
+  // console.log(response.laupf_s);
   return (
    <>
    
@@ -812,16 +798,16 @@ useEffect(()=>{
             <tr>
               <th rowSpan={12} className='table_row_bg'>80C</th>
               <td>AUPF/ GPF/ PF transferred</td>
-              <td><input type="text" onKeyPress={onKeyPressEvent} id="aupf" defaultValue={aupf_c} ref={aupf_c} readOnly value={parseInt(response.aupf_s13) + parseInt(response.laupf_s)} /></td>
+              <td><input type="text" onKeyPress={onKeyPressEvent} id="aupf"  ref={aupf_c} readOnly  /></td>
               <td rowSpan={11} className='table_row_bg'></td>
             </tr>
             <tr className='table_row_bg'>
               <td>EPF/GPF deducted from Ex-employer</td>
-              <td><input type="text" onKeyPress={onKeyPressEvent} id='epf' defaultValue={epf} ref={epf} readOnly value={response.epf_f13} /></td>
+              <td><input type="text" onKeyPress={onKeyPressEvent} id='epf' defaultValue={epf} ref={epf} readOnly value={epf} /></td>
             </tr>
             <tr >
               <td>SF/IF</td>
-              <td><input type="text" onKeyPress={onKeyPressEvent} id='sf' value={sf} defaultValue={sf_c} ref={sf_c} readOnly /></td>
+              <td><input type="text" onKeyPress={onKeyPressEvent} id='sf' defaultValue={sf_c} ref={sf_c} readOnly /></td>
             </tr>
             <tr className='table_row_bg'>
               <td>Life Insurance Premium
@@ -963,12 +949,13 @@ Rs.75,000/- for disability over 40% & Rs.1,25,000/- for severe disability over 8
               <td></td>
               <td><input type="text" onKeyPress={onKeyPressEvent} defaultValue={isb2} readOnly id="isb2" ref={isb2}  /></td>
             </tr>
-            <tr className='table_row_bg'>
+            {/* <tr className='table_row_bg'>
               <th>80G</th>
-              <td>Donation/Charity to registered donatee (Refer to IT website for any clarification)</td>
+              <td>Admissible amount of 50% (not allowable by DDO)</td>
               <td></td>
-              <td><input type="text" onKeyPress={onKeyPressEvent} id="drd" defaultValue={drd} ref={drd} onChange={sum} /></td>
-            </tr>
+              <td><input type="text" onKeyPress={onKeyPressEvent} id="drd" defaultValue={drd} ref={drd} onChange={sum}  /></td>
+            </tr> */}
+             <td style={{display:"none"}}> <input type="text" onKeyPress={onKeyPressEvent} id="drd" defaultValue={drd} ref={drd} onChange={sum}  /></td>
             <tr>
               <th>80EEB</th>
               <td>Deduction towards interest payments made on loan for purchase of Electric Vehicle</td>

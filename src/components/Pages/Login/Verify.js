@@ -48,6 +48,7 @@ function Verify() {
    <>
    
    <div className="main_con">
+    <div className="main">
      <Header/>
     <div className="login_container">
       <div className="login_child">
@@ -59,7 +60,7 @@ function Verify() {
       </div>
      
       <div className=" login_btn">
-        <button type='submit' className='btn' onClick={SubmitHandler}>Submit</button>
+        <button type='submit' className='btn' onClick={SubmitHandler}>Login</button>
       </div>
 
       {secondLeft>=0 ?`Resend in ${secondLeft} seconds` : ''} <button className='resend' disabled={secondLeft>=0} onClick={resendOtp}> Resend OTP </button>
@@ -93,6 +94,7 @@ function Verify() {
                       </div>
                     </div>
                     </div>
+    </div>
     </div>
     </div>
     </div>

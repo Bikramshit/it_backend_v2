@@ -53,6 +53,7 @@ const getDate =(yourDate)=> {
     <h5 className='text-decoration-underline pt-1'>User Details</h5>
         <div className="user_sec">
           <div className="labels">
+            <div>UIN</div>
             <div>Name</div>
             <div>Designation</div>
             <div>Department/Section</div>
@@ -65,6 +66,7 @@ const getDate =(yourDate)=> {
           </div>
 
           <div className="value">
+            <div>{user.emp_id}</div>
             <div>{user.name}</div>
             <div>{user.designation}</div>
             <div>{user.department}</div>

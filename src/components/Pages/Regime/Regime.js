@@ -181,7 +181,7 @@ function Regime() {
             </div>
             <div className="regime_child">
               <h6>New Tax Regime</h6>
-              <span>As per budget 2023</span>
+              <span>As per budget 2024</span>
               <p>For both <b>individual</b> & <b>Sr. Citizen</b></p>
               <table>
                 <tr className='table_bg'>
@@ -193,24 +193,24 @@ function Regime() {
                   <td>Nill</td>
                 </tr>
                 <tr className='table_row_bg'>
-                  <td>Rs 3,00,000 to Rs 6,00,000</td>
+                  <td>Rs 3,00,000 to Rs 7,00,000</td>
                   <td>5% on income which exceeds Rs 3,00,000 </td>
                 </tr>
                 <tr>
-                  <td>Rs 6,00,000 to Rs 900,000</td>
-                  <td>Rs. 15,000 + 10% on income more than Rs 6,00,000</td>
+                  <td>Rs 7,00,000 to Rs 10,00,000</td>
+                  <td>Rs. 20,000 + 10% on income more than Rs 7,00,000</td>
                 </tr>
                 <tr className='table_row_bg'>
-                  <td>Rs 9,00,000 to Rs 12,00,000</td>
-                  <td>Rs. 45,000 + 15% on income more than Rs 9,00,000</td>
+                  <td>Rs 10,00,000 to Rs 12,00,000</td>
+                  <td>Rs. 50,000 + 15% on income more than Rs 10,00,000</td>
                 </tr>
                 <tr>
-                  <td>Rs 12,00,000 to Rs 1500,000</td>
-                  <td>Rs. 90,000 + 20% on income more than Rs 12,00,000</td>
+                  <td>Rs 12,00,000 to Rs 15,00,000</td>
+                  <td>Rs. 80,000 + 20% on income more than Rs 12,00,000</td>
                 </tr>
                 <tr className='table_row_bg'>
                   <td>Above Rs 15,00,000</td>
-                  <td>Rs. 150,000 + 30% on income more than Rs 15,00,000</td>
+                  <td>Rs. 1,40,000 + 30% on income more than Rs 15,00,000</td>
                 </tr>
                 
               </table>

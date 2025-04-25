@@ -153,7 +153,23 @@ export const responsesReducer = createReducer({}, {
     },
     clearMessage:(state)=>{
         state.message=null;
-    }
+    },
+
+    formReSubmitRequest: state => {
+      state.loading = true;
+    },
+    formReSubmitSuccess: (state, action) => {
+      state.loading = false;
+      state.response = action.payload.response;
+      state.message = action.payload.message;
+    },
+    formReSubmitFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+
+
 
 
 })

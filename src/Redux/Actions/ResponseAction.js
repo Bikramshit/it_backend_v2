@@ -38,11 +38,11 @@ export const StartResponse = (id,name, pan, aadhaar, email, phone, department, d
     }
   }; 
 
-  export const GetAllResponseByForm = (id, remark="") => async dispatch => {
+  export const GetAllResponseByForm = (id, remark="", documentStatus="") => async dispatch => {
     try {
       dispatch({ type: 'ResponseByFormRequest' });
   
-      const { data } = await axios.get(`${server}/form/response/${id}?remark=${remark}`, {
+      const { data } = await axios.get(`${server}/form/response/${id}?remark=${remark}&documentStatus=${documentStatus}`, {
         headers: {
           'Content-type': 'application/json',
         },
@@ -258,6 +258,22 @@ export const StartResponse = (id,name, pan, aadhaar, email, phone, department, d
     }
   }; 
 
+  export const ReSubmitForm = (id) => async dispatch => {
+    try {
+      dispatch({ type: 'formReSubmitRequest' });
+
+      const { data } = await axios.put(`${server}/response/resubmission/${id}`,{},  {
+        headers: {
+          'Content-type': 'application/json',
+        },
+        withCredentials: true,
+      });
+      dispatch({ type: 'formReSubmitSuccess', payload: data.response });
+     
+    } catch (error) {
+      dispatch({ type: 'formReSubmitFail', payload: error.response.data.message });
+    }
+  }; 
 
 
   export const SalaryHandler = (id, 
